@@ -1,214 +1,118 @@
 import java.util.Scanner;
 
-public class Project_1{
+public class C-Encryption-Decryption{
 
     public static void main(String[] args) {
        
-        boolean terminate = false;       
-       
-        Welcome();
-        System.out.println();
-        System.out.println("Group 13: LUAY HAMED, OUSSAMA TANFOURI, ANDREI COJOCARU, JIHAD KHOULY, PATRICK MARCHITAN\n");
-       
         Scanner input = new Scanner(System.in);
 
-        Main_Menu();
-        
-        while(terminate == false){
-            
-            String option = input.nextLine().toUpperCase();
-       
-            switch (option) {         
-                case "A":
-                    Clear_Console();  
-                    System.out.println("You have selected option A");             
-                    break;
-                case "B":
-                    Clear_Console();  
-                    System.out.println("You have selected option B");               
-                    break;
-                case "C":
-                    Clear_Console();  
-                    System.out.println("You have selected option C");    
-                    C_submenu(input);          
-                    break;
-                case "D":
-                    Clear_Console();  
-                    System.out.println("You have selected option D");             
-                    break;
-                case "E":
-                    Clear_Console();
-                    System.out.println("You have selected option E\nProgram was Terminted");
-                    terminate = true;
-                    break;                      
-                default:
-                    System.out.println("INVALID INPUT!!!, no such option exists, Please Select A Valid Option (A, B, C, D, E):\n");  
-                    Main_Menu();                
-                    break;
-
-            }     
-        }
-        
-        input.close();
-        
-    }
-
-    private static void Welcome(){
-        int rows = 5, columns=1;
-        String [][] W = {{"W\tW"},{"W\tW"},{"W   W   W"}, {"W W   W W"}, {"W\tW"}};
-    
-        String [][] E = {{"EEEEEEEEE"},{"E        "},{"EEEEEEEEE"}, {"E        "}, {"EEEEEEEEE"}};
-
-        String [][] L = {{"L        "},{"L        "},{"L        "}, {"L        "}, {"LLLLLLLLL"}};
-        
-        String [][] C = {{"CCCCCCCCC"},{"C        "},{"C        "}, {"C        "}, {"CCCCCCCCC"}};
-
-        String [][] O = {{"OOOOOOOOO"},{"O\tO"},{"O\tO"}, {"O\tO"}, {"OOOOOOOOO"}};
-        
-        String [][] M = {{"M       M"},{"M       M"},{"M M   M M"}, {"M   M   M"}, {"M       M"}};
-        
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                System.out.print(W[i][j] + "   ");     
-                System.out.print(E[i][j] + "   ");           
-                System.out.print(L[i][j] + "   ");             
-                System.out.print(C[i][j] + "   ");               
-                System.out.print(O[i][j] + "   ");              
-                System.out.print(M[i][j] + "   ");               
-                System.out.print(E[i][j] + "   ");
-                
-            }
-            
-            System.out.println();
+        private static void Clear_Console()
+        {
+            System.out.print("\033[H\033[2J");  
+            System.out.flush(); 
         }
 
-
-
-    }
-
-    private static void Main_Menu(){
+        private static void C_submenu(Scanner input){
        
-        System.out.println("[A] Statistical Information About an Array");
-        System.out.println("[B] Matrix Operations,");
-        System.out.println("[C] Text Encryption/Decryption");
-        System.out.println("[D] Tic-tac-toe HotSeat");
-        System.out.println("[E] Terminate\n");
-        System.out.println("Please Select One of The available Options (A, B, C, D, E): ");
-       
-    }
-
-    private static void Clear_Console()
-    {
-        System.out.print("\033[H\033[2J");  
-        System.out.flush(); 
-    }
-
-    private static void C_submenu(Scanner input){
-       
-        System.out.println("Please Select One of The Following Options From The Submenu: ");
-        System.out.println("[1] Encryption");
-        System.out.println("[2] Decryption");
-        System.out.println("[3] Return to the Main Menu\n");
-       
-        String sub_option = input.nextLine();
- 
+            System.out.println("Please Select One of The Following Options From The Submenu: ");
+            System.out.println("[1] Encryption");
+            System.out.println("[2] Decryption");
+            System.out.println("[3] Return to the Main Menu\n");           
+            String sub_option = input.nextLine();
         
-        switch (sub_option) {
-            case "1":
-                Clear_Console();  
-                System.out.println("You have selected option 1\n");        
-                System.out.println("Please Enter The Encryption Key to Use (Must be between 26 And -26),\nPostive Values Shift Characters to The Right, Negative Values Shift Characters to The Left, 0 Will Not Shift Characters: ");     
+            switch (sub_option) {
+                case "1":
+                    Clear_Console();  
+                    System.out.println("You have selected option 1\n");        
+                    System.out.println("Please Enter The Encryption Key to Use (Must be between 26 And -26),\nPostive Values Shift Characters to The Right, Negative Values Shift Characters to The Left, 0 Will Not Shift Characters: ");     
                 
-                int key = input.nextInt();
-                input.nextLine(); 
+                    int key = input.nextInt();
+                    input.nextLine(); 
                 
-                if (key > 26 || key < -26){
-                    System.out.println("\nINVALID INPUT!!!, The Encryption Key Must Be Be Between 26 And -26\nReturning To the subMenu...\n ");
-                    C_submenu(input);
+                    if (key > 26 || key < -26){
+                        System.out.println("\nINVALID INPUT!!!, The Encryption Key Must Be Be Between 26 And -26\nReturning To the subMenu...\n ");
+                        C_submenu(input);
+                        break;
+
+                    }
+
+                    System.out.println("\nPlease Enter the Text You Would Like to Encrypt: ");     
+                    String text = input.nextLine();
+
+                    String Encrypted_Text = Encrypt(text, key);
+                    System.out.println("\n"+ text + " Was Successfully Encrypted To " + Encrypted_Text);
                     break;
-
-                }
-
-                System.out.println("\nPlease Enter the Text You Would Like to Encrypt: ");     
-                String text = input.nextLine();
-
-                String Encrypted_Text = Encrypt(text, key);
-                System.out.println("\n"+ text + " Was Successfully Encrypted To " + Encrypted_Text);
-                break;
            
-            case "2":
-                Clear_Console();  
-                System.out.println("You have selected option 2\n");               
-                System.out.println("Please Enter The Decryption Key to Use (Must be between 26 And -26)\nPostive Values Shift Characters The Left, Negative Values Shift Characters to The Right, 0 Will Not Shift Characters: ");       
+                case "2":
+                    Clear_Console();  
+                    System.out.println("You have selected option 2\n");               
+                    System.out.println("Please Enter The Decryption Key to Use (Must be between 26 And -26)\nPostive Values Shift Characters The Left, Negative Values Shift Characters to The Right, 0 Will Not Shift Characters: ");       
                 
-                key = input.nextInt();
-                input.nextLine(); 
+                    key = input.nextInt();
+                    input.nextLine(); 
 
-                if (key > 26 || key < -26){
-                    System.out.println("\nINVALID INPUT!!!, The Decryption Key Must Be Be Between 26 And -26\nReturning To the Submenu...\n ");
+                    if (key > 26 || key < -26){
+                        System.out.println("\nINVALID INPUT!!!, The Decryption Key Must Be Be Between 26 And -26\nReturning To the Submenu...\n ");
+                        C_submenu(input);
+                        break;
+                    }
+                
+                    System.out.println("\nPlease Enter the Text You Would Like to Decrypt: ");       
+                    text = input.nextLine();
+
+                    String Decrypted_Text = Decrypt(text, key);
+                    System.out.println("\n"+ text + " Was Successfully Dencrypted To " + Decrypted_Text);
+                
+                    break;
+
+                case "3":                     
+                    Clear_Console();  
+                    System.out.println("You have selected option 3\n");
+                    Main_Menu();
+                    break;
+             
+                default:
+                    System.out.println("INVALID INPUT!!!, No Such Option Exists, Please Select A valid option From The Submenu (1, 2, 3)\n");
                     C_submenu(input);
                     break;
+            }   
+
+        }
+
+        private static String Encrypt(String text, int key){
+
+            String ans = "";      
+            for (int i = 0; i < text.length(); i++) {
+            
+                char c = text.charAt(i);
+                if(Character.isAlphabetic(c)){
+                    int c_Encrypted = (int)c + key;        
+                    c_Encrypted = c_Encrypted % 128;
+                    ans += (char)c_Encrypted;
                 }
-                
-                System.out.println("\nPlease Enter the Text You Would Like to Decrypt: ");       
-                text = input.nextLine();
-
-                String Decrypted_Text = Decrypt(text, key);
-                System.out.println("\n"+ text + " Was Successfully Dencrypted To " + Decrypted_Text);
-                
-                break;
-
-            case "3":                     
-                Clear_Console();  
-                System.out.println("You have selected option 3\n");
-                Main_Menu();
-                break;
-             
-            default:
-                System.out.println("INVALID INPUT!!!, No Such Option Exists, Please Select A valid option From The Submenu (1, 2, 3)\n");
-                C_submenu(input);
-                break;
-        }   
-
-    }
-
-    private static String Encrypt(String text, int key){
-
-        String ans = "";      
-        for (int i = 0; i < text.length(); i++) {
-            
-            char c = text.charAt(i);
-            if(Character.isAlphabetic(c)){
-                int c_Encrypted = (int)c + key;        
-                c_Encrypted = c_Encrypted % 128;
-                ans += (char)c_Encrypted;
-            }
-            else if(!Character.isAlphabetic(c))
-            {
+                else if(!Character.isAlphabetic(c)){
                 ans += c;
+                }
             }
-        }
+            return ans;
+            }
 
-        return ans;
-    }
-
-    private static String Decrypt(String text, int key){
+        private static String Decrypt(String text, int key){
         
-        String ans = "";     
-        for (int i = 0; i < text.length(); i++) {
+            String ans = "";     
+            for (int i = 0; i < text.length(); i++) {
             
-            char c = text.charAt(i);
-            if(Character.isAlphabetic(c)){
-                int c_Decrypted = (int)c - key;        
-                c_Decrypted = c_Decrypted % 128;
-                ans += (char)c_Decrypted;
-            }
-            else if(!Character.isAlphabetic(c))
-            {
+                char c = text.charAt(i);
+                if(Character.isAlphabetic(c)){
+                    int c_Decrypted = (int)c - key;        
+                    c_Decrypted = c_Decrypted % 128;
+                    ans += (char)c_Decrypted;
+                 }
+                else if(!Character.isAlphabetic(c)){
                 ans += c;
+                }
             }
-        }
 
-        return ans;
-    }
+            return ans;
+        }
 }

@@ -6,8 +6,62 @@ public class TicTacToe {
     private static char currentPlayer = 'X';
 
     public static void main(String[] args) {
-        initializeBoard();
-        playGame();
+        Scanner scanner = new Scanner(System.in);
+        boolean gameOngoing = true;
+
+        while (true) {
+            initializeBoard();
+            System.out.println("New game started!");
+
+            while (gameOngoing) {
+                printBoard();
+                System.out.println("Player " + currentPlayer + "'s turn. Enter a number between 1-9, or type 'terminate' to go back to the main menu:");
+
+                String input = scanner.nextLine();
+
+                if (input.equalsIgnoreCase("terminate")) {
+                    System.out.println("Game terminated. Returning to the main menu...");
+                    MainFunc.main(new String[0]);
+                    return;
+                }
+
+                if (input.matches("[1-9]")) {
+                    int move = Integer.parseInt(input) - 1;
+
+                    if (board[move] != 'X' && board[move] != 'O') {
+                        board[move] = currentPlayer;
+                        if (checkWin()) {
+                            printBoard();
+                            System.out.println("Player " + currentPlayer + " wins!");
+                            break;
+                        } else if (isBoardFull()) {
+                            printBoard();
+                            System.out.println("The game is a tie!");
+                            break;
+                        } else {
+                            switchPlayer();
+                        }
+                    } else {
+                        System.out.println("Invalid move. Try again.");
+                    }
+                } else {
+                    System.out.println("Invalid input. Please enter a number between 1 and 9.");
+                }
+            }
+
+            System.out.println("Do you want to play again? Type 'yes' to continue or 'terminate' to go back to the main menu.");
+
+            String playAgain = scanner.nextLine();
+
+            if (playAgain.equalsIgnoreCase("terminate")) {
+                System.out.println("Game terminated. Returning to the main menu...");
+                MainFunc.main(new String[0]);
+                return;
+            } else {
+                currentPlayer = 'X';
+                gameOngoing = true;
+            }
+        }
     }
 
     public static void initializeBoard() {
@@ -25,52 +79,14 @@ public class TicTacToe {
         System.out.println(board[6] + " | " + board[7] + " | " + board[8]);
     }
 
-    public static void playGame() {
-        Scanner scanner = new Scanner(System.in);
-        boolean gameOngoing = true;
-
-        while (gameOngoing) {
-            printBoard();
-            System.out.println("Player " + currentPlayer + "'s turn. Enter a number between 1-9, or type 'terminate' to go back to the main menu:");
-
-            String input = scanner.nextLine();
-
-            if (input.equalsIgnoreCase("terminate")) {
-                System.out.println("Game terminated. Returning to the main menu...");
-                MainFunc.main(new String[0]);
-                return;
-            }
-
-            int move = Integer.parseInt(input) - 1;
-
-            if (move >= 0 && move < 9 && board[move] != 'X' && board[move] != 'O') {
-                board[move] = currentPlayer;
-                if (checkWin()) {
-                    printBoard();
-                    System.out.println("Player " + currentPlayer + " wins!");
-                    gameOngoing = false;
-                } else if (isBoardFull()) {
-                    printBoard();
-                    System.out.println("The game is a tie!");
-                    gameOngoing = false;
-                } else {
-                    switchPlayer();
-                }
-            } else {
-                System.out.println("Invalid move. Try again.");
-            }
-        }
-
-        scanner.close();
-    }
-
     public static void switchPlayer() {
-    if (currentPlayer == 'X') {
-        currentPlayer = 'O';
-    } else {
-        currentPlayer = 'X';
+        if (currentPlayer == 'X') {
+            currentPlayer = 'O';
+        } else {
+            currentPlayer = 'X';
+        }
     }
-}
+
     public static boolean isBoardFull() {
         for (int i = 0; i < 9; i++) {
             if (board[i] != 'X' && board[i] != 'O') {
@@ -82,9 +98,9 @@ public class TicTacToe {
 
     public static boolean checkWin() {
         int[][] winConditions = {
-            {0, 1, 2}, {3, 4, 5}, {6, 7, 8},  // rows
-            {0, 3, 6}, {1, 4, 7}, {2, 5, 8},  // columns
-            {0, 4, 8}, {2, 4, 6}              // diagonals
+            {0, 1, 2}, {3, 4, 5}, {6, 7, 8},
+            {0, 3, 6}, {1, 4, 7}, {2, 5, 8},
+            {0, 4, 8}, {2, 4, 6}
         };
 
         for (int[] condition : winConditions) {

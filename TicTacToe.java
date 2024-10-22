@@ -65,9 +65,12 @@ public class TicTacToe {
     }
 
     public static void switchPlayer() {
-        currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+    if (currentPlayer == 'X') {
+        currentPlayer = 'O';
+    } else {
+        currentPlayer = 'X';
     }
-
+}
     public static boolean isBoardFull() {
         for (int i = 0; i < 9; i++) {
             if (board[i] != 'X' && board[i] != 'O') {

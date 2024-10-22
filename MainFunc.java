@@ -34,6 +34,8 @@ public class MainFunc{
                 case "D" -> {
                     Clear_Console();
                     System.out.println("You have selected option D");
+                    TicTacToe.main(args);
+                    break;
                 }
                 case "E" -> {
                     Clear_Console();

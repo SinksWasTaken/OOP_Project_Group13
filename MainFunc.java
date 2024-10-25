@@ -49,46 +49,97 @@ public class MainFunc{
 
         input.close();
     }
-
-    private static void Welcome(){
-        int rows = 5, columns=1;
-        String [][] W = {{"W   W   W"},{"W   W   W"},{"W   W   W"}, {" W  W  W "}, {"  W W W  "}};
     
-        String [][] E = {{"EEEEEEEEE"},{"E        "},{"EEEEEEEEE"}, {"E        "}, {"EEEEEEEEE"}};
+    private static void Welcome(){
 
-        String [][] L = {{"L        "},{"L        "},{"L        "}, {"L        "}, {"LLLLLLLLL"}};
-        
-        String [][] C = {{"CCCCCCCCC"},{"C        "},{"C        "}, {"C        "}, {"CCCCCCCCC"}};
+        Clear_Console();
 
-        String [][] O = {{"OOOOOOOOO"},{"O       O"},{"O       O"}, {"O       O"}, {"OOOOOOOOO"}};
-        
-        String [][] M = {{"M       M"},{"M M   M M"}, {"M   M   M"},{"M       M"},{"M       M"}};
-        
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                System.out.print(W[i][j]);
-                System.out.print("   ");
-                System.out.print(E[i][j]);
-                System.out.print("   ");
-                System.out.print(L[i][j]);
-                System.out.print("   ");
-                System.out.print(C[i][j]);
-                System.out.print("   ");
-                System.out.print(O[i][j]);
-                System.out.print("   ");
-                System.out.print(M[i][j]);
-                System.out.print("   ");
-                System.out.print(E[i][j]);
-                System.out.print("   ");
-            }
-            
-            System.out.println();
-        }
-
-
+        String[] welcome = 
+                    {
+                        """
+                         _    _      _                          \r
+                        | |  | |    | |                         \r
+                        | |  | | ___| | ___ ___  _ __ ___   ___ \r
+                        | |/\\| |/ _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\\r
+                        \\  /\\  /  __/ | (_| (_) | | | | | |  __/\r
+                         \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___|\r
+                        
+                        """
+        };
+        String[] Luay = 
+                    {
+                        """
+                         _                         _   _                          _ \r
+                        | |                       | | | |                        | |\r
+                        | |    _   _  __ _ _   _  | |_| | __ _ _ __ ___   ___  __| |\r
+                        | |   | | | |/ _` | | | | |  _  |/ _` | '_ ` _ \\ / _ \\/ _` |\r
+                        | |___| |_| | (_| | |_| | | | | | (_| | | | | | |  __/ (_| |\r
+                        \\_____/\\__,_|\\__,_|\\__, | \\_| |_/\\__,_|_| |_| |_|\\___|\\__,_|\r
+                                            __/ |                                   \r
+                                           |___/                                    \r
+                        """
+                    };
+        String[] Oussema = 
+                    {
+                        """
+                         _____                                      _____            __                 _ \r
+                        |  _  |                                    |_   _|          / _|               (_)\r
+                        | | | |_   _ ___ ___  ___ _ __ ___   __ _    | | __ _ _ __ | |_ ___  _   _ _ __ _ \r
+                        | | | | | | / __/ __|/ _ \\ '_ ` _ \\ / _` |   | |/ _` | '_ \\|  _/ _ \\| | | | '__| |\r
+                        \\ \\_/ / |_| \\__ \\__ \\  __/ | | | | | (_| |   | | (_| | | | | || (_) | |_| | |  | |\r
+                         \\___/ \\__,_|___/___/\\___|_| |_| |_|\\__,_|   \\_/\\__,_|_| |_|_| \\___/ \\__,_|_|  |_|\r
+                        
+                        """
+                    };
+        String[] Andrei = 
+                    {
+                        """
+                          ___            _          _   _____       _                            \r
+                         / _ \\          | |        (_) /  __ \\     (_)                           \r
+                        / /_\\ \\_ __   __| |_ __ ___ _  | /  \\/ ___  _ _   _  ___ __ _ _ __ _   _ \r
+                        |  _  | '_ \\ / _` | '__/ _ \\ | | |    / _ \\| | | | |/ __/ _` | '__| | | |\r
+                        | | | | | | | (_| | | |  __/ | | \\__/\\ (_) | | |_| | (_| (_| | |  | |_| |\r
+                        \\_| |_/_| |_|\\__,_|_|  \\___|_|  \\____/\\___/| |\\__,_|\\___\\__,_|_|   \\__,_|\r
+                                                                  _/ |                           \r
+                                                                 |__/                            \r
+                        """
+                    };
+        String[] Patrick = 
+                    {
+                        """
+                        ______          _   _      _     ___  ___               _     _ _              \r
+                        | ___ \\        | | (_)    | |    |  \\/  |              | |   (_) |             \r
+                        | |_/ /_ _ _ __| |_ _  ___| | __ | .  . | __ _ _ __ ___| |__  _| |_ __ _ _ __  \r
+                        |  __/ _` | '__| __| |/ __| |/ / | |\\/| |/ _` | '__/ __| '_ \\| | __/ _` | '_ \\ \r
+                        | | | (_| | |  | |_| | (__|   <  | |  | | (_| | | | (__| | | | | || (_| | | | |\r
+                        \\_|  \\__,_|_|   \\__|_|\\___|_|\\_\\ \\_|  |_/\\__,_|_|  \\___|_| |_|_|\\__\\__,_|_| |_|\r
+                        
+                        """
+                    };
+        String[] Jihad = 
+                    {
+                        """
+                           ___ _ _               _   _   ___                 _       \r
+                          |_  (_) |             | | | | / / |               | |      \r
+                            | |_| |__   __ _  __| | | |/ /| |__   ___  _   _| |_   _ \r
+                            | | | '_ \\ / _` |/ _` | |    \\| '_ \\ / _ \\| | | | | | | |\r
+                        /\\__/ / | | | | (_| | (_| | | |\\  \\ | | | (_) | |_| | | |_| |\r
+                        \\____/|_|_| |_|\\__,_|\\__,_| \\_| \\_/_| |_|\\___/ \\__,_|_|\\__, |\r
+                                                                                __/ |\r
+                                                                               |___/ \r
+                        
+                        """
+                    };
+                    
+        System.out.print(welcome[0]);
+        System.out.print(Luay[0]);
+        System.out.print(Oussema[0]);
+        System.out.print(Andrei[0]);
+        System.out.print(Patrick[0]);
+        System.out.print(Jihad[0]);
 
     }
-
+    
     private static void Main_Menu(){
        
         System.out.println("Please select one of the following options: ");
@@ -104,7 +155,7 @@ public class MainFunc{
         Clear_Console();
         Welcome();
         System.out.println();
-        System.out.println("Group 13: LUAY HAMED, OUSSAMA TANFOURI, ANDREI COJOCARU, JIHAD KHOULY, PATRICK MARCHITAN\n");
+        
         Main_Menu();
         System.out.println("Please an available option (A, B, C, D, E): ");
     }

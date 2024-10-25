@@ -137,14 +137,20 @@ public class MatrixOperations
     {
         for (double[] mat1 : mat) {
             for (int j = 0; j<mat[0].length; j++) {
+                if(j==0)
+                {
+                    System.out.print('|');
+                }
+
                 System.out.printf("%.2f",mat1[j]);
+
                 if(j<mat[0].length-1)
                 {
                     System.out.print(" ");
                 }
                 else
                 {
-                    System.out.print("\n");
+                    System.out.print("|\n");
                 }
             }
         }

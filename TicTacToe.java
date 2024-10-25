@@ -53,13 +53,28 @@ public class TicTacToe {
 
             String playAgain = scanner.nextLine();
 
-            if (playAgain.equalsIgnoreCase("terminate")) {
-                System.out.println("Game terminated. Returning to the main menu...");
-                MainFunc.main(new String[0]);
-                return;
-            } else {
-                currentPlayer = 'X';
-                gameOngoing = true;
+            boolean stop =false;
+
+            while(!stop)
+            {
+                if (playAgain.equalsIgnoreCase("terminate")) {
+                    System.out.println("Game terminated. Returning to the main menu...");
+                    return;
+                } 
+                else if(playAgain.equalsIgnoreCase("yes")) {
+                    currentPlayer = 'X';
+                    gameOngoing = true;
+                    Clear_Console();
+                    stop=true;
+                }
+                else
+                {
+                    System.out.print("\nInavailable Option Try Again: ");
+                    scanner.reset();
+                    playAgain = scanner.nextLine();
+
+                }
+                
             }
         }
     }

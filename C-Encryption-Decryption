@@ -99,11 +99,19 @@ public class C-Encryption-Decryption{
             
             if(Character.isAlphabetic(text.charAt(i)))
             {
-                char c = (char)(text.charAt(i)-'a');
+
+                char toAdd = 'a';
+                
+                if(text.charAt(i)<'a')
+                {
+                    toAdd = 'A';
+                }
+            
+                char c = (char)(text.charAt(i)-toAdd);
 
                 char c_Encrypted = (char)(((c+key)+26)%26);
 
-                c_Encrypted = (char) (c_Encrypted%26 + 'a');
+                c_Encrypted = (char) (c_Encrypted%26 + toAdd);
 
                 System.out.print("\nAfter: " + c_Encrypted);
                 
@@ -125,14 +133,21 @@ public class C-Encryption-Decryption{
             
             if(Character.isAlphabetic(text.charAt(i)))
             {
-                char c = (char)(text.charAt(i)-'a');
+                char toSubtract = 'a';
+                
+                if(text.charAt(i)<'a')
+                {
+                    toSubtract = 'A';
+                }
+
+                char c = (char)(text.charAt(i)-toSubtract);
 
                 char c_Decrypted = (char)(((c-key)+26)%26);
  
                 //System.out.print("Before: " + ((c-key)+26)%26);
                 //System.out.print("\nBefore: " + c_Decrypted);
 
-                c_Decrypted = (char) (c_Decrypted + 'a');
+                c_Decrypted = (char) (c_Decrypted + toSubtract);
 
                 //System.out.print("\nAfter: " + c_Decrypted);
 

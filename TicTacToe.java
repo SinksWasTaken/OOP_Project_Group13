@@ -142,17 +142,23 @@ public class TicTacToe {
         return true;
     }
 
-    public static boolean checkWin() //??
+    public static boolean checkWin() //Define possible winning conditions
     {
         int[][] winConditions = 
         {
-            {0, 1, 2}, {3, 4, 5}, {6, 7, 8},
-            {0, 3, 6}, {1, 4, 7}, {2, 5, 8},
-            {0, 4, 8}, {2, 4, 6}
+            {0, 1, 2}, //top
+            {3, 4, 5}, //middle
+            {6, 7, 8}, //bottom
+            {0, 3, 6}, //left column
+            {1, 4, 7}, //middle column
+            {2, 5, 8}, //right column
+            {0, 4, 8}, //diagonal top-left to bottom-right
+            {2, 4, 6} //diagonal top-right to bottom-let
         };
 
-        for (int[] condition : winConditions) 
+        for (int[] condition : winConditions) // Loop through each winning condition to check if any are met
         {
+            // Check if all three positions in a winning condition match the current player's symbol
             if (board[condition[0]] == currentPlayer &&
                 board[condition[1]] == currentPlayer &&
                 board[condition[2]] == currentPlayer) 

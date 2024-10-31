@@ -17,7 +17,17 @@ public class MainFunc{
             switch (option) {         
                 case "A" -> {
                     Clear_Console();  
-                    System.out.println("You have selected option A");
+                    try
+                    {
+                        StatisticalInformation.displayStatisticalInformation();
+                    }
+                     
+                    catch(ArithmeticException e)
+                    {
+                        System.out.println(e);
+                        return;
+                    }
+                    break;
                     
                 }
                 case "B" -> {
@@ -29,11 +39,12 @@ public class MainFunc{
                 }
                 case "C" -> {
                     Clear_Console();
-                    System.out.println("You have selected option C");
+                    Encryption_Decryption.C_submenu();
+                    break;
                 }
                 case "D" -> {
                     Clear_Console();
-                    System.out.println("You have selected option D");
+                    
                     TicTacToe.main(args);
                     break;
                 }

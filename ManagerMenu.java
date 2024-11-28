@@ -3,7 +3,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-public class ManagerMenu {
+public class ManagerMenu extends EmployeeClass
+{
+
+   public ManagerMenu() 
+   {
+      isManager=true;
+   }
+
+   
 
    private static void Clear_Console()
    {    
@@ -68,7 +76,7 @@ public class ManagerMenu {
             sc.next();
          }
       } 
-        sc.reset();
+        sc.close();
         return date;
    }
 
@@ -141,7 +149,7 @@ public class ManagerMenu {
          rs.updateString("Surname",emp.surname);
          rs.updateString("dateOfBirth",emp.dateOfBirth.toString());
          rs.updateString("dateOfStart",emp.dateOfStart.toString());
-         rs.updateString("password",emp.password.toString());
+         rs.updateString("password",emp.password);
          rs.insertRow();
          System.out.println("Added "+ emp.username + " successfully!");
       }
@@ -150,10 +158,9 @@ public class ManagerMenu {
          System.out.println("Error: Couldn't insert employee to db");
          e.printStackTrace();
       }
-
    }
 
-   public static void hireEmployee(Connection connection)
+   public void hireEmployee(Connection connection)
    {
       Scanner sc = new Scanner(System.in);
       EmployeeClass employee = new EmployeeClass();
@@ -162,7 +169,7 @@ public class ManagerMenu {
       String[] fields = {"Username","Name","Surname","Date of Birth (YYYY-MM-DD)","Date of Start (YYYY-MM-DD)","Role (0-3)"};
 
       System.out.println("Hire Empolyee");
-      String line= "";
+      String line;
 
       while (!stop) 
       {
@@ -258,7 +265,6 @@ public class ManagerMenu {
          }
          
          sc.reset();
-         line="";
          if(counter==6)
          {
             stop=true;
@@ -272,9 +278,30 @@ public class ManagerMenu {
       sc.close();
    }
 
+   public void fireEmployee(Connection connection,String Name, String Surname)
+   {
+      if(Name == name && Surname == surname)
+      {
+         System.out.println("Error: You can't fire yourself :(");
+         return;
+      }
+      try 
+      {   
+         String Delete_Query = "DELETE FROM workers WHERE name='" +Name + "' AND surname='" + Surname+"'";
+         Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+
+         statement.executeUpdate(Delete_Query);
+         
+      }
+      catch (SQLException e) 
+      {
+         System.err.println("Error: Couldn't delete from database: " + Name + " " +Surname);
+         e.printStackTrace();
+      }
+   }
+
    public static void printRS(ResultSet resultSet)
    {
-      
       try
       {
          ResultSetMetaData metaData = resultSet.getMetaData();
@@ -307,13 +334,8 @@ public class ManagerMenu {
       }
    }
 
-   // public static void main(String args[]) 
-   // {
-   //    hireEmployee();
-   // }
-   
-   
-   public static void main(String args[]) 
+
+      public static void main(String args[]) 
    {
       final String DATABASE_URL = "jdbc:mysql://localhost:3306/db?useTimezone=true&serverTimezone=UTC";        
       //final String SELECT_QUERY = "SELECT * FROM workers";
@@ -322,16 +344,10 @@ public class ManagerMenu {
       {                        
          Connection connection = DriverManager.getConnection(DATABASE_URL, "Manager", "ManagerPass123");                     
          Statement statement = connection.createStatement();   
-         hireEmployee(connection);
 
+         //hireEmployee(connection);
          ResultSet resultSet = select(statement);
-
-         // get ResultSet's meta data
-             
-         
-         
-         printRS(resultSet);
-         
+         //printRS(resultSet);
 
 	      connection.close();
       }

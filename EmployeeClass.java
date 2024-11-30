@@ -1,4 +1,11 @@
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.Scanner;
+import javax.lang.model.type.NullType;
 
 public class EmployeeClass 
 {
@@ -13,72 +20,43 @@ public class EmployeeClass
     //Non-Profile Info
     String email;
     String password;
-    int phoneNo;
+    String phoneNo;
+    //Extra Info
+    boolean isManager;
+    protected Connection conn;
 
-    public void setRole()
-    {
-        switch(roleIndex)
-        {
-            case 0 ->
-            {
-                role = "Manager";
-            }
-            case 1 ->
-            {
-                role = "Technician";
-            }
-            case 2 ->
-            {
-                role = "Engineer";
-            }
-            case 3 ->
-            {
-                role = "Intern";
-            }
-        }
-    }
-
-    public void printEmployee()
-    {
-        System.out.println("username: "+ username);
-        System.out.println("name: "+ name);
-        System.out.println("surname: "+ surname);
-        System.out.println("dateOfBirth: "+ dateOfBirth.toString());
-        System.out.println("dateOfStart: "+ dateOfStart.toString());
-        System.out.println("role: "+ role);
-        System.out.println("email: "+ email);
-        System.out.println("password: "+ password);
-        System.out.println("phoneNo: "+ phoneNo);
-
-    }
-public void getSelfFromDB(String EMail, Connection connection)
+    public void getSelfFromDB(String Username)
     {
         try
         {
-            String Select_Query = "SELECT * FROM workers WHERE name='" +EMail+"'";
-            Statement statement = connection.createStatement();
+            String Select_Query = "SELECT * FROM workers WHERE username='" +Username+"'";
+            Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(Select_Query);
 
             rs.next();
-            username = rs.getString("username");
-            name = rs.getString("name");
-            surname = rs.getString("surname");
-            phoneNo = rs.getString("phone_no");
-            roleIndex = rs.getInt("role");
-            setRole();
-            email = rs.getString("email");
-            password = rs.getString("password");
+            this.username = rs.getString("username");
+            this.name = rs.getString("name");
+            this.surname = rs.getString("surname");
+            this.phoneNo = rs.getString("phone_no");
+            this.roleIndex = rs.getInt("role");
+            this.setRole();
+            this.email = rs.getString("email");
+            this.password = rs.getString("password");
 
             try 
             {
-                dateOfBirth = LocalDate.parse(rs.getString("dateOfBirth"));
-                dateOfStart = LocalDate.parse(rs.getString("dateOfStart"));
+                this.dateOfBirth = LocalDate.parse(rs.getString("dateOfBirth"));
+                this.dateOfStart = LocalDate.parse(rs.getString("dateOfStart"));
     
             } 
             catch(DateTimeException e)
             {
                 System.out.println("Error: Parsing date");
                 e.printStackTrace();
+            }
+            catch(NullPointerException e)
+            {
+                System.out.println("\nWarning: Missing Data (found NULL values)\n");
             }
             
 
@@ -115,19 +93,26 @@ public void getSelfFromDB(String EMail, Connection connection)
 
     public void printSelf()
     {
+        
+        MainFunc.Clear_Console();
+        String dob = this.dateOfBirth == null ? "" : dateOfBirth.toString();
+        String dos = this.dateOfStart == null ? "" : dateOfBirth.toString();
+
+        System.out.println("Your Information: \n");
+        
         System.out.println("username: "+ username);
         System.out.println("name: "+ name);
         System.out.println("surname: "+ surname);
-        System.out.println("dateOfBirth: "+ dateOfBirth.toString());
-        System.out.println("dateOfStart: "+ dateOfStart.toString());
+        System.out.println("dateOfBirth: "+ dob);
+        System.out.println("dateOfStart: "+ dos);
         System.out.println("role: "+ role);
         System.out.println("email: "+ email);
         System.out.println("password: "+ password);
-        System.out.println("phoneNo: "+ phoneNo);
+        System.out.println("phoneNo: "+ phoneNo +"\n\n");
 
     }
     
-    public void updateProfile(Connection connection)
+    public void updateOwnProfile()
     {
         Scanner sc = new Scanner(System.in);
 
@@ -209,16 +194,15 @@ public void getSelfFromDB(String EMail, Connection connection)
                 }
             }
         }
-        updateEmployee(connection, this);
-        sc.close();
+        updateEmployee(this);
     }
 
-    public static void updateEmployee(Connection connection, EmployeeClass emp)
+    public void updateEmployee(EmployeeClass emp)
    {  
         try
         {
-            String Select_Query = "SELECT * FROM workers WHERE name='"+ emp.name+ "' AND surname='" + emp.surname+"'";
-            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            String Select_Query = "SELECT * FROM workers WHERE username='"+ emp.username+"'";
+            Statement statement = this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
             ResultSet rs = statement.executeQuery(Select_Query);
             
             rs.next();
@@ -236,6 +220,74 @@ public void getSelfFromDB(String EMail, Connection connection)
         }
    }
 
+    public void Menu(Scanner sc)
+    {
+        //sc.reset();
+        boolean menuStop=false;
+        while(!menuStop)
+        {
+            //MainFunc.Clear_Console();
+            System.out.println("Welcome "+ this.name + " " + this.surname + "!\n");
+            
 
+            System.out.println("Select option:");
+            System.out.println("1.View Profile");
+            System.out.println("2.Update Profile");
+            if(!this.isManager)
+            {
+                System.out.println("3.Log out");
+            }
+            else
+            {
+                System.out.println("3.Previous Menu");
+            }
+            sc.reset();
+            int option = MainFunc.validateIntInput(sc);
+            switch(option)
+            {
+            
+                case 1->//Display
+                {
+                    MainFunc.Clear_Console();
+                    getSelfFromDB(username);
+                    printSelf();
+
+                }
+                case 2->//Update Profile Info
+                {
+                    MainFunc.Clear_Console();
+                    getSelfFromDB(username);
+                    updateOwnProfile();
+
+                }
+                case 3->//Log Out
+                {
+                    if(this.isManager)
+                    {
+                        menuStop=true;
+                        MainFunc.Clear_Console();
+                        break;
+                        
+                    }
+                    
+                    try
+                    {
+                       this.conn.close();
+                       menuStop = true;
+                       MainFunc.Clear_Console();
+                       
+                    }
+                    catch(SQLException e)
+                    {
+                       System.out.println("Error: Couldn't close connection.");
+                    }
+                }
+                default->
+                {
+                   System.out.println("Choose a valid option\n");
+                }
+            }
+        }
+    }
 
 }

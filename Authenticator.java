@@ -1,10 +1,11 @@
 import java.sql.*;
+
 public class Authenticator 
 {
     public static Connection validateCredentials(String USRNAME, String PSWRD,boolean isManager[])
     {
         Connection finalConnection=null;
-        String DatabaseUrl ="jdbc:mysql://localhost:3306/db?useTimezone=true&serverTimezone=UTC";   
+        String DatabaseUrl ="jdbc:mysql://localhost:3306/db?useTimezone=true&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8";   
         try
         {
             String SELECT_QUERY = "SELECT * FROM workers WHERE username='" + USRNAME +"' AND password='" + PSWRD+ "'"; 
@@ -38,12 +39,14 @@ public class Authenticator
                 }
                 else
                 {
+                    ASCIIArt.display_Fail_msg();
                     System.out.println("Wrong Password Try again");
                 }
 
             }
             else
             {
+                ASCIIArt.display_Fail_msg();
                 System.out.println("Wrong Username & Password Try again");
 
             }
@@ -51,8 +54,8 @@ public class Authenticator
         }
         catch(SQLException e)
         {
+            ASCIIArt.display_error_msg();
             System.out.println("Error: Couldn't Connect to Database");
-            e.printStackTrace();
         }
 
         return finalConnection;

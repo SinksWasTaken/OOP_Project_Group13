@@ -67,6 +67,7 @@ public class ASCIIArt {
                         " |______\\___/ \\__, |_|_| |_| |_____/ \\___|_|  \\___|\\___|_| |_|\r\n" + //
                         "               __/ |                                          \r\n" + //
                         "              |___/                                           ");
+                        System.out.println("\033[0m"); 
 
 
     }
@@ -82,6 +83,7 @@ public class ASCIIArt {
                         " |______\\___/ \\__, |_|_| |_| |_____/ \\__,_|\\___\\___\\___||___/___/_|  \\__,_|_| (_)\r\n" + //
                         "               __/ |                                                             \r\n" + //
                         "              |___/                                                              ");
+                        System.out.println("\033[0m"); 
 
     }
     public static void display_error_msg()
@@ -95,7 +97,7 @@ public class ASCIIArt {
                         " |______|_|  |_|  \\___/|_|    (_)\r\n" + //
                         "                                 \r\n" + //
                         "                                 ");
-
+                        System.out.println("\033[0m"); 
     }
     
     public static void display_Fail_msg()
@@ -109,16 +111,8 @@ public class ASCIIArt {
                         " |______\\___/ \\__, |_|_| |_| |_|  \\__,_|_|_|\\___|\\__,_| (_)\r\n" + //
                         "               __/ |                                       \r\n" + //
                         "              |___/                                        ");
-
+                        System.out.println("\033[0m"); 
     }
 
-    public static void main(String[] args) {
-        display_Proj_intro();
-        display_welcome_msg();
-        display_success_msg();
-        display_Fail_msg();
-        display_error_msg();
-      
-
-    }
+    
 }

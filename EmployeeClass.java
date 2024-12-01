@@ -5,7 +5,6 @@ import java.sql.Statement;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Scanner;
-import javax.lang.model.type.NullType;
 
 public class EmployeeClass 
 {
@@ -96,7 +95,7 @@ public class EmployeeClass
         
         MainFunc.Clear_Console();
         String dob = this.dateOfBirth == null ? "" : dateOfBirth.toString();
-        String dos = this.dateOfStart == null ? "" : dateOfBirth.toString();
+        String dos = this.dateOfStart == null ? "" : dateOfStart.toString();
 
         System.out.println("Your Information: \n");
         
@@ -151,7 +150,7 @@ public class EmployeeClass
                 {
                     System.out.println("Enter new password (should be less than 20 characters): (leave empty if you dont want to update)");
                     String line = sc.nextLine();
-                    if(line.length()>30)
+                    if(line.length()>20)
                     {
                         System.out.println("password should be less than 20 characters");
                         i--;
@@ -170,6 +169,14 @@ public class EmployeeClass
                 {
                     System.out.println("Enter new phoneNo. (should begin with 5 and follow the format (5XXXXXXXXX) ): (leave empty if you dont want to update)");
                     String line = sc.nextLine();
+                    boolean hasChars=false;
+                    for(int j=0;j<line.length();j++)
+                    {
+                        if(line.charAt(j)>'9' || line.charAt(j)<'0')
+                        {
+                            hasChars=true;
+                        }
+                    }
                     if(line.length()==0)
                     {
                         continue;
@@ -179,17 +186,19 @@ public class EmployeeClass
                         System.out.println("phoneNo. should be exactly 10 characters");
                         i--;
                     }
+                    else if(line.charAt(0)!='5')
+                    {
+                        System.out.println("phoneNo. should begin with 5 and follow the format (5XXXXXXXXX).");
+                        i--;
+                    }
+                    else if(hasChars)
+                    {
+                        System.out.println("phoneNo. should not have any characters.");
+                        i--;
+                    }
                     else
                     {
-                        if(line.charAt(0)!='5')
-                        {
-                            System.out.println("phoneNo. should begin with 5 and follow the format (5XXXXXXXXX).");
-                            i--;
-                        }
-                        else
-                        {
-                            phoneNo=line;
-                        }
+                        phoneNo=line;
                     }
                 }
             }
@@ -224,6 +233,7 @@ public class EmployeeClass
     {
         //sc.reset();
         boolean menuStop=false;
+        
         while(!menuStop)
         {
             //MainFunc.Clear_Console();

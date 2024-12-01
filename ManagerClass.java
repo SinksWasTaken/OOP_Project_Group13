@@ -259,16 +259,21 @@ public class ManagerClass extends EmployeeClass
                case 4->
                {
                   LocalDate date = enterDate();
-                  if(!date.isBefore(employee.dateOfBirth))
-                  {
-                     employee.dateOfStart=date;
-                     counter++;
-                  }
-                  else
+                  if(date.isBefore(employee.dateOfBirth))
                   {
                      MainFunc.Clear_Console();
                      System.out.println("They are working here before they are born? They must have amazing dedication to this job!");
                      
+                  }
+                  else if(date.isAfter(LocalDate.now()))
+                  {
+                     MainFunc.Clear_Console();
+                     System.out.println("They can't be working from the future. Such technology doesn't exist yet.");
+                  }
+                  else
+                  {
+                     employee.dateOfStart=date;
+                     counter++;
                   }
                }
             
@@ -398,22 +403,27 @@ public class ManagerClass extends EmployeeClass
                   else
                   {
                      MainFunc.Clear_Console();
-                     System.out.println("You can't be born in the future. Such technology doesn't exist yet.");
+                     System.out.println("They can't be born in the future. Such technology doesn't exist yet.");
                   }
                }
             case 4->
                {
                   LocalDate date = enterDate();
-                  if(!date.isAfter(employee.dateOfStart))
+                  if(date.isBefore(employee.dateOfBirth))
                   {
-                     employee.dateOfStart=date;
-                     counter++;
+                     MainFunc.Clear_Console();
+                     System.out.println("They are working here before they are born? They must have amazing dedication to this job!");
+                     
+                  }
+                  else if(date.isAfter(LocalDate.now()))
+                  {
+                     MainFunc.Clear_Console();
+                     System.out.println("They can't be working from the future. Such technology doesn't exist yet.");
                   }
                   else
                   {
-                     MainFunc.Clear_Console();
-                     System.out.println("You are working here before you are born? You have amazing dedication to this job!");
-                     
+                     employee.dateOfStart=date;
+                     counter++;
                   }
                }
             case 5->
@@ -546,7 +556,8 @@ public class ManagerClass extends EmployeeClass
          System.out.println("3.Fire Employee");
          System.out.println("4.Update Employee Non-Profile");
          System.out.println("5.Own Profile Operations");
-         System.out.println("6.Log Out");
+         System.out.println("6.Algorithms");
+         System.out.println("7.Log Out");
          sc.reset();
          int option = MainFunc.validateIntInput(sc);
          switch(option)
@@ -759,7 +770,13 @@ public class ManagerClass extends EmployeeClass
                MainFunc.Clear_Console();
                this.Menu(sc);
             }
-            case 6->//Log Out
+            case 6->
+            {
+               MainFunc.Clear_Console();
+               Algorithms.Start();
+            }
+
+            case 7->//Log Out
             {
                try
                {

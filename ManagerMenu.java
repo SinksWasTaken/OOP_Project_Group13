@@ -26,31 +26,30 @@ public class ManagerMenu {
         int[] radixSorted = dataset.clone();
         radixSort(radixSorted);
         System.out.println("Radix Sort execution time: " + (System.nanoTime() - start) / 1_000_000 + " ms");
-        validateSorting(dataset, radixSorted);
+        validateSorting("Radix Sort", dataset, radixSorted);
 
         System.out.println("Executing Shell Sort...");
         start = System.nanoTime();
         int[] shellSorted = dataset.clone();
         shellSort(shellSorted);
         System.out.println("Shell Sort execution time: " + (System.nanoTime() - start) / 1_000_000 + " ms");
-        validateSorting(dataset, shellSorted);
+        validateSorting("Shell Sort", dataset, shellSorted);
 
         System.out.println("Executing Heap Sort...");
         start = System.nanoTime();
         int[] heapSorted = dataset.clone();
         heapSort(heapSorted);
         System.out.println("Heap Sort execution time: " + (System.nanoTime() - start) / 1_000_000 + " ms");
-        validateSorting(dataset, heapSorted);
+        validateSorting("Heap Sort", dataset, heapSorted);
 
         System.out.println("Executing Insertion Sort...");
         start = System.nanoTime();
         int[] insertionSorted = dataset.clone();
         insertionSort(insertionSorted);
         System.out.println("Insertion Sort execution time: " + (System.nanoTime() - start) / 1_000_000 + " ms");
-        validateSorting(dataset, insertionSorted);
+        validateSorting("Insertion Sort", dataset, insertionSorted);
     }
 
-   
     public static void radixSort(int[] data) {
         // Separate negative and positive numbers
         int[] negatives = new int[data.length];
@@ -59,7 +58,7 @@ public class ManagerMenu {
 
         for (int num : data) {
             if (num < 0) {
-                negatives[negCount++] = -num; // Convert negatives to positive
+                negatives[negCount++] = -num; // Convert negatives to positive for sorting
             } else {
                 positives[posCount++] = num;
             }
@@ -79,11 +78,11 @@ public class ManagerMenu {
         }
     }
 
-    // for sorting non-negative numbers
+    // Radix Sort logic for sorting non-negative numbers
     public static void radixSortGroup(int[] data, int size) {
         if (size == 0) return;
 
-        // Find the largest number to figure out number of digits
+        // Find the largest number to figure out how many digit places we need to process
         int max = 0;
         for (int i = 0; i < size; i++) {
             if (data[i] > max) max = data[i];
@@ -92,7 +91,7 @@ public class ManagerMenu {
         // Sort the array by each digit place 
         int currentPlace = 1;
         while (max / currentPlace > 0) {
-            int[] count = new int[10]; // Keeps track of digit frequency (0-9)
+            int[] count = new int[10]; // Keeps track of digit frequency
             int[] sorted = new int[size];
 
             // Count occurrences of each digit at the current place
@@ -139,9 +138,9 @@ public class ManagerMenu {
     public static void heapSort(int[] data) {
         int size = data.length;
 
-        // Build a max heap
+        // max heap 
         for (int i = size / 2 - 1; i >= 0; i--) {
-            heapify(data, size, i);
+            adjustHeap(data, size, i);
         }
 
         // Extract elements from the heap
@@ -150,21 +149,22 @@ public class ManagerMenu {
             data[0] = data[i];
             data[i] = temp;
 
-            heapify(data, i, 0);
+            adjustHeap(data, i, 0);
         }
     }
 
-    private static void heapify(int[] data, int size, int root) {
+    // Adjust the heap to maintain the max-heap property
+    private static void adjustHeap(int[] data, int size, int root) {
         int largest = root;
-        int leftIndex = 2 * root + 1;
-        int rightIndex = 2 * root + 2;
+        int left = 2 * root + 1;
+        int right = 2 * root + 2;
 
-        if (leftIndex < size && data[leftIndex] > data[largest]) {
-            largest = leftIndex;
+        if (left < size && data[left] > data[largest]) {
+            largest = left;
         }
 
-        if (rightIndex < size && data[rightIndex] > data[largest]) {
-            largest = rightIndex;
+        if (right < size && data[right] > data[largest]) {
+            largest = right;
         }
 
         if (largest != root) {
@@ -172,7 +172,7 @@ public class ManagerMenu {
             data[root] = data[largest];
             data[largest] = temp;
 
-            heapify(data, size, largest);
+            adjustHeap(data, size, largest);
         }
     }
 
@@ -189,15 +189,16 @@ public class ManagerMenu {
         }
     }
 
-
-    public static void validateSorting(int[] original, int[] sorted) {
+    // Validation method to compare the sorted array with Java's Arrays.sort()
+    public static void validateSorting(String algorithmName, int[] original, int[] sorted) {
         int[] expected = original.clone();
         Arrays.sort(expected);
         if (Arrays.equals(expected, sorted)) {
-            System.out.println("Validation with Collections.sort(): Successful");
+            System.out.println(algorithmName + " validation with Arrays.sort(): Successful");
         } else {
-            System.out.println("Validation with Collections.sort(): Failed");
+            System.out.println(algorithmName + " validation with Arrays.sort(): Failed");
         }
     }
 }
+
 

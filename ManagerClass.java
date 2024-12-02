@@ -16,39 +16,32 @@ public class ManagerClass extends EmployeeClass
       Scanner sc = new Scanner(System.in);
       LocalDate date = null;
 
-      boolean stop =false;
       String str;
       
       
-      while(!stop)
+      while(true)
       {
-         System.out.println("Enter date:");
-         str = sc.next(); 
-         if(!str.equals(""))
+         try
          {
-            while (true) 
-            { 
-               try
-               {
-                  date = LocalDate.parse(str);
-                  
-                  return date;
-               }
-               catch(DateTimeParseException e)
-               {
-                  System.out.println("Error: Enter a valid date.");
-                  str = sc.nextLine();   
-               }
+            
+            str = sc.nextLine();  
+            if(str.length()==0)
+            {
+               return date;
             }
-            //stop=true;
+
+            date = LocalDate.parse(str);
+            
+            break;
          }
-         else
-         {             
-            System.out.println("Enter a date.");
-            sc.next();
+         catch(DateTimeParseException e)
+         {
+            MainFunc.Clear_Console();
+            System.out.println("Error: Enter a valid date:");
+            
          }
-      } 
-        return date;
+      }
+      return date;
    }
 
    private static ResultSet select(Statement statement)
@@ -133,6 +126,7 @@ public class ManagerClass extends EmployeeClass
          Statement statement = this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
          ResultSet rs = statement.executeQuery(Select_Query);
 
+         
          rs.moveToInsertRow();
          rs.updateInt("role",emp.roleIndex);
          rs.updateString("Username",emp.username);
@@ -148,7 +142,7 @@ public class ManagerClass extends EmployeeClass
       catch(SQLException e)
       {
          System.out.println("Error: Couldn't insert employee to db");
-         e.printStackTrace();
+         ////e.printStackTrace();
       }
    }
 
@@ -167,30 +161,29 @@ public class ManagerClass extends EmployeeClass
       {
          System.out.println("Enter "+ fields[counter]+ ": ");
          
-
-            switch(counter)
+         switch(counter)
+         {
+            case 0->//Username
             {
-               case 0->
+               line = sc.nextLine();
+               if(line.length()>20)
                {
-                  line = sc.nextLine();
-                  if(line.length()>20)
-                  {
-                     System.out.println("Username should be less than 20 characters");
-                     counter--;
-                  }
-
-                  else if(line.length()==0)
-                  {
-                     line = "-";
-                     employee.username=line;
-                  }
-                  else
-                  {
-                     employee.username=line;
-                  }
-                  counter++;
+                  System.out.println("Username should be less than 20 characters");
+                  counter--;
                }
-               case 5->
+
+               else if(line.length()==0)
+               {
+                  line = "-";
+                  employee.username=line;
+               }
+               else
+               {
+                  employee.username=line;
+               }
+               counter++;
+            }
+            case 5->//Role
                {
                   int temp = MainFunc.validateIntInput(sc);
                   while(temp<0 || temp >3)
@@ -202,7 +195,7 @@ public class ManagerClass extends EmployeeClass
                   employee.setRole();
                   counter++;
                }
-               case 1->
+            case 1->//FirstName
                {
                   line = sc.nextLine();
                   if(line.length()>20)
@@ -218,11 +211,11 @@ public class ManagerClass extends EmployeeClass
                   }
                   else
                   {
-                     employee.name=line;
+                     employee.name=line.toLowerCase();
                   }
                   counter++;
                }
-               case 2->
+            case 2->//LastName
                {
                   line = sc.nextLine();
                   if(line.length()>20)
@@ -237,13 +230,19 @@ public class ManagerClass extends EmployeeClass
                   }
                   else
                   {
-                     employee.surname=line;
+                     employee.surname=line.toLowerCase();
                   }
                   counter++;
                }
-               case 3->
+            case 3->//DateOfBirth
                {
                   LocalDate date = enterDate();
+                  if(date==null)
+                  {
+
+                     System.out.println("Enter a valid date");
+                     break;
+                  }
                   if(!date.isAfter(LocalDate.now()))
                   {
                      employee.dateOfBirth=date;
@@ -256,9 +255,14 @@ public class ManagerClass extends EmployeeClass
                   }
                   
                }
-               case 4->
+            case 4->///DateOfStart
                {
                   LocalDate date = enterDate();
+                  if(date==null)
+                  {
+                     System.out.println("Enter a valid date");
+                     break;
+                  }
                   if(date.isBefore(employee.dateOfBirth))
                   {
                      MainFunc.Clear_Console();
@@ -295,7 +299,7 @@ public class ManagerClass extends EmployeeClass
 
    private void fireEmployee(String Name, String Surname)
    {
-      if(Name.equals(this.name) && Surname.equals(this.surname))
+      if(Name.toLowerCase().equals(this.name.toLowerCase()) && Surname.toLowerCase().equals(this.surname.toLowerCase()))
       {
          System.out.println("Error: You can't fire yourself :(");
          return;
@@ -312,7 +316,7 @@ public class ManagerClass extends EmployeeClass
       catch (SQLException e) 
       {
          System.err.println("Error: Couldn't find the employee in database: " + Name + " " +Surname);
-         e.printStackTrace();
+         //e.printStackTrace();
       }
    }
 
@@ -330,7 +334,7 @@ public class ManagerClass extends EmployeeClass
 
       while (!stop) 
       {
-         System.out.println("Enter "+ fields[counter]+ ": ");
+         System.out.println("Enter "+ fields[counter]+ ": (Leave blank if you don't want to update)");
          switch(counter)
          {
             case 0->
@@ -344,8 +348,7 @@ public class ManagerClass extends EmployeeClass
 
                   else if(line.length()==0)
                   {
-                     line = "-";
-                     employee.username=line;
+                     
                   }
                   else
                   {
@@ -364,12 +367,11 @@ public class ManagerClass extends EmployeeClass
 
                   else if(line.length()==0)
                   {
-                     line = "-";
-                     employee.name=line;
+                     
                   }
                   else
                   {
-                     employee.name=line;
+                     employee.name=line.toLowerCase();
                   }
                   counter++;
                }
@@ -383,18 +385,22 @@ public class ManagerClass extends EmployeeClass
                   }
                   else if(line.length()==0)
                   {
-                     line = "-";
-                     employee.surname=line;
+                     
                   }
                   else
                   {
-                     employee.surname=line;
+                     employee.surname=line.toLowerCase();
                   }
                   counter++;
                }
             case 3->
                {
                   LocalDate date = enterDate();
+                  if(date==null)
+                  {
+                     counter++;
+                     break;
+                  }
                   if(!date.isAfter(LocalDate.now()))
                   {
                      employee.dateOfBirth=date;
@@ -409,6 +415,11 @@ public class ManagerClass extends EmployeeClass
             case 4->
                {
                   LocalDate date = enterDate();
+                  if(date==null)
+                  {
+                     counter++;
+                     break;
+                  }
                   if(date.isBefore(employee.dateOfBirth))
                   {
                      MainFunc.Clear_Console();
@@ -436,6 +447,10 @@ public class ManagerClass extends EmployeeClass
                      temp = MainFunc.validateIntInput(sc);
                   }
                   employee.roleIndex = temp;
+                  if(employee.roleIndex==0)
+                  {
+                     employee.isManager=true;
+                  }
                   employee.setRole();
                   counter++;
                }
@@ -468,10 +483,19 @@ public class ManagerClass extends EmployeeClass
             if(!emp.isManager)
             {
                rs.updateInt("role",emp.roleIndex);
+            }
+            else
+            {
                System.out.println("\nA manager can't change thier own roles.");
             }
-            rs.updateString("dateOfBirth",emp.dateOfBirth.toString());
-            rs.updateString("dateOfStart",emp.dateOfStart.toString());
+            if(emp.dateOfBirth!=null)
+            {
+               rs.updateString("dateOfBirth",emp.dateOfBirth.toString());
+            }
+            if(emp.dateOfStart!=null)
+            {
+               rs.updateString("dateOfStart",emp.dateOfStart.toString());  
+            }
             
             rs.updateRow();
 
@@ -480,7 +504,7 @@ public class ManagerClass extends EmployeeClass
         catch(SQLException e)
         {
             System.out.println("Error: Couldn't update employee in db: " + emp.name + " " + emp.surname);
-            e.printStackTrace();
+            //e.printStackTrace();
         }
    }
 
@@ -498,10 +522,10 @@ public class ManagerClass extends EmployeeClass
          {
             if(i==3)
                continue;
-            System.out.printf("%s\t", metaData.getColumnName(i));
+            System.out.printf("%-15s\t", metaData.getColumnName(i));
          }
          System.out.println();
-
+         String[] roles = {"Manager","Technician","Engineer","Intern"};
          // display query results
          while (resultSet.next()) 
          {
@@ -510,28 +534,30 @@ public class ManagerClass extends EmployeeClass
                   continue;
                if(i==4)
                {
-                  switch(resultSet.getInt(i))
-                  {
-                     case 0 ->
-                     {
-                        System.out.print("Manager\t");
-                     }
-                     case 1 ->
-                     {
-                        System.out.print("Technician\t");
-                     }
-                     case 2 ->
-                     {
-                        System.out.print("Engineer\t");
-                     }
-                     case 3 ->
-                     {
-                        System.out.print("Intern\t");
-                     }
-                  }
+                  System.out.printf("%-15s\t", roles[resultSet.getInt(i)]);
+                  // switch(resultSet.getInt(i))
+                  // {
+                  //    case 0 ->
+                  //    {
+                  //       System.out.print("Manager\t");
+                  //    }
+                  //    case 1 ->
+                  //    {
+                  //       System.out.print("Technician\t");
+                  //    }
+                  //    case 2 ->
+                  //    {
+                  //       System.out.print("Engineer\t");
+                  //    }
+                  //    case 3 ->
+                  //    {
+                  //       System.out.print("Intern\t");
+                  //    }
+                  // }
                   continue;
                }
-               System.out.printf("%-8s\t", resultSet.getObject(i));}
+               System.out.printf("%-15s\t", resultSet.getObject(i));
+            }
             System.out.println();
          }
       }
@@ -672,7 +698,7 @@ public class ManagerClass extends EmployeeClass
                   catch(SQLException e)
                   {
                      System.out.println("Error: Couldn't initiate Statement");
-                     e.printStackTrace();
+                     //e.printStackTrace();
                   }
                }
             }
@@ -789,7 +815,6 @@ public class ManagerClass extends EmployeeClass
                {
                   System.out.println("Error: Couldn't close connection.");
                }
-
             }
             default->
             {

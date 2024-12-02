@@ -76,8 +76,10 @@ public class MainFunc
         {
             
             System.out.println("Select option:");
+            //System.out.println("\u001B[31m");
             System.out.println("1.Login");
             System.out.println("2.Terminate");
+            //1System.out.println("\u001B[0m");
             int option;
             option = validateIntInput(sc);
             switch(option)
@@ -120,45 +122,9 @@ public class MainFunc
                             manager.getSelfFromDB(User);
                             if(manager.password.equals("defaultPass"))//if first login
                             {
-                                System.out.println("First time login: Update your password!\n");
+                                System.out.println("First time login: Update your info!\n");
                             
-                                System.out.println("Enter new password (should be less than 20 characters):");
-                                String line;
-                                boolean stop = false;
-                                while(!stop)
-                                {
-                                    line = sc.nextLine();
-                                    if(line.length()>20)
-                                    {
-                                        System.out.println("Password should be less than 20 characters");
-                                    }
-                                    if(line.length()==0)
-                                    {
-                                        System.out.println("Password can't be empty! ");
-                                    }
-                                    else
-                                    {
-                                        manager.password=line;
-                                        try
-                                        {
-                                            String Select_Query = "SELECT * FROM workers WHERE username='"+ manager.username+"'";
-                                            Statement statement = manager.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-                                            ResultSet rs = statement.executeQuery(Select_Query);
-
-                                            rs.next();
-                                            rs.updateString("password",manager.password);
-                                            rs.updateRow();
-                                        }
-                                        catch(SQLException e)
-                                        {
-                                            System.out.println("Error: Couldn't Update Password! (Connection to Database Failed)");
-                                            e.printStackTrace();
-                                        }
-                                                
-                                        System.out.println("Password Updated! ");
-                                        stop=true;
-                                    }
-                                }
+                                manager.updateOwnProfile();
                             }
                             manager.ManagerMenu(sc);
                             break;
@@ -182,7 +148,7 @@ public class MainFunc
                                     {
                                         System.out.println("Password should be less than 20 characters");
                                     }
-                                    if(line.length()==0)
+                                    else if(line.length()==0)
                                     {
                                         System.out.println("Password can't be empty! ");
                                     }

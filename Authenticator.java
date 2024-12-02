@@ -8,7 +8,7 @@ public class Authenticator
         String DatabaseUrl ="jdbc:mysql://localhost:3306/db?useTimezone=true&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8";   
         try
         {
-            String SELECT_QUERY = "SELECT * FROM workers WHERE username='" + USRNAME +"' AND password='" + PSWRD+ "'"; 
+            String SELECT_QUERY = "SELECT * FROM workers WHERE username='" + USRNAME.toLowerCase() +"' AND password='" + PSWRD.toLowerCase()+ "'"; 
             
             Connection connection = DriverManager.getConnection(DatabaseUrl,"Authenticator","Authenticator");
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);

@@ -51,7 +51,7 @@ public class EmployeeClass
             catch(DateTimeException e)
             {
                 System.out.println("Error: Parsing date");
-                e.printStackTrace();
+               //e.printStackTrace();
             }
             catch(NullPointerException e)
             {
@@ -62,7 +62,7 @@ public class EmployeeClass
         }
         catch(SQLException e)
         {
-            e.printStackTrace();
+           //e.printStackTrace();
         }
         
     }
@@ -131,6 +131,11 @@ public class EmployeeClass
 
                     else if(line.length()==0)
                     {
+                        if(this.email==null)
+                        {
+                            i--;
+                            System.out.println("On first log-in you should add an email");
+                        }
                         continue;
                     }
                     else
@@ -142,7 +147,7 @@ public class EmployeeClass
                         }
                         else
                         {
-                            email=line;
+                            email=line.toLowerCase();
                         }
                     }
                 }
@@ -158,7 +163,11 @@ public class EmployeeClass
 
                     else if(line.length()==0)
                     {
-                        continue;
+                        if(this.password.equals("defaultPass"))
+                        {
+                            i--;
+                            System.out.println("On first log-in you should create a new password");
+                        }
                     }
                     else
                     {
@@ -179,6 +188,11 @@ public class EmployeeClass
                     }
                     if(line.length()==0)
                     {
+                        if(this.phoneNo==null)
+                        {
+                            i--;
+                            System.out.println("On first log-in you should add a phoneNo.");
+                        }
                         continue;
                     }
                     else if(line.length()!=10)
@@ -225,7 +239,7 @@ public class EmployeeClass
         catch(SQLException e)
         {
             System.out.println("Error: Couldn't update employee in db: " + emp.name + " " + emp.surname);
-            e.printStackTrace();
+            //e.printStackTrace();
         }
    }
 

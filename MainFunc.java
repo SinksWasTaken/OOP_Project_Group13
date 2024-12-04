@@ -1,7 +1,4 @@
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -136,46 +133,9 @@ public class MainFunc
                             employee.getSelfFromDB(User);
                             if(employee.password.equals("defaultPass"))//if first login
                             {
-                                System.out.println("First time login: Update your password!\n");
+                                System.out.println("First time login: Update your info!\n");
                             
-                                System.out.println("Enter new password (should be less than 20 characters):");
-                                String line;
-                                boolean stop = false;
-                                while(!stop)
-                                {
-                                    line = sc.nextLine();
-                                    if(line.length()>20)
-                                    {
-                                        System.out.println("Password should be less than 20 characters");
-                                    }
-                                    else if(line.length()==0)
-                                    {
-                                        System.out.println("Password can't be empty! ");
-                                    }
-                                    else
-                                    {
-                                        employee.password=line;
-                                    
-                                        try
-                                        {
-                                            String Select_Query = "SELECT * FROM workers WHERE username='"+ employee.username+"'";
-                                            Statement statement = employee.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-                                            ResultSet rs = statement.executeQuery(Select_Query);
-
-                                            rs.next();
-                                            rs.updateString("password",employee.password);
-                                            rs.updateRow();
-                                        }
-                                        catch(SQLException e)
-                                        {
-                                            System.out.println("Error: Couldn't Update Password! (Connection to Database Failed)");
-                                            e.printStackTrace();
-                                        }
-                                                
-                                        System.out.println("Password Updated! ");
-                                        stop=true;
-                                    }
-                                }
+                                employee.updateOwnProfile();
                             }
                             
                             employee.Menu(sc);

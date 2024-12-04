@@ -122,10 +122,20 @@ public class ManagerClass extends EmployeeClass
    {  
       try
       {
-         String Select_Query = "SELECT * FROM workers";
+         String Select_Query = "SELECT * FROM workers WHERE username='" + emp.username+"'";
          Statement statement = this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+         
          ResultSet rs = statement.executeQuery(Select_Query);
 
+         if(rs.next())
+         {
+            System.out.println("Error: Couldn't insert employee to db, Already exists");
+            return;
+         }
+         
+         String Select_Query2 = "SELECT * FROM workers";
+
+         rs=statement.executeQuery(Select_Query2);
          
          rs.moveToInsertRow();
          rs.updateInt("role",emp.roleIndex);
@@ -136,6 +146,7 @@ public class ManagerClass extends EmployeeClass
          rs.updateString("dateOfStart",emp.dateOfStart.toString());
          rs.updateString("password",emp.password);
          rs.insertRow();
+         
          MainFunc.Clear_Console();
          System.out.println("Added "+ emp.username + " successfully!");
       }
@@ -172,14 +183,26 @@ public class ManagerClass extends EmployeeClass
                   counter--;
                }
 
-               else if(line.length()==0)
+               else if(line.length()<3)
                {
-                  line = "-";
-                  employee.username=line;
+                  System.out.println("Username should be atleast 3 characters");
+                  counter--;
                }
                else
                {
-                  employee.username=line;
+                  if((line.charAt(0)>='!' && line.charAt(0)<='/') || 
+                  (line.charAt(0)>=':' && line.charAt(0)<='@') || 
+                  (line.charAt(0)>='[' && line.charAt(0)<='`') ||
+                  (line.charAt(0)>='{' && line.charAt(0)<='~'))
+                  {
+                     System.out.println("Username should not begin with a special character");
+                     counter--;
+                  }
+                  else
+                  {
+                     employee.username=line;
+                  }  
+                  
                }
                counter++;
             }
@@ -206,8 +229,8 @@ public class ManagerClass extends EmployeeClass
 
                   else if(line.length()==0)
                   {
-                     line = "-";
-                     employee.name=line;
+                     System.out.println("Name can't be empty");
+                     counter--;
                   }
                   else
                   {
@@ -225,8 +248,8 @@ public class ManagerClass extends EmployeeClass
                   }
                   else if(line.length()==0)
                   {
-                     line = "-";
-                     employee.surname=line;
+                     System.out.println("Surname can't be empty");
+                     counter--;
                   }
                   else
                   {
@@ -239,7 +262,6 @@ public class ManagerClass extends EmployeeClass
                   LocalDate date = enterDate();
                   if(date==null)
                   {
-
                      System.out.println("Enter a valid date");
                      break;
                   }
@@ -310,6 +332,7 @@ public class ManagerClass extends EmployeeClass
          Statement statement = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
          statement.executeUpdate(Delete_Query);
+
          MainFunc.Clear_Console();
          System.out.println("Fired: " + Name + " " + Surname + '\n');
       }
@@ -334,30 +357,51 @@ public class ManagerClass extends EmployeeClass
 
       while (!stop) 
       {
-         System.out.println("Enter "+ fields[counter]+ ": (Leave blank if you don't want to update)");
+         System.out.println("Enter "+ fields[counter]+ ": ");
          switch(counter)
          {
             case 0->
                {
+                  System.out.println("(Leave blank if you don't want to update)");
                   line = sc.nextLine();
                   if(line.length()>20)
                   {
                      System.out.println("Username should be less than 20 characters");
                      counter--;
                   }
-
-                  else if(line.length()==0)
+                  else if(line.length()<3)
                   {
-                     
+                     if(line.length()==0)
+                     {
+                        
+                     }
+                     else
+                     {
+                        System.out.println("Username should be atleast 3 characters");
+                        counter--;
+                     }
                   }
                   else
                   {
-                     employee.username=line;
+                     if((line.charAt(0)>='!' && line.charAt(0)<='/') || 
+                     (line.charAt(0)>=':' && line.charAt(0)<='@') || 
+                     (line.charAt(0)>='[' && line.charAt(0)<='`') ||
+                     (line.charAt(0)>='{' && line.charAt(0)<='~'))
+                     {
+                        System.out.println("Username should not begin with a special character");
+                        counter--;
+                     }
+                     else
+                     {
+                        employee.username=line;
+                     }  
+
                   }
                   counter++;
                }
             case 1->
                {
+                  System.out.println("(Leave blank if you don't want to update)");
                   line = sc.nextLine();
                   if(line.length()>20)
                   {
@@ -377,6 +421,7 @@ public class ManagerClass extends EmployeeClass
                }
             case 2->
                {
+                  System.out.println("(Leave blank if you don't want to update)");
                   line = sc.nextLine();
                   if(line.length()>20)
                   {
@@ -395,6 +440,7 @@ public class ManagerClass extends EmployeeClass
                }
             case 3->
                {
+                  System.out.println("(Leave blank if you don't want to update)");
                   LocalDate date = enterDate();
                   if(date==null)
                   {
@@ -414,6 +460,7 @@ public class ManagerClass extends EmployeeClass
                }
             case 4->
                {
+                  System.out.println("(Leave blank if you don't want to update)");
                   LocalDate date = enterDate();
                   if(date==null)
                   {
@@ -439,12 +486,17 @@ public class ManagerClass extends EmployeeClass
                }
             case 5->
                {
-                  
+                  System.out.println("(Enter 4 if you don't want to update)");
                   int temp = MainFunc.validateIntInput(sc);
-                  while(temp<0 || temp >3)
+                  while(temp<0 || temp >4)
                   {
-                     System.out.println("Enter a value between 0 and 3");
+                     System.out.println("Enter a value between 0 and 4");
                      temp = MainFunc.validateIntInput(sc);
+                  }
+                  if(temp==4)
+                  {
+                     counter++;
+                     break;
                   }
                   employee.roleIndex = temp;
                   if(employee.roleIndex==0)
@@ -471,22 +523,33 @@ public class ManagerClass extends EmployeeClass
    {  
         try
         {
-            String Select_Query = "SELECT * FROM workers WHERE name='"+ Name+ "' AND surname='" + Surname +"'";
+            String Select_Query = "SELECT * FROM workers WHERE name='"+ Name.toLowerCase()+ "' AND surname='" + Surname.toLowerCase() +"'";
             Statement statement = this.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
             ResultSet rs = statement.executeQuery(Select_Query);
             
            
             rs.next();
-            rs.updateString("name",emp.name);
-            rs.updateString("surname",emp.surname);
-            rs.updateString("username",emp.username);
-            if(!emp.isManager)
+            if(emp.name!=null)
+            {
+               rs.updateString("name",emp.name);
+            }
+            if(emp.surname!=null)
+            {
+               rs.updateString("surname",emp.surname);
+            }
+            
+            if(!rs.getString("username").equals(this.username))
             {
                rs.updateInt("role",emp.roleIndex);
             }
             else
             {
-               System.out.println("\nA manager can't change thier own roles.");
+               System.out.println("\nA manager can't change thier own role.");
+            }
+
+            if(emp.username!=null)
+            {
+               rs.updateString("username",emp.username);
             }
             if(emp.dateOfBirth!=null)
             {
@@ -499,10 +562,12 @@ public class ManagerClass extends EmployeeClass
             
             rs.updateRow();
 
-            System.out.println("Updated "+ Name+ " " + Surname +" to "+ emp.name+ " " +emp.surname + " successfully!");
+            MainFunc.Clear_Console();
+            System.out.println("Updated employee successfully!");
         }
         catch(SQLException e)
         {
+            MainFunc.Clear_Console();   
             System.out.println("Error: Couldn't update employee in db: " + emp.name + " " + emp.surname);
             //e.printStackTrace();
         }
@@ -771,7 +836,7 @@ public class ManagerClass extends EmployeeClass
                try
                {
                   Statement stat = this.conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
-                  ResultSet rs = select(stat,Name,Surname);
+                  ResultSet rs = select(stat,Name.toLowerCase(),Surname.toLowerCase());
                   if(!rs.next())
                   {
                      System.out.println("Employee not in database");

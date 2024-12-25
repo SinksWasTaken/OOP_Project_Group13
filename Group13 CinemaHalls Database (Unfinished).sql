@@ -1,5 +1,3 @@
-
-
 create database Group13;
 
 use group13;
@@ -41,45 +39,6 @@ VALUES
     ("ToyStory2"),
     ("Aladdin");
 
-drop table sessionsh1;
-create table sessionsh1 (
-	session_id int primary key auto_increment,
-	day_number int not null,
-    session_number int not null,
-    movie varchar (50),
-    hall int
-);
-
-Insert into sessionsh1 (day_number,session_number)
-Values
-	(1,1),(1,2),(1,3),(1,4),(1,5),
-	(2,1),(2,2),(2,3),(2,4),(2,5),
-    (3,1),(3,2),(3,3),(3,4),(3,5),
-	(4,1),(4,2),(4,3),(4,4),(4,5),
-    (5,1),(5,2),(5,3),(5,4),(5,5),
-    (6,1),(6,2),(6,3),(6,4),(6,5),
-    (7,1),(7,2),(7,3),(7,4),(7,5);
-
-
-drop table sessionsh2;
-create table sessionsh2 (
-	session_id int primary key auto_increment,
-	day_number int not null,
-    session_number int not null,
-    movie varchar (50),
-    hall int
-);
-
-Insert into sessionsh2 (day_number,session_number)
-Values
-	(1,1),(1,2),(1,3),(1,4),(1,5),
-	(2,1),(2,2),(2,3),(2,4),(2,5),
-    (3,1),(3,2),(3,3),(3,4),(3,5),
-	(4,1),(4,2),(4,3),(4,4),(4,5),
-    (5,1),(5,2),(5,3),(5,4),(5,5),
-    (6,1),(6,2),(6,3),(6,4),(6,5),
-    (7,1),(7,2),(7,3),(7,4),(7,5);
-
 drop table seats;
 create table seats (
 	seat_id int auto_increment primary key,
@@ -87,59 +46,75 @@ create table seats (
     hall int,
     c int,
     r varchar(1),
-    session_number int,
-    day_number int
+    session_id int,
+    foreign key (session_id) references sessions(session_id)
 );
 
-DROP PROCEDURE IF EXISTS loop_h1;
+insert into seats(sold,hall,c,r,session_id)
+values(false,1,1,'c',2);
+
+drop table sessions;
+create table sessions(
+	session_id int auto_increment primary key,
+    session_date date not null,
+    session_time time not null,
+    hall_number int not null,
+    movie_name varchar (50)
+);
+
+
+
+
+DROP PROCEDURE IF EXISTS fillSeats;
 
 DELIMITER $$
-
-CREATE PROCEDURE loop_h1()
+CREATE PROCEDURE fillSeats(s_id int)
 BEGIN
     DECLARE i INT DEFAULT 1;
-	DECLARE day_number INT DEFAULT 1;
-    DECLARE session_number INT DEFAULT 1;
+    Declare hall INT default (select hall_number from sessions where s_id= session_id);
     loop_label: LOOP
-        IF day_number > 7 THEN
-            LEAVE loop_label; -- Exit the loop
-        END IF;
+        
 
         -- Do something in the loop
-        Insert into seats(sold,hall,c,r,session_number,day_number)
-        values(false,1,if(i%8=0,8,i%8),if(i>8,'b','a'),session_number,day_number);
+        Insert into seats(sold,hall,c,r,session_id)
+        values(false,hall,if(i%8=0,8,i%8),if(i>8,'b','a'),s_id);
 
         SET i = i + 1; 
-        IF i>16 then
-			Set i=1;
-            Set session_number = session_number+1;
-            IF session_number > 5 then
-				Set session_number = 1;
-                Set day_number = day_number+1;
-            END IF;
+        IF i > if(hall=1,16,48)
+		THEN
+			LEAVE loop_label; 
 		END IF;
     END LOOP loop_label;
 
 END$$
-
 DELIMITER ;
 
-CALL loop_h1();
+
+DROP PROCEDURE IF EXISTS addSession;
+
+DELIMITER $$
+CREATE PROCEDURE addSession(sdate date,stime time,shall int)
+Begin
+	insert into sessions(session_date,session_time,hall_number)
+    values(sdate,stime,shall);
+
+End$$
+DELIMITER ;
+
+CALL fillSeats(1);
+CALL addsession('1999-12-09','7:15',2);
+
 
 select * from seats;
+select * from sessions;
 
 UPDATE movies
 join Images ON movies.movie_id= Images.image_id
 set movies.img_path = Images.paths;
 
-UPDATE sessionsh1 s
-join movies m ON if((s.session_id)%10=0,10,s.session_id%10)= m.movie_id
-set s.movie = m.movie_name;
+UPDATE sessions s
+join movies m ON if(s.hall_Number=1,if((s.session_id)%10=0,10,s.session_id%10),if(((s.session_id%10)+5)=5,5,(s.session_id+5)%10))= m.movie_id
+set s.movie_name = m.movie_name;
 
-UPDATE sessionsh2 s
-join movies m ON if(((s.session_id%10)+5)=5,5,(s.session_id+5)%10) = m.movie_id
-set s.movie = m.movie_name;
 
 SELECT * FROM movies;
-Select * from sessionsh1;
-Select * from sessionsh2;

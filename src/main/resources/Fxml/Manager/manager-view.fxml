@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
+<BorderPane prefHeight="500.0" prefWidth="700.0" stylesheets="@../../Styles/manager.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../Styles/manager.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.group13.Controllers.Manager.ManagerController">
+    <left>
+        <fx:include source="manager-menu-view.fxml" />
+    </left>
 
-</AnchorPane>
+    <center>
+        <fx:include source="manager-dashboard-view.fxml" />
+    </center>
+
+</BorderPane>

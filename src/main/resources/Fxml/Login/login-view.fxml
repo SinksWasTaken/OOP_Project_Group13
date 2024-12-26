@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../Styles/login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.group13.Controllers.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../Styles/login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.LoginController">
     <Button id="login-admin_btn" fx:id="admin_btn" layoutX="141.0" layoutY="188.0" mnemonicParsing="false" text="Admin" />
     <Button id="login-manager_btn" fx:id="manager_btn" layoutX="274.0" layoutY="188.0" mnemonicParsing="false" text="Manager" />
     <Button id="login-cashier_btn" fx:id="cashier_btn" layoutX="399.0" layoutY="188.0" mnemonicParsing="false" text="Cashier" />

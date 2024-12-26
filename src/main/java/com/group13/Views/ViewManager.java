@@ -1,8 +1,8 @@
-package com.example.group13.Views;
+package com.group13.Views;
 
-import com.example.group13.Controllers.Admin.AdminController;
-import com.example.group13.Controllers.Cashier.CashierController;
-import com.example.group13.Controllers.Manager.ManagerController;
+import com.group13.Controllers.Admin.AdminController;
+import com.group13.Controllers.Cashier.CashierController;
+import com.group13.Controllers.Manager.ManagerController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;

@@ -1,6 +1,6 @@
-package com.example.group13.Controllers;
+package com.group13.Controllers;
 
-import com.example.group13.Models.Model;
+import com.group13.Models.Model;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 

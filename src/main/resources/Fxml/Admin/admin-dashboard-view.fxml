@@ -5,6 +5,6 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../../Styles/admin.css"
             xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.group13.Controllers.Admin.AdminDashboardController">
+            fx:controller="com.group13.Controllers.Admin.AdminDashboardController">
    <Label layoutX="202.0" layoutY="242.0" text="Admin Dashboard"/>
 </AnchorPane>

@@ -13,14 +13,14 @@ module com.example.group13 {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
 
-    opens com.example.group13 to javafx.fxml;
-    exports com.example.group13;
-    exports com.example.group13.Controllers;
-    exports com.example.group13.Controllers.Admin;
-    exports com.example.group13.Controllers.Cashier;
-    exports com.example.group13.Controllers.Manager;
-    exports com.example.group13.Models;
-    exports com.example.group13.Views;
+    opens com.group13 to javafx.fxml;
+    exports com.group13;
+    exports com.group13.Controllers;
+    exports com.group13.Controllers.Admin;
+    exports com.group13.Controllers.Cashier;
+    exports com.group13.Controllers.Manager;
+    exports com.group13.Models;
+    exports com.group13.Views;
 
 
 }

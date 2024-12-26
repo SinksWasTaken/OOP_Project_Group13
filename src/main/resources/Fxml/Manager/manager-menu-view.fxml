@@ -6,6 +6,6 @@
 <AnchorPane prefHeight="500.0" prefWidth="200.0" style="-fx-background-color: #000;"
             stylesheets="@../../Styles/manager.css" xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.group13.Controllers.Manager.ManagerDashboardController">
+            fx:controller="com.group13.Controllers.Manager.ManagerDashboardController">
     <Label layoutX="64.0" layoutY="242.0" text="Manager Menu" textFill="WHITE"/>
 </AnchorPane>

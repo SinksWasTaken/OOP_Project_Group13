@@ -1,6 +1,6 @@
-package com.example.group13.Models;
+package com.group13.Models;
 
-import com.example.group13.Views.ViewManager;
+import com.group13.Views.ViewManager;
 
 public class Model {
     private static Model model;

@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../Styles/login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.LoginController">
-    <Button id="login-admin_btn" fx:id="admin_btn" layoutX="141.0" layoutY="188.0" mnemonicParsing="false" text="Admin" />
-    <Button id="login-manager_btn" fx:id="manager_btn" layoutX="274.0" layoutY="188.0" mnemonicParsing="false" text="Manager" />
-    <Button id="login-cashier_btn" fx:id="cashier_btn" layoutX="399.0" layoutY="188.0" mnemonicParsing="false" text="Cashier" />
+<AnchorPane prefHeight="500.0" prefWidth="700.0" styleClass="login_container" stylesheets="@../../Styles/login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.LoginController">
+   <VBox fx:id="logoContainer" alignment="center" layoutX="1.0" prefHeight="500.0" prefWidth="300.0" spacing="20" styleClass="login_logo_container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="0.0">
+      <ImageView fx:id="logo_image" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../../Images/khaslogo.png" />
+      </ImageView>
+      <Label fx:id="logoTitle" styleClass="logo_title" text="LCCMA" />
+      <Label fx:id="logoSubtitle" styleClass="logo_subtitle" text="by Group 13" />
+   </VBox>
+
+   <VBox fx:id="formContainer" layoutX="328.0" layoutY="133.0" prefWidth="350.0" spacing="15.0" styleClass="login_form_container" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="133.0">
+      <Label fx:id="welcomeLabel" styleClass="welcome_label" text="Welcome" />
+      <TextField fx:id="usernameField" promptText="Username" styleClass="form_field" />
+      <PasswordField fx:id="passwordField" promptText="Password" styleClass="form_field" />
+      <Button fx:id="signInButton" styleClass="form_button" text="Sign In" />
+   </VBox>
 </AnchorPane>

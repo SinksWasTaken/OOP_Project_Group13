@@ -2,7 +2,6 @@ module com.example.group13 {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
-    requires de.jensd.fx.glyphs.fontawesome;
     requires mysql.connector.j;
     requires java.sql;
 
@@ -12,8 +11,9 @@ module com.example.group13 {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.desktop;
 
-    opens com.group13 to javafx.fxml;
+    opens com.group13.Controllers to javafx.fxml;
     exports com.group13;
     exports com.group13.Controllers;
     exports com.group13.Controllers.Admin;
@@ -21,6 +21,4 @@ module com.example.group13 {
     exports com.group13.Controllers.Manager;
     exports com.group13.Models;
     exports com.group13.Views;
-
-
 }

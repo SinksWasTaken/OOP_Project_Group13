@@ -4,8 +4,11 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.group13.Models.ConnectionModel;
+import com.group13.Models.MovieModel;
 
 
 
@@ -13,20 +16,55 @@ import com.group13.Models.ConnectionModel;
 public class CashierSearchByNameController 
 {
    
-   static ResultSet searchByName(String Name)
+   static List<MovieModel> searchByName(String Name)
    {
-      ResultSet rs =null;
+      
+      List<MovieModel> movies = new ArrayList<>();
       
       try
       {
          Connection conn = ConnectionModel.getConnection();
          Statement stat = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
 
-         rs = stat.executeQuery("Select * FROM movies WHERE movie_name='"+Name+"'");
+         ResultSet rs = stat.executeQuery("Select * FROM movies WHERE movie_name='"+Name+"'");
          if(rs==null)
          {
             System.err.println("No movies with this name.");
-         }   
+         }
+         else
+         {
+            ResultSetMetaData metaData = rs.getMetaData();
+            int numberOfColumns = metaData.getColumnCount();            
+
+            while (rs.next()) 
+            {
+               MovieModel movie = new MovieModel();
+               for (int i = 1; i <= numberOfColumns; i++) 
+               {
+                  switch(i)
+                  {
+                     case 2 ->
+                     {
+                        movie.movieName =rs.getString(i);
+                        
+                     }
+                     case 3 ->
+                     {
+                        movie.imgPath =rs.getString(i);
+                     }
+                     case 4 ->
+                     {
+                        movie.genre =rs.getString(i);
+                     }
+                  }
+                  
+               }
+               movies.add(movie);
+               System.out.println();
+            }
+
+         }  
+
       }
       catch(SQLException e)
       {   
@@ -34,7 +72,7 @@ public class CashierSearchByNameController
          e.printStackTrace();
       }
       
-      return rs;
+      return movies;
 
     }
 
@@ -42,7 +80,7 @@ public class CashierSearchByNameController
     {
       try
       {
-        ResultSetMetaData metaData = resultSet.getMetaData();
+         ResultSetMetaData metaData = resultSet.getMetaData();
          int numberOfColumns = metaData.getColumnCount(); 
          //MainFunc.Clear_Console();
          System.out.printf("group13 Table of movies Database:%n%n");
@@ -72,9 +110,8 @@ public class CashierSearchByNameController
     public static void main(String[] args)
     {
         
-      ResultSet rs = searchByName("Cars2");
-      printRS(rs);
-
+      List<MovieModel> movies = searchByName("Cars2");
+      movies.get(0).printMovie();
 
     }
 }

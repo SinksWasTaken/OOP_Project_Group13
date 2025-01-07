@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../../../Styles/admin.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Admin.MenuOperations.AddNewMovieController">
-    <Label layoutX="218.0" layoutY="242.0" text="Add New Movie" />
+<AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../../../Styles/admin.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Admin.AddNewMovieController">
+    <children>
+
+        <Label layoutX="218.0" layoutY="50.0" text="Add New Movie" style="-fx-font-size: 16px;" />
+
+
+        <Label layoutX="50.0" layoutY="100.0" text="Title" />
+        <TextField fx:id="titleField" layoutX="150.0" layoutY="100.0" />
+
+        <Label layoutX="50.0" layoutY="150.0" text="Genre" />
+        <TextField fx:id="genreField" layoutX="150.0" layoutY="150.0" />
+
+        <Label layoutX="50.0" layoutY="200.0" text="Summary" />
+        <TextField fx:id="summaryField" layoutX="150.0" layoutY="200.0" />
+
+        <Label layoutX="50.0" layoutY="250.0" text="Poster Path" />
+        <TextField fx:id="posterPathField" layoutX="150.0" layoutY="250.0" />
+
+
+        <Button fx:id="addMovieButton" layoutX="150.0" layoutY="300.0" text="Add Movie" />
+    </children>
 </AnchorPane>

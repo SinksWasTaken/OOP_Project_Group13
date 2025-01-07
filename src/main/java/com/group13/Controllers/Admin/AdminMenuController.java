@@ -52,11 +52,11 @@ public class AdminMenuController implements Initializable {
     }
 
     private void onAddNewMovie() {
-        Model.getInstance().getViewManager().getAdminSelectedMenuItem().set("Add New Movie");
+        Model.getInstance().getViewManager().getAdminSelectedMenuItem().set("Fxml/Admin/Menu/add-new-movie-view.fxml");
     }
 
     private void onUpdateMovie() {
-        Model.getInstance().getViewManager().getAdminSelectedMenuItem().set("Update Movie");
+        Model.getInstance().getViewManager().getAdminSelectedMenuItem().set("Fxml/Admin/update-movie-view.fxml");
     }
 
     private void onCreateSchedule() {

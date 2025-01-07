@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../../../Styles/admin.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Admin.MenuOperations.UpdateMovieController">
-   <Label layoutX="218.0" layoutY="242.0" text="Update Movie" />
+<AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../../../Styles/admin.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Admin.UpdateMovieController">
+   <children>
+      <!-- Header -->
+      <Label layoutX="200.0" layoutY="20.0" text="Update Movie" style="-fx-font-size: 16px;" />
+
+      <!-- Movie Selector -->
+      <Label layoutX="50.0" layoutY="80.0" text="Select Movie" />
+      <ComboBox fx:id="movieSelector" layoutX="150.0" layoutY="80.0" prefWidth="200.0" />
+
+      <!-- Movie Fields -->
+      <Label layoutX="50.0" layoutY="130.0" text="Title" />
+      <TextField fx:id="titleField" layoutX="150.0" layoutY="130.0" />
+
+      <Label layoutX="50.0" layoutY="180.0" text="Genre" />
+      <TextField fx:id="genreField" layoutX="150.0" layoutY="180.0" />
+
+      <Label layoutX="50.0" layoutY="230.0" text="Summary" />
+      <TextField fx:id="summaryField" layoutX="150.0" layoutY="230.0" />
+
+      <Label layoutX="50.0" layoutY="280.0" text="Poster Path" />
+      <TextField fx:id="posterPathField" layoutX="150.0" layoutY="280.0" />
+
+      <!-- Update Button -->
+      <Button fx:id="updateMovieButton" layoutX="200.0" layoutY="350.0" text="Update Movie" />
+   </children>
 </AnchorPane>

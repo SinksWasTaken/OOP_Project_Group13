@@ -2,10 +2,12 @@ package com.group13.Controllers;
 
 import com.group13.Models.LoginModel;
 import com.group13.Models.Model;
+import com.group13.Models.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,9 +40,10 @@ public class LoginController implements Initializable {
         }
 
         if (loginModel.validateUser(username, password)) {
-            String role = loginModel.getUserRole(username);
-            if (role != null) {
-                navigateToRoleBasedScene(role);
+            Worker worker = loginModel.getUser(username);
+            if (worker != null) {
+                Model.getInstance().setCurrentWorker(worker);
+                navigateToRoleBasedScene(worker.getRole());
             } else {
                 showAlert(AlertType.ERROR, "Login Error", "User role not found.");
             }
@@ -50,11 +53,12 @@ public class LoginController implements Initializable {
     }
 
     private void navigateToRoleBasedScene(String role) {
+        Stage currentStage = (Stage) signInButton.getScene().getWindow();
         try {
             switch (role.toLowerCase()) {
-                case "admin" -> Model.getInstance().getViewManager().showAdminWindow();
-                case "manager" -> Model.getInstance().getViewManager().showManagerWindow();
-                case "cashier" -> Model.getInstance().getViewManager().showCashierWindow();
+                case "admin" -> Model.getInstance().getViewManager().showAdminWindow(currentStage);
+                case "manager" -> Model.getInstance().getViewManager().showManagerWindow(currentStage);
+                case "cashier" -> Model.getInstance().getViewManager().showCashierWindow(currentStage);
                 default -> showAlert(AlertType.ERROR, "Role Error", "Unknown role: " + role);
             }
         } catch (Exception e) {

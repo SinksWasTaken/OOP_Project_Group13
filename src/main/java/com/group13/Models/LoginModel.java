@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class LoginModel {
 
     public boolean validateUser(String username, String password) {
-        String query = "SELECT password FROM users WHERE username = ?";
+        String query = "SELECT password FROM workers WHERE username = ?";
         try (Connection conn = ConnectionModel.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
@@ -25,8 +25,8 @@ public class LoginModel {
         return false;
     }
 
-    public String getUserRole(String username) {
-        String query = "SELECT r.role_name FROM users u INNER JOIN roles r ON u.role = r.role_id WHERE u.username = ?";
+    public Worker getUser(String username) {
+        String query = "SELECT w.username, w.firstname, w.lastname, r.role_name FROM workers w INNER JOIN roles r ON w.role = r.role_id WHERE w.username = ?";
         try (Connection conn = ConnectionModel.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
@@ -34,7 +34,11 @@ public class LoginModel {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getString("role_name");
+                String firstname = rs.getString("firstname");
+                String lastname = rs.getString("lastname");
+                String role = rs.getString("role_name");
+
+                return new Worker(username, firstname, lastname, role);
             }
         } catch (SQLException e) {
             System.err.println("Error fetching user role: " + e.getMessage());

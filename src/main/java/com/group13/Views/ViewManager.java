@@ -1,6 +1,6 @@
 package com.group13.Views;
 
-import com.group13.Controllers.Admin.AdminController;
+import com.group13.Controllers.Admin.AdminDashboardController;
 import com.group13.Controllers.Cashier.CashierController;
 import com.group13.Controllers.Manager.ManagerController;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,14 +14,22 @@ public class ViewManager {
 
     // Admin Views
     private final StringProperty adminSelectedMenuItem;
-    private AnchorPane adminOperation1;
-    private AnchorPane adminOperation2;
+
+    private AnchorPane adminWelcome;
+    private AnchorPane addNewMovie;
+    private AnchorPane updateMovie;
+    private AnchorPane createSchedule;
+    private AnchorPane updateSchedule;
+    private AnchorPane customerRequest;
 
     // Manager Views
     private AnchorPane managerView;
 
     // Cashier Views
     private AnchorPane cashierView;
+
+    // Current Stage
+    private Stage currentStage;
 
     public ViewManager() {
         adminSelectedMenuItem = new SimpleStringProperty("");
@@ -31,62 +39,105 @@ public class ViewManager {
         return adminSelectedMenuItem;
     }
 
-    public AnchorPane getAdminOperation1() {
-        if(adminOperation1 == null) {
+    public AnchorPane getAdminWelcome() {
+        if(adminWelcome == null) {
             try {
-                adminOperation1 = new FXMLLoader(getClass().getResource("/Fxml/Admin/admin-operation1-view.fxml")).load();
+                adminWelcome = new FXMLLoader(getClass().getResource("/Fxml/Admin/admin-welcome-view.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return adminOperation1;
+        return adminWelcome;
     }
 
-    public AnchorPane getAdminOperation2() {
-        if(adminOperation2 == null) {
+    public AnchorPane getAddNewMovie() {
+        if(addNewMovie == null) {
             try {
-                adminOperation2 = new FXMLLoader(getClass().getResource("/Fxml/Admin/admin-operation2-view.fxml")).load();
+                addNewMovie = new FXMLLoader(getClass().getResource("/Fxml/Admin/Menu/add-new-movie-view.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return adminOperation2;
+        return addNewMovie;
+    }
+
+    public AnchorPane getUpdateMovie() {
+        if(updateMovie == null) {
+            try {
+                updateMovie = new FXMLLoader(getClass().getResource("/Fxml/Admin/Menu/update-movie-view.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return updateMovie;
+    }
+
+    public AnchorPane getCreateSchedule() {
+        if(createSchedule == null) {
+            try {
+                createSchedule = new FXMLLoader(getClass().getResource("/Fxml/Admin/Menu/create-schedule-view.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return createSchedule;
+    }
+
+    public AnchorPane getUpdateSchedule() {
+        if(updateSchedule == null) {
+            try {
+                updateSchedule = new FXMLLoader(getClass().getResource("/Fxml/Admin/Menu/update-schedule-view.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return updateSchedule;
+    }
+
+    public AnchorPane getCustomerRequests() {
+        if(customerRequest == null) {
+            try {
+                customerRequest = new FXMLLoader(getClass().getResource("/Fxml/Admin/Menu/customer-request-view.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return customerRequest;
     }
 
     // Login Views
 
-    public void showLoginWindow()
+    public void showLoginWindow(Stage currentStage)
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Login/login-view.fxml"));
-        createStage(loader, "Login");
+        createStage(loader, "Login", currentStage);
     }
 
-    public void showAdminWindow()
+    public void showAdminWindow(Stage currentStage)
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Admin/admin-view.fxml"));
-        AdminController adminController = new AdminController();
+        AdminDashboardController adminController = new AdminDashboardController();
         loader.setController(adminController);
-        createStage(loader, "Admin");
+        createStage(loader, "Admin", currentStage);
     }
 
-    public void showManagerWindow()
+    public void showManagerWindow(Stage currentStage)
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Manager/manager-view.fxml"));
         ManagerController managerController = new ManagerController();
         loader.setController(managerController);
-        createStage(loader, "Manager");
+        createStage(loader, "Manager", currentStage);
     }
 
-    public void showCashierWindow()
+    public void showCashierWindow(Stage currentStage)
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Cashier/cashier-view.fxml"));
         CashierController cashierController = new CashierController();
         loader.setController(cashierController);
-        createStage(loader, "Cashier");
-
+        createStage(loader, "Cashier", currentStage);
     }
 
-    private void createStage(FXMLLoader loader, String stageName)
+    private void createStage(FXMLLoader loader, String stageName, Stage currentStage)
     {
         Scene scene = null;
 
@@ -108,5 +159,15 @@ public class ViewManager {
             }
         }
         stage.show();
+
+        if (currentStage != null) {
+            currentStage.close();
+        }
+
+        this.currentStage = stage;
+    }
+
+    public Stage getCurrentStage() {
+        return currentStage;
     }
 }

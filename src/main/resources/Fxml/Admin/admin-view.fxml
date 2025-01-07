@@ -9,7 +9,7 @@
     </left>
 
     <center>
-        <fx:include source="admin-operation1-view.fxml" />
+        <fx:include source="admin-welcome-view.fxml" />
     </center>
 
 </BorderPane>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../../Styles/admin.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Admin.AdminWelcomeController">
+   <Label alignment="TOP_LEFT" layoutY="6.0" prefHeight="17.0" prefWidth="500.0" text="  GROUP13 CinemaCenter">
+      <font>
+         <Font name="System Bold" size="20.0" />
+      </font>
+   </Label>
+   <Label fx:id="welcome_label" alignment="CENTER" layoutY="50.0" prefHeight="17.0" prefWidth="500.0" text="Deneme">
+      <font>
+         <Font size="18.0" />
+      </font></Label>
+   <Label fx:id="username_role" alignment="TOP_RIGHT" layoutY="8.0" prefHeight="17.0" prefWidth="500.0" text="Deneme   ">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Label>
+</AnchorPane>

@@ -14,11 +14,14 @@ module com.example.group13 {
     requires java.desktop;
 
     opens com.group13.Controllers to javafx.fxml;
+    opens com.group13.Controllers.Admin to javafx.fxml;
+    opens com.group13.Controllers.Admin.MenuOperations to javafx.fxml;
     exports com.group13;
     exports com.group13.Controllers;
     exports com.group13.Controllers.Admin;
     exports com.group13.Controllers.Cashier;
     exports com.group13.Controllers.Manager;
+    exports com.group13.Controllers.Admin.MenuOperations;
     exports com.group13.Models;
     exports com.group13.Views;
 }

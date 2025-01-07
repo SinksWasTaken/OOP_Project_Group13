@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class AdminOperation1Controller {
+public class    AdminOperation1Controller {
 
     @FXML
     private TextField titleField;
@@ -28,29 +28,27 @@ public class AdminOperation1Controller {
 
     @FXML
     public void initialize() {
-        if (addMovieButton != null) {
-            addMovieButton.setOnAction(event -> addMovieFromGUI());
-        }
+        // Add a button action handler
+        addMovieButton.setOnAction(event -> {
+            // Get the values from TextFields
+            String title = titleField.getText();
+            String genre = genreField.getText();
+            String summary = summaryField.getText();
+            String posterPath = posterPathField.getText();
+
+            // Call the method to add the movie to the database
+            addMovie(title, genre, summary, posterPath);
+        });
     }
 
-    // Original method using GUI fields
-    private void addMovieFromGUI() {
-        String title = titleField != null ? titleField.getText() : null;
-        String genre = genreField != null ? genreField.getText() : null;
-        String summary = summaryField != null ? summaryField.getText() : null;
-        String posterPath = posterPathField != null ? posterPathField.getText() : null;
-
-        addMovie(title, genre, summary, posterPath);
-    }
-
-    // Overloaded method for testing without GUI
-    public void addMovie(String title, String genre, String summary, String posterPath) {
+    private void addMovie(String title, String genre, String summary, String posterPath) {
         if (title == null || title.isEmpty()) {
             System.out.println("Title cannot be empty.");
             return;
         }
 
-        String query = "INSERT INTO admin_movies (title, genre, summary, img_path) VALUES (?, ?, ?, ?)";
+        // SQL query to insert a new movie
+        String query = "INSERT INTO movies (movie_name, genre, summary, img_path) VALUES (?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.connect();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {

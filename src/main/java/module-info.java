@@ -21,4 +21,8 @@ module com.example.group13 {
     exports com.group13.Controllers.Manager;
     exports com.group13.Models;
     exports com.group13.Views;
+
+
+    opens com.group13.Controllers.Admin to javafx.fxml;
 }
+

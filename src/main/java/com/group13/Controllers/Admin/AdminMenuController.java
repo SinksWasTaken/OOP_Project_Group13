@@ -34,3 +34,4 @@ public class AdminMenuController implements Initializable {
         Model.getInstance().getViewManager().getAdminSelectedMenuItem().set("Operation2");
     }
 }
+

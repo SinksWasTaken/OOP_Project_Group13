@@ -28,7 +28,8 @@
       <Label layoutX="50.0" layoutY="280.0" text="Poster Path" />
       <TextField fx:id="posterPathField" layoutX="150.0" layoutY="280.0" />
 
-      <!-- Update Button -->
-      <Button fx:id="updateMovieButton" layoutX="200.0" layoutY="350.0" text="Update Movie" />
+      <Button fx:id="uploadPosterButton" layoutX="150.0" layoutY="350.0" text="Upload Poster" />
+      <Button fx:id="updateMovieButton" layoutX="150.0" layoutY="400.0" text="Update Movie" />
+
    </children>
 </AnchorPane>

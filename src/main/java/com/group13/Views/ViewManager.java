@@ -62,15 +62,14 @@ public class ViewManager {
     }
 
     public AnchorPane getUpdateMovie() {
-        if(updateMovie == null) {
-            try {
-                updateMovie = new FXMLLoader(getClass().getResource("/Fxml/Admin/Menu/update-movie-view.fxml")).load();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            updateMovie = new FXMLLoader(getClass().getResource("/Fxml/Admin/Menu/update-movie-view.fxml")).load();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return updateMovie;
     }
+
 
     public AnchorPane getCreateSchedule() {
         if(createSchedule == null) {

@@ -5,6 +5,7 @@ import com.group13.Views.ViewManager;
 public class Model {
     private static Model model;
     private final ViewManager viewManager;
+    private Worker currentWorker;
 
     private Model() {
         this.viewManager = new ViewManager();
@@ -19,5 +20,13 @@ public class Model {
 
     public ViewManager getViewManager() {
         return viewManager;
+    }
+
+    public Worker getCurrentWorker() {
+        return currentWorker;
+    }
+
+    public void setCurrentWorker(Worker currentWorker) {
+        this.currentWorker = currentWorker;
     }
 }

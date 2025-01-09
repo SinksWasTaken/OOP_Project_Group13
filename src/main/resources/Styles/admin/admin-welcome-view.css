@@ -1,0 +1,14 @@
+.welcome-view-anchor{
+    -fx-font-family: 'Source Code Pro';
+    -fx-background-color: #015697;
+    -fx-text-fill: white;
+}
+
+.username-role-label{
+    -fx-text-fill: white;
+    -fx-padding: 20px 30px 0 0;
+}
+
+.welcome-label{
+    -fx-text-fill: white;
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../../../Styles/admin/admin-welcome-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Admin.MenuOperations.CustomerRequestController">
+   <Label layoutX="218.0" layoutY="242.0" text="Customer Request" />
+</AnchorPane>

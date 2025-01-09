@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="500.0" prefWidth="200.0" style="-fx-background-color: #000;"
-            stylesheets="@../../Styles/cashier.css" xmlns="http://javafx.com/javafx/23.0.1"
+            stylesheets="@../../Styles/cashier/cashier.css" xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.group13.Controllers.Cashier.CashierDashboardController">
     <Label layoutX="64.0" layoutY="242.0" text="Cashier Menu" textFill="WHITE"/>

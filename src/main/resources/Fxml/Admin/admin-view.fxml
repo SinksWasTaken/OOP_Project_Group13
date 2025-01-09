@@ -2,14 +2,14 @@
 
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="admin_parent" prefHeight="500.0" prefWidth="700.0" stylesheets="@../../Styles/admin.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="admin_parent" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../../Styles/admin/admin-menu-view.css" styleClass="admin-view-border" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
     <left>
         <fx:include source="admin-menu-view.fxml" />
     </left>
 
     <center>
-        <fx:include source="admin-operation1-view.fxml" />
+        <fx:include source="admin-welcome-view.fxml" />
     </center>
 
 </BorderPane>

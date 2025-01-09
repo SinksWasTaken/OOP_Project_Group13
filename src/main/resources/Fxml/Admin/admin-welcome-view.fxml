@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" styleClass="welcome-view-anchor" stylesheets="@../../Styles/admin/admin-welcome-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Admin.AdminWelcomeController">
+   <Label fx:id="welcome_label_admin" styleClass="welcome-label" alignment="CENTER" layoutY="50.0" prefHeight="27.0" prefWidth="900.0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Label>
+   <Label fx:id="username_role_admin" styleClass="username-role-label" alignment="TOP_RIGHT" layoutY="8.0" prefHeight="27.0" prefWidth="900.0">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Label>
+</AnchorPane>

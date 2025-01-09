@@ -77,8 +77,20 @@ public class AdminRefundTicketController
 
             
             String selectAllTicketsQuery = "SELECT * FROM tickets";
+            
 
             rs=statement.executeQuery(selectAllTicketsQuery);
+
+            while(rs.next())
+            {
+                
+                if(customerName.equals(rs.getString("customerName")))
+                {
+                    System.out.println("Ticket: "+ ticketNumber + " had been refunded before!");
+                    return false;
+                }
+            }
+
             rs.moveToInsertRow();
             rs.updateString(2, customerName);
             rs.updateInt(3, age);
@@ -93,12 +105,29 @@ public class AdminRefundTicketController
             rs.updateString(12, seatRow);
             rs.insertRow();
 
-            System.out.println("Refunded Ticket Successfully");
+            System.out.println("\nRefunded Ticket Successfully");
 
-            String selectSeatQuery = "SELECT * FROM seats Where c="+seatCol+ " & r='"+seatRow+"' & hall="+sessionHall;
-            rs=statement.executeQuery(selectSeatQuery);
+
+            String selectSessionQuery = "SELECT * FROM sessions Where session_date='"+sessionDate+ "' and session_time='"+sessionTime+"' and movie_name='"+movieName+"'";
+            rs=statement.executeQuery(selectSessionQuery);
+
+            if(rs==null)
+            {
+                System.out.println("No Session Found");
+                return false;
+            }
             rs.next();
-            rs.updateBoolean(2, false);
+            int sessionID = rs.getInt("session_id");
+
+            System.out.println("Session Selected Successfully");
+
+            String selectSeatQuery = "SELECT * FROM seats Where session_id="+sessionID+" and c="+seatCol+ " and r='"+seatRow+"' and hall="+sessionHall;
+            rs=statement.executeQuery(selectSeatQuery);
+            
+            rs.next();
+            rs.updateBoolean("sold", false);
+
+            rs.updateRow();
             
             System.out.println("Seat Cleared Successfully");
 
@@ -106,7 +135,7 @@ public class AdminRefundTicketController
         } 
         catch (SQLException e) 
         {
-            e.printStackTrace();
+           
             System.out.println("Couldn't Refund Ticket");
             return false;
         }
@@ -116,3 +145,6 @@ public class AdminRefundTicketController
         refundTicket(1);
     }
 }
+
+
+//session_date="+sessionDate+ " & session_time='"+sessionTime+"' &

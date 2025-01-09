@@ -1,4 +1,4 @@
-package com.group13.Controllers.Admin;
+package com.group13.Controllers.Manager;
 
 import com.group13.Models.Model;
 import com.group13.Models.Worker;
@@ -9,20 +9,20 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdminWelcomeController implements Initializable {
+public class ManagerWelcomeController implements Initializable {
 
     @FXML
-    private Label username_role_admin;
+    Label welcome_label_manager;
 
     @FXML
-    private Label welcome_label_admin;
+    Label username_role_manager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Worker currentWorker = Model.getInstance().getCurrentWorker();
         if (currentWorker != null) {
-            username_role_admin.setText(currentWorker.getUsername() + ", " + currentWorker.getRole());
-            welcome_label_admin.setText("Welcome, " + currentWorker.getFirstname() + " " + currentWorker.getLastname() + "!");
+            username_role_manager.setText(currentWorker.getUsername() + ", " + currentWorker.getRole());
+            welcome_label_manager.setText("Welcome, " + currentWorker.getFirstname() + " " + currentWorker.getLastname() + "!");
         }
     }
 }

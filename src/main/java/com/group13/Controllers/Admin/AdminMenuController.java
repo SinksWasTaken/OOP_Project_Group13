@@ -2,8 +2,10 @@ package com.group13.Controllers.Admin;
 
 import com.group13.Controllers.LogoutController;
 import com.group13.Models.Model;
+import com.group13.Models.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 import java.awt.*;
 import java.net.URL;
@@ -32,8 +34,19 @@ public class AdminMenuController implements Initializable {
     @FXML
     public javafx.scene.control.Button logout_btn;
 
+    @FXML
+    private Label username_admin;
+
+    @FXML
+    private Label role_admin;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Worker currentWorker = Model.getInstance().getCurrentWorker();
+        if (currentWorker != null) {
+            username_admin.setText("Username: " + currentWorker.getUsername());
+            role_admin.setText("Role: " + currentWorker.getRole());
+        }
         addListeners();
     }
 

@@ -1,8 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../../../Styles/admin.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Admin.MenuOperations.UpdateMovieController">
-   <Label layoutX="218.0" layoutY="242.0" text="Update Movie" />
+<AnchorPane prefHeight="800.0" prefWidth="900.0" styleClass="update-movie-anchor" stylesheets="@../../../Styles/admin/update-movie.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Admin.MenuOperations.UpdateMovieController">
+   <VBox layoutX="50.0" layoutY="10.0" prefHeight="780.0" prefWidth="800.0" spacing="10.0" styleClass="form-container">
+      <Label styleClass="form-title" text="Update Movie" />
+
+      <HBox alignment="CENTER_LEFT" spacing="10.0">
+         <Label styleClass="form-label" text="Choose the film:" />
+         <ComboBox fx:id="movieComboBox" styleClass="combobox-movie" />
+         <Button fx:id="deleteMovieButton" mnemonicParsing="false" text="Delete Movie" styleClass="delete-button" textAlignment="CENTER" />
+      </HBox>
+
+      <Label styleClass="form-label" text="Title" />
+      <TextField fx:id="titleField" styleClass="form-textfield" />
+      <Label styleClass="info-label" text="Please enter a maximum of 50 characters." />
+
+      <Label styleClass="form-label" text="Genre" />
+      <TextField fx:id="genreField" styleClass="form-textfield" />
+      <Label styleClass="info-label" text="Please enter a maximum of 20 characters." />
+
+      <Label styleClass="form-label" text="Summary" />
+      <TextArea fx:id="summaryField" prefHeight="200.0" prefWidth="760.0" styleClass="form-textarea" />
+      <Label styleClass="info-label" text="Please enter a maximum of 1000 characters." />
+
+      <HBox alignment="CENTER_LEFT" spacing="10.0">
+         <ImageView fx:id="movieImageView" fitHeight="150.0" fitWidth="120.0" styleClass="form-img" />
+         <Button fx:id="uploadPosterButton" styleClass="form-button" text="Upload Poster" />
+      </HBox>
+      <Label styleClass="info-label" text="Extensions that can be accepted: .jpg, .jpeg, .png, .webp" />
+
+      <Button fx:id="updateMovieButton" styleClass="form-button" text="Update Movie" />
+      <Label styleClass="info-label" text="Please fill in all fields before updating a movie." />
+   </VBox>
 </AnchorPane>

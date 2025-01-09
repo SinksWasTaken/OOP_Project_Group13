@@ -1,0 +1,79 @@
+.update-movie-anchor {
+    -fx-background-color: #015697;
+}
+
+.form-container {
+    -fx-background-color: #013a5a;
+    -fx-padding: 20;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.form-title {
+    -fx-font-size: 24px;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+.form-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+}
+
+.form-textfield {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 5;
+    -fx-padding: 5;
+}
+
+.form-textarea {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 5;
+    -fx-padding: 5;
+}
+
+.form-button {
+    -fx-background-color: #0177a8;
+    -fx-text-fill: #ffffff;
+    -fx-border-radius: 5;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+    -fx-background-color: #0191d1;
+}
+
+.form-img {
+    -fx-border-color: #ffffff;
+    -fx-padding: 5;
+}
+
+.info-label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+}
+
+.delete-button {
+    -fx-background-color: #d9534f;
+    -fx-text-fill: #ffffff;
+    -fx-border-radius: 5;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-alignment: center-right;
+}
+
+.delete-button:hover {
+    -fx-background-color: #c9302c;
+}
+
+.hbox-right {
+    -fx-alignment: center-right;
+    -fx-spacing: 10;
+}

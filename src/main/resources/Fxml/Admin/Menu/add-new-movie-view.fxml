@@ -1,8 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../../../Styles/admin.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Admin.MenuOperations.AddNewMovieController">
-    <Label layoutX="218.0" layoutY="242.0" text="Add New Movie" />
+<AnchorPane prefHeight="800.0" prefWidth="900.0" styleClass="add-new-movie-anchor" stylesheets="@../../../Styles/admin/add-new-movie.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Admin.MenuOperations.AddNewMovieController">
+    <VBox layoutX="50.0" layoutY="25.0" prefHeight="750.0" prefWidth="800.0" spacing="10.0" styleClass="form-container">
+        <Label styleClass="form-title" text="Add New Movie" />
+        <Label styleClass="form-label" text="Title" />
+        <TextField fx:id="titleField" styleClass="form-textfield" />
+        <Label styleClass="info-label" text="Please enter a maximum of 50 characters." />
+
+        <Label styleClass="form-label" text="Genre" />
+        <TextField fx:id="genreField" styleClass="form-textfield" />
+        <Label styleClass="info-label" text="Please enter a maximum of 20 characters." />
+
+        <Label styleClass="form-label" text="Summary" />
+        <TextArea fx:id="summaryField" prefHeight="200.0" prefWidth="760.0" styleClass="form-textarea" />
+        <Label styleClass="info-label" text="Please enter a maximum of 1000 characters." />
+
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <ImageView fx:id="movieImageView" fitHeight="150.0" fitWidth="120.0" styleClass="form-img" />
+            <Button fx:id="uploadPosterButton" styleClass="form-button" text="Upload Poster" />
+        </HBox>
+        <Label styleClass="info-label" text="Extensions that can be accepted: .jpg, .jpeg, .png, .webp" />
+
+        <Button fx:id="addMovieButton" styleClass="form-button" text="Add Movie" />
+        <Label styleClass="info-label" text="Please fill in all fields before adding a movie." />
+    </VBox>
 </AnchorPane>

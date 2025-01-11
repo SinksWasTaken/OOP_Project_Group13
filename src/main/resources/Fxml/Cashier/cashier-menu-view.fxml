@@ -3,9 +3,18 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="200.0" style="-fx-background-color: #000;"
-            stylesheets="@../../Styles/cashier/cashier.css" xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.group13.Controllers.Cashier.CashierDashboardController">
-    <Label layoutX="64.0" layoutY="242.0" text="Cashier Menu" textFill="WHITE"/>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.group13.Controllers.Cashier.MenuController">
+    <!-- Main layout for the menu -->
+    <VBox spacing="20" alignment="CENTER" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
+        
+        <!-- Menu Title -->
+        <Label text="Cinema Product Menu" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+        <!-- Button to select product and navigate to product view -->
+        <ComboBox fx:id="productComboBox" prefWidth="200"/>
+        <Button fx:id="productSelectButton" text="Select Product" onAction="#goToProductView"/>
+        
+        <!-- Go back to dashboard button -->
+        <Button fx:id="backButton" text="Back to Dashboard" onAction="#goBackToDashboard"/>
+    </VBox>
 </AnchorPane>

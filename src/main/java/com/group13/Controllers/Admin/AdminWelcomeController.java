@@ -1,18 +1,11 @@
 package com.group13.Controllers.Admin;
 
-<<<<<<< Updated upstream
-=======
 import com.group13.Models.ConnectionModel;
->>>>>>> Stashed changes
 import com.group13.Models.Model;
 import com.group13.Models.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-<<<<<<< Updated upstream
-
-import java.net.URL;
-=======
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -23,15 +16,11 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
->>>>>>> Stashed changes
 import java.util.ResourceBundle;
 
 public class AdminWelcomeController implements Initializable {
 
     @FXML
-<<<<<<< Updated upstream
-    private Label username_role_admin;
-=======
     private Label movieCount;
 
     @FXML
@@ -39,19 +28,10 @@ public class AdminWelcomeController implements Initializable {
 
     @FXML
     private Label customerRequestCount;
->>>>>>> Stashed changes
 
     @FXML
     private Label welcome_label_admin;
 
-<<<<<<< Updated upstream
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        Worker currentWorker = Model.getInstance().getCurrentWorker();
-        if (currentWorker != null) {
-            username_role_admin.setText(currentWorker.getUsername() + ", " + currentWorker.getRole());
-            welcome_label_admin.setText("Welcome, " + currentWorker.getFirstname() + " " + currentWorker.getLastname() + "!");
-=======
     @FXML
     private HBox movieCarousel;
 
@@ -133,7 +113,6 @@ public class AdminWelcomeController implements Initializable {
 
         } catch (Exception e) {
             e.printStackTrace();
->>>>>>> Stashed changes
         }
     }
 }

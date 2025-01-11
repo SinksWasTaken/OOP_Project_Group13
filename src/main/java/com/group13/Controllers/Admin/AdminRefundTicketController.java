@@ -2,10 +2,10 @@ package com.group13.Controllers.Admin;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
  
 import com.group13.DatabaseConnection;
@@ -72,9 +72,6 @@ public class AdminRefundTicketController
             int sessionHall             = rs.getInt("sessionHall");
             int seatCol                 = rs.getInt("seatCol");
             String seatRow              = rs.getString("seatRow");
-
-
-
             
             String selectAllTicketsQuery = "SELECT * FROM tickets";
             
@@ -83,7 +80,6 @@ public class AdminRefundTicketController
 
             while(rs.next())
             {
-                
                 if(customerName.equals(rs.getString("customerName")))
                 {
                     System.out.println("Ticket: "+ ticketNumber + " had been refunded before!");
@@ -140,10 +136,7 @@ public class AdminRefundTicketController
             return false;
         }
     }
-    public static void main(String[] args)
-    {
-        refundTicket(1);
-    }
+
 }
 
 

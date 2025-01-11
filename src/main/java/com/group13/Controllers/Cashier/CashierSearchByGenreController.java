@@ -103,17 +103,4 @@ public class CashierSearchByGenreController
       }
    }
 
-   public static void main(String[] args)
-   {
-
-
-      List<MovieModel> movies = searchByGenre("a");
-
-      for(int i =0;i<movies.size();i++)
-      {
-         movies.get(i).printMovie();
-         System.out.println('\n');
-      }
-
-   }
 }

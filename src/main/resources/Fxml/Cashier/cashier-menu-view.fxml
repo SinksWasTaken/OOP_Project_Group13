@@ -4,17 +4,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.group13.Controllers.Cashier.MenuController">
-    <!-- Main layout for the menu -->
+
     <VBox spacing="20" alignment="CENTER" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
         
-        <!-- Menu Title -->
         <Label text="Cinema Product Menu" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
-        <!-- Button to select product and navigate to product view -->
         <ComboBox fx:id="productComboBox" prefWidth="200"/>
         <Button fx:id="productSelectButton" text="Select Product" onAction="#goToProductView"/>
         
-        <!-- Go back to dashboard button -->
         <Button fx:id="backButton" text="Back to Dashboard" onAction="#goBackToDashboard"/>
     </VBox>
 </AnchorPane>

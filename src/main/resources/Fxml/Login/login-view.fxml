@@ -12,7 +12,7 @@
 <AnchorPane prefHeight="500.0" prefWidth="700.0" styleClass="login_container" stylesheets="@../../Styles/login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.LoginController">
    <VBox fx:id="logoContainer" alignment="center" layoutX="1.0" prefHeight="500.0" prefWidth="300.0" spacing="20" styleClass="login_logo_container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="0.0">
       <ImageView fx:id="logo_image" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-         <Image url="@../../Images/khaslogo.png" />
+         <Image url="@../../Images/movies/khaslogo.png" />
       </ImageView>
       <Label fx:id="logoTitle" styleClass="logo_title" text="LCCMA" />
       <Label fx:id="logoSubtitle" styleClass="logo_subtitle" text="by Group 13" />

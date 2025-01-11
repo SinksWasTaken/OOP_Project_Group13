@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<<<<<<< Updated upstream
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="500.0" prefWidth="200.0" style="-fx-background-color: #000;" stylesheets="@../../Styles/admin/admin-welcome-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Manager.ManagerMenuController">
@@ -20,4 +21,52 @@
     </Button>
     <Button fx:id="worker_btn" layoutX="10.0" layoutY="300.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" text="View / Edit Workers" />
     <Button fx:id="logout_btn" layoutX="10.0" layoutY="450.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" text="Logout" />
+=======
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<AnchorPane prefHeight="700.0" prefWidth="300.0" styleClass="menu-anchor" stylesheets="@../../Styles/menu-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Manager.ManagerMenuController">
+<VBox alignment="CENTER" layoutX="0.0" layoutY="50.0" prefWidth="300.0" spacing="20.0">
+    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="300.0" text="GROUP13 CinemaCenter" styleClass="group13-title" />
+    <Label fx:id="username_manager" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="300.0" styleClass="username-title" />
+    <Label fx:id="role_manager" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="300.0" styleClass="role-title" />
+
+    <VBox alignment="CENTER_LEFT" spacing="10.0" prefWidth="300.0" layoutX="0.0" layoutY="0.0" styleClass="menu-container">
+        <Button fx:id="home_btn" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" text="Home Page" styleClass="menu-button">
+            <graphic>
+                <FontAwesomeIconView glyphName="HOME" styleClass="menu-icon" />
+            </graphic>
+        </Button>
+        <Button fx:id="inventory_btn" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" text="View / Edit Inventory" styleClass="menu-button">
+            <graphic>
+                <FontAwesomeIconView glyphName="PLUS_CIRCLE" styleClass="menu-icon" />
+            </graphic>
+        </Button>
+        <Button fx:id="price_btn" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" text="View / Edit Workers" styleClass="menu-button">
+            <graphic>
+                <FontAwesomeIconView glyphName="FILM" styleClass="menu-icon" />
+            </graphic>
+        </Button>
+        <Button fx:id="revenueTax_btn" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" text="View / Update Prices" styleClass="menu-button">
+            <graphic>
+                <FontAwesomeIconView glyphName="CALENDAR" styleClass="menu-icon" />
+            </graphic>
+        </Button>
+        <Button fx:id="worker_btn" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" text="Review Total Revenue and Tax Amounts" style="-fx-font-size: 12px;" styleClass="menu-button">
+            <graphic>
+                <FontAwesomeIconView glyphName="EDIT" styleClass="menu-icon" />
+            </graphic>
+        </Button>
+    </VBox>
+</VBox>
+
+<Button fx:id="logout_btn" layoutX="25.0" layoutY="620.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Logout" styleClass="logout-button">
+    <graphic>
+        <FontAwesomeIconView glyphName="SIGN_OUT" styleClass="menu-icon" />
+    </graphic>
+</Button>
+
+>>>>>>> Stashed changes
 </AnchorPane>

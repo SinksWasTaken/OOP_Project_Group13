@@ -1,19 +1,21 @@
 package com.group13.Controllers.Cashier;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Date;
 
 import com.group13.Models.ConnectionModel;
 import com.group13.Models.SessionModel;
+import com.group13.Models.SeatModel;
 import com.group13.Models.TicketModel;
 
-public class CashierTimeSelectionController 
+public class CashierSeatSelectionController 
 {
     public static void printRS(ResultSet resultSet)
    {
@@ -45,59 +47,44 @@ public class CashierTimeSelectionController
          System.err.println(e.getMessage()+ " Retrying....");
       }
    }
-    //This method searches the sessions table and finds all the sessions with a specific movieName and date (retrieved from the ticketModel object), then returns the available sessions in a sessionModel array (if the session seats have not been assigned yet, the method assigns them)
-    static void sessionTimesFinder(List<SessionModel> SessionsFinal,TicketModel ticket)
+    //This method searches the seats table and finds all the seats with a specific session_id (retrieved from the ticketModel object), then returns the available seats in a seatModel array (if the session seats have not been assigned yet, the method assigns them)
+    static void sessionSeatsFinder(List<SeatModel> seatsFinal,TicketModel ticket)
     {
-        List<SessionModel> IDs = new ArrayList<>();
     
         try
         {
             Connection conn = ConnectionModel.getConnection();
             Statement stat = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs = stat.executeQuery("Select * FROM sessions WHERE movie_name='"+ticket.movieName+"' and session_date='"+ticket.sessionDate.toString()+"'");
+            
+            ResultSet rs = stat.executeQuery("Select * FROM seats WHERE session_id="+ticket.session_id);
 
             if(rs==null)
             {
-                System.out.println("No Sessions found");
+                System.out.println("No Seats found");
                 return;
             }
 
-
+            int counter=0;
             while(rs.next())
             {
-                SessionModel session = new SessionModel();
-                session.hall_number=rs.getInt("hall_number");
-                session.session_id= rs.getInt("session_id");
-                session.movie_name= rs.getString("movie_name");
-                session.session_date=rs.getDate("session_date");
-                session.session_time=rs.getTimestamp("session_time");
+                SeatModel seat = new SeatModel();
+                seat.hall=rs.getInt("hall");
+                seat.seat_id= rs.getInt("seat_id");
+                seat.c= rs.getInt("c");
+                seat.r=rs.getString("r");
+                seat.session_id=rs.getInt("session_id");
+                seat.sold = rs.getBoolean("sold");
 
-                IDs.add(session);
-            }
+                seatsFinal.add(seat);
 
-            for(int i=0;i<IDs.size();i++)
-            {
-                
-                
-                ResultSet newRs = stat.executeQuery("Select * FROM seats WHERE session_id="+IDs.get(i).session_id);
-                
-                
-                if(!newRs.next())
+                if(seat.sold)
                 {
-                    System.out.println("\n\nNo Seats assigned for session:\t" + IDs.get(i).session_id);
-                    return;
+                    counter++;
                 }
-                newRs.beforeFirst();
 
-                while(newRs.next())
-                {
-                    if(newRs.getBoolean("sold")==false)
-                    {
-                        SessionsFinal.add(IDs.get(i));
-                        break;
-                    }
-                }
             }
+            System.out.println("\nNumber of full seats: "+counter + "\n");
+
             return;
         }
         catch(SQLException e)//The code never goes here :D
@@ -116,14 +103,18 @@ public class CashierTimeSelectionController
         String dateStr = "2020-02-29";
         ticket.sessionDate=Date.valueOf(dateStr);
 
-        List<SessionModel> sessions = new ArrayList<>();
-        sessionTimesFinder(sessions,ticket);
+        String timeStr = "1970-01-01 17:00:00.0";
+        ticket.sessionTime=Timestamp.valueOf(timeStr);
+        ticket.session_id=8;
 
-        for(int i=0;i<sessions.size();i++)
+        List<SeatModel> seats = new ArrayList<>();
+        sessionSeatsFinder(seats,ticket);
+
+        System.out.println("Number of seats: "+ seats.size());
+        for(int i=0;i<seats.size();i++)
         {
-            sessions.get(i).printSession();
+            seats.get(i).printSeat();
             System.err.println("");
         }
     }
-
 }

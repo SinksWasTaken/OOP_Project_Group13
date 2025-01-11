@@ -16,6 +16,7 @@ public class TicketModel
     public int sessionHall;
     public int seatCol;
     public String seatRow;
+    public int session_id;
 
     
     public String genre;
@@ -35,5 +36,7 @@ public class TicketModel
         System.out.println("sessionHall:\t"+ this.sessionHall);
         System.out.println("seatCol:\t"+ this.seatCol);
         System.out.println("seatRow:\t"+ this.seatRow);
+        //Dont show this to the customer
+        System.out.println("session_id:\t"+ this.session_id);
     }
 }

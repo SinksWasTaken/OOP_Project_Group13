@@ -1,0 +1,70 @@
+.inventory-anchor {
+    -fx-background-color: #015697;
+}
+
+.form-container {
+    -fx-background-color: #013a5a;
+    -fx-padding: 20;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.form-title {
+    -fx-font-size: 24px;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+.form-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+}
+
+.form-button {
+    -fx-background-color: #0177a8;
+    -fx-text-fill: #ffffff;
+    -fx-border-radius: 5;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+    -fx-background-color: #0191d1;
+}
+
+.inventory-table {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #0177a8;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-table-cell-border-color: transparent;
+}
+
+.inventory-table .column-header {
+    -fx-background-color: #0177a8;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+.inventory-table .table-row-cell {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.inventory-table .table-row-cell:selected {
+    -fx-background-color: #e0f7fa;
+}
+
+.inventory-table .table-cell {
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+}

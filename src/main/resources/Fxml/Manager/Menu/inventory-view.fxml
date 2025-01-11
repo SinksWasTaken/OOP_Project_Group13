@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<<<<<<< Updated upstream
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../../../Styles/admin/admin-welcome-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Manager.MenuOperations.InventoryController">
     <Label layoutX="218.0" layoutY="242.0" text="View / Edit Inventory" />
+=======
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="800.0" prefWidth="900.0" styleClass="inventory-anchor" stylesheets="@../../../Styles/manager/inventory-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Manager.MenuOperations.InventoryController">
+    <VBox alignment="TOP_CENTER" layoutX="50.0" layoutY="25.0" prefHeight="750.0" prefWidth="800.0" spacing="10.0" styleClass="form-container">
+        <Label styleClass="form-title" text="View / Edit Inventory" />
+        <TableView fx:id="inventoryTable" prefHeight="600.0" prefWidth="800.0" styleClass="inventory-table">
+            <columns>
+                <TableColumn fx:id="productNameColumn" text="Product Name" />
+                <TableColumn fx:id="priceColumn" text="Price" />
+                <TableColumn fx:id="imagePathColumn" text="Product Image Path" />
+                <TableColumn fx:id="stockCountColumn" text="Stock Count" />
+            </columns>
+        </TableView>
+    </VBox>
+>>>>>>> Stashed changes
 </AnchorPane>

@@ -72,22 +72,22 @@ public class CashierSearchByGenreController
    }  
     
 
-    public static void printRS(ResultSet resultSet)
-    {
+   public static void printRS(ResultSet resultSet)
+   {
       try
       {
-        ResultSetMetaData metaData = resultSet.getMetaData();
+         ResultSetMetaData metaData = resultSet.getMetaData();
          int numberOfColumns = metaData.getColumnCount(); 
          //MainFunc.Clear_Console();
          System.out.printf("group13 Table of movies Database:%n%n");
-
+      
          // display the names of the columns in the ResultSet
          for (int i = 1; i <= numberOfColumns; i++) 
          {
             System.out.printf("%-30s\t", metaData.getColumnName(i));
          }
          System.out.println();
-
+      
          while (resultSet.next()) 
          {
             for (int i = 1; i <= numberOfColumns; i++) 
@@ -102,5 +102,4 @@ public class CashierSearchByGenreController
          System.err.println(e.getMessage()+ " Retrying....");
       }
    }
-
 }

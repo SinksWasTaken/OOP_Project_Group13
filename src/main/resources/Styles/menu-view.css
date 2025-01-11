@@ -1,0 +1,90 @@
+.border-default{
+    -fx-background-color: #015697;
+}
+
+.menu-anchor {
+    -fx-font-family: 'Source Code Pro';
+    -fx-background-color: white;
+    -fx-background-radius: 0 10px 10px 0;
+    -fx-border-radius: 0 10px 10px 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0, 0);
+    -fx-padding: 10px;
+}
+
+.group13-title{
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #015697;
+    -fx-padding: 0 0 0 30px;
+}
+
+.username-title{
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #012f4b;
+    -fx-padding: 0 0 0 30px;
+}
+
+.role-title {
+    -fx-font-size: 18px;
+    -fx-text-fill: black;
+}
+
+.menu-container {
+    -fx-alignment: center-left;
+    -fx-padding: 75px 0 0 0;
+}
+
+.menu-icon {
+    -fx-fill: #707070;
+    -fx-font-size: 18px;
+    -fx-padding: 0 10px 0 0;
+}
+
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #707070;
+    -fx-font-size: 16px;
+    -fx-padding: 0 0 0 15px;
+    -fx-border-width: 0 0 0 5px;
+    -fx-border-color: transparent;
+    -fx-border-style: solid;
+    -fx-alignment: center-left;
+}
+    .menu-button:hover {
+        -fx-border-color: #015697;
+        -fx-font-weight: bold;
+        -fx-text-fill: #015697;
+    }
+
+        .menu-button:hover .menu-icon {
+            -fx-fill: #015697;
+        }
+
+    .menu-button:focused {
+        -fx-text-fill: black;
+        -fx-font-weight: bold;
+        -fx-border-color: #015697;
+        -fx-background-color: #f0f0f0;
+    }
+        .menu-button:focused .menu-icon {
+            -fx-fill: black;
+        }
+
+.logout-button {
+    -fx-background-color: #015697;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.logout-button .menu-icon {
+    -fx-fill: white;
+}
+
+.logout-button:hover {
+    -fx-background-color: #012f4b;
+}

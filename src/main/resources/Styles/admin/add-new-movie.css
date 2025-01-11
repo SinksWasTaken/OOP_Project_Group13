@@ -57,3 +57,33 @@
     -fx-font-size: 14px;
     -fx-alignment: center;
 }
+
+.form-revenue-title {
+    -fx-text-fill: #ffffff;
+    -fx-padding: 50px 0 0 0;
+    -fx-font-size: 50px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+.revenue-label {
+    -fx-padding: 20px 0 0 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0, 0);
+    -fx-font-size: 56px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.tax-amount-label {
+    -fx-padding: 50px 0 0 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0, 0);
+    -fx-font-size: 56px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.info-revenue-label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 24px;
+    -fx-alignment: center;
+}

@@ -2,7 +2,14 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../../../Styles/admin/admin-welcome-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Manager.MenuOperations.RevenueTaxController">
-    <Label layoutX="218.0" layoutY="242.0" text="Review Total Revenue and Tax Amounts" />
+<AnchorPane prefHeight="800.0" prefWidth="900.0" styleClass="add-new-movie-anchor" stylesheets="@../../../Styles/admin/add-new-movie.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Manager.MenuOperations.RevenueTaxController">
+    <VBox layoutX="50.0" layoutY="25.0" prefHeight="750.0" prefWidth="800.0" spacing="10.0" styleClass="form-container">
+        <Label prefHeight="88.0" prefWidth="760.0" styleClass="form-revenue-title" text="Revenue and Tax Amounts" />
+      <Label fx:id="revenueLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="180.0" prefWidth="760.0" styleClass="revenue-label" text="500" textAlignment="CENTER" />
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="64.0" prefWidth="760.0" styleClass="info-revenue-label" text="Total Revenue" textAlignment="CENTER" />
+      <Label fx:id="taxAmountLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="140.0" prefWidth="760.0" styleClass="tax-amount-label" text="500" textAlignment="CENTER" />
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="64.0" prefWidth="760.0" styleClass="info-revenue-label" text="Total Tax Amounts" textAlignment="CENTER" />
+    </VBox>
 </AnchorPane>

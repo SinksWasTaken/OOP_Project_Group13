@@ -16,9 +16,14 @@ public class ManagerDashboardController implements Initializable {
             switch (newVal) {
                 case "Home" -> manager_parent.setCenter(Model.getInstance().getViewManager().getManagerWelcomeView());
                 case "Inventory" -> manager_parent.setCenter(Model.getInstance().getViewManager().getInventoryView());
+                case "Add Product" -> manager_parent.setCenter(Model.getInstance().getViewManager().getAddProductView());
+                case "Update Product" -> manager_parent.setCenter(Model.getInstance().getViewManager().getUpdateProductView());
                 case "Price" -> manager_parent.setCenter(Model.getInstance().getViewManager().getPriceView());
                 case "Revenue Tax" -> manager_parent.setCenter(Model.getInstance().getViewManager().getRevenueTaxView());
                 case "Worker" -> manager_parent.setCenter(Model.getInstance().getViewManager().getWorkerView());
+                case "Add Worker" -> manager_parent.setCenter(Model.getInstance().getViewManager().getAddWorkerView());
+                case "Update Worker" -> manager_parent.setCenter(Model.getInstance().getViewManager().getUpdateWorkerView());
+
                 default -> manager_parent.setCenter(Model.getInstance().getViewManager().getManagerWelcomeView());
             }
         });

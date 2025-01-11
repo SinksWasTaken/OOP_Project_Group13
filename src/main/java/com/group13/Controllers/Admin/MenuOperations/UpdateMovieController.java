@@ -290,7 +290,7 @@ public class UpdateMovieController {
 
     private boolean isValidImageExtension(String path) {
         String extension = path.substring(path.lastIndexOf(".") + 1).toLowerCase();
-        return extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png") || extension.equals("webp");
+        return extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png");
     }
 
     private void showAlert(String message) {

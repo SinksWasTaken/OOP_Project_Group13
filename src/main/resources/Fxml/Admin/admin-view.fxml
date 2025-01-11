@@ -2,11 +2,7 @@
 
 <?import javafx.scene.layout.BorderPane?>
 
-<<<<<<< Updated upstream
-<BorderPane fx:id="admin_parent" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../../Styles/admin/admin-menu-view.css" styleClass="admin-view-border" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-=======
 <BorderPane fx:id="admin_parent" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../../Styles/menu-view.css" styleClass="border-default" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
->>>>>>> Stashed changes
 
     <left>
         <fx:include source="admin-menu-view.fxml" />

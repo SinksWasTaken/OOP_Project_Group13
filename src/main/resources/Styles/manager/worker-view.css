@@ -1,4 +1,4 @@
-.inventory-anchor {
+.worker-anchor {
     -fx-background-color: #015697;
 }
 
@@ -51,7 +51,7 @@
     -fx-background-color: #c9302c;
 }
 
-.inventory-table {
+.worker-table {
     -fx-background-color: #ffffff;
     -fx-border-color: #0177a8;
     -fx-border-width: 2;
@@ -60,7 +60,7 @@
     -fx-table-cell-border-color: transparent;
 }
 
-.inventory-table .column-header {
+.worker-table .column-header {
     -fx-background-color: #0177a8;
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
@@ -71,17 +71,17 @@
     -fx-border-width: 0 1 0 0;
 }
 
-.inventory-table .table-row-cell {
+.worker-table .table-row-cell {
     -fx-background-color: #ffffff;
     -fx-border-color: #e0e0e0;
     -fx-border-width: 0 0 1 0;
 }
 
-.inventory-table .table-row-cell:selected {
+.worker-table .table-row-cell:selected {
     -fx-background-color: #e0f7fa;
 }
 
-.inventory-table .table-cell {
+.worker-table .table-cell {
     -fx-padding: 10;
     -fx-font-size: 14px;
     -fx-text-fill: #000000;

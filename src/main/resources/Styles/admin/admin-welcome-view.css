@@ -1,23 +1,9 @@
-<<<<<<< Updated upstream
-.welcome-view-anchor{
-=======
 .welcome-view-anchor {
->>>>>>> Stashed changes
     -fx-font-family: 'Source Code Pro';
     -fx-background-color: #015697;
     -fx-text-fill: white;
 }
 
-<<<<<<< Updated upstream
-.username-role-label{
-    -fx-text-fill: white;
-    -fx-padding: 20px 30px 0 0;
-}
-
-.welcome-label{
-    -fx-text-fill: white;
-}
-=======
 .vbox-welcome {
     -fx-background-color: #013a5a;
     -fx-font-style: italic;
@@ -94,4 +80,3 @@
     -fx-alignment: center;
 }
 
->>>>>>> Stashed changes

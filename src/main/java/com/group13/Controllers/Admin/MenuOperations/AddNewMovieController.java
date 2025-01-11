@@ -79,7 +79,7 @@ public class AddNewMovieController {
             try {
                 Files.copy(selectedFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-                String posterPath = "src/main/resources/Images/" + selectedFile.getName();
+                String posterPath = "src/main/resources/Images/movies/" + selectedFile.getName();
                 setPosterPath(posterPath);
 
                 Image image = new Image(destFile.toURI().toString());
@@ -116,7 +116,7 @@ public class AddNewMovieController {
         }
 
         if (!isValidImageExtension(posterPath)) {
-            showAlert("Invalid image extension. Accepted extensions are: .jpg, .jpeg, .png, .webp");
+            showAlert("Invalid image extension. Accepted extensions are: .jpg, .jpeg, .png");
             return false;
         }
 
@@ -130,7 +130,7 @@ public class AddNewMovieController {
 
     private boolean isValidImageExtension(String path) {
         String extension = path.substring(path.lastIndexOf(".") + 1).toLowerCase();
-        return extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png") || extension.equals("webp");
+        return extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png");
     }
 
     private boolean isTitleDuplicate(String title) {

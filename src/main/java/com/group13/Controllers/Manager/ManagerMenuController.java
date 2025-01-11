@@ -2,15 +2,10 @@ package com.group13.Controllers.Manager;
 
 import com.group13.Controllers.LogoutController;
 import com.group13.Models.Model;
-<<<<<<< Updated upstream
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-=======
 import com.group13.Models.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
->>>>>>> Stashed changes
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,15 +13,12 @@ import java.util.ResourceBundle;
 public class ManagerMenuController implements Initializable {
 
     @FXML
-<<<<<<< Updated upstream
-=======
     public Label username_manager;
 
     @FXML
     public Label role_manager;
 
     @FXML
->>>>>>> Stashed changes
     public javafx.scene.control.Button home_btn;
 
     @FXML
@@ -46,15 +38,12 @@ public class ManagerMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-<<<<<<< Updated upstream
-=======
         Worker currentWorker = Model.getInstance().getCurrentWorker();
         if (currentWorker != null) {
             username_manager.setText("Username: " + currentWorker.getUsername());
             role_manager.setText("Role: " + currentWorker.getRole());
         }
 
->>>>>>> Stashed changes
         addListeners();
     }
 
@@ -69,25 +58,30 @@ public class ManagerMenuController implements Initializable {
 
     private void onHome() {
         Model.getInstance().getViewManager().getManagerSelectedMenuItem().set("Home");
+        Model.getInstance().getViewManager().getManagerWelcomeView();
     }
 
     private void onInventory() {
         Model.getInstance().getViewManager().getManagerSelectedMenuItem().set("Inventory");
+        Model.getInstance().getViewManager().getInventoryView();
 
     }
 
     private void onPrice() {
         Model.getInstance().getViewManager().getManagerSelectedMenuItem().set("Price");
+        Model.getInstance().getViewManager().getPriceView();
 
     }
 
     private void onRevenueTax() {
         Model.getInstance().getViewManager().getManagerSelectedMenuItem().set("Revenue Tax");
+        Model.getInstance().getViewManager().getRevenueTaxView();
 
     }
 
     private void onWorker() {
         Model.getInstance().getViewManager().getManagerSelectedMenuItem().set("Worker");
+        Model.getInstance().getViewManager().getWorkerView();
 
     }
 

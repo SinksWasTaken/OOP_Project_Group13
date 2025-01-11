@@ -93,151 +93,81 @@ public class ViewManager {
     // Admin Views
 
     private final StringProperty adminSelectedMenuItem;
-    private AnchorPane adminWelcome;
-    private AnchorPane addNewMovie;
-    private AnchorPane updateMovie;
-    private AnchorPane createSchedule;
-    private AnchorPane updateSchedule;
-    private AnchorPane customerRequest;
 
     public StringProperty getAdminSelectedMenuItem() {
         return adminSelectedMenuItem;
     }
 
-
     public AnchorPane getAdminWelcomeView() {
-        if(adminWelcome == null) {
-            try {
-                adminWelcome = new FXMLLoader(getClass().getResource("/Fxml/Admin/admin-welcome-view.fxml")).load();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return adminWelcome;
+        return loadView("/Fxml/Admin/admin-welcome-view.fxml");
     }
 
     public AnchorPane getAddNewMovieView() {
-        if(addNewMovie == null) {
-            try {
-                addNewMovie = new FXMLLoader(getClass().getResource("/Fxml/Admin/Menu/add-new-movie-view.fxml")).load();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return addNewMovie;
+        return loadView("/Fxml/Admin/Menu/add-new-movie-view.fxml");
     }
 
     public AnchorPane getUpdateMovieView() {
-        if(updateMovie == null) {
-            try {
-                updateMovie = new FXMLLoader(getClass().getResource("/Fxml/Admin/Menu/update-movie-view.fxml")).load();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return updateMovie;
+        return loadView("/Fxml/Admin/Menu/update-movie-view.fxml");
     }
 
     public AnchorPane getCreateScheduleView() {
-        if(createSchedule == null) {
-            try {
-                createSchedule = new FXMLLoader(getClass().getResource("/Fxml/Admin/Menu/create-schedule-view.fxml")).load();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return createSchedule;
+        return loadView("/Fxml/Admin/Menu/create-schedule-view.fxml");
     }
 
     public AnchorPane getUpdateScheduleView() {
-        if(updateSchedule == null) {
-            try {
-                updateSchedule = new FXMLLoader(getClass().getResource("/Fxml/Admin/Menu/update-schedule-view.fxml")).load();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return updateSchedule;
+        return loadView("/Fxml/Admin/Menu/update-schedule-view.fxml");
     }
 
     public AnchorPane getCustomerRequestsView() {
-        if(customerRequest == null) {
-            try {
-                customerRequest = new FXMLLoader(getClass().getResource("/Fxml/Admin/Menu/customer-request-view.fxml")).load();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return customerRequest;
+        return loadView("/Fxml/Admin/Menu/customer-request-view.fxml");
     }
 
     // Manager Views
 
     private final StringProperty managerSelectedMenuItem;
-    private AnchorPane managerWelcome;
-    private AnchorPane inventory;
-    private AnchorPane price;
-    private AnchorPane revenueTax;
-    private AnchorPane worker;
 
     public StringProperty getManagerSelectedMenuItem() {
         return managerSelectedMenuItem;
     }
 
     public AnchorPane getManagerWelcomeView() {
-        if(managerWelcome == null) {
-            try {
-                managerWelcome = new FXMLLoader(getClass().getResource("/Fxml/Manager/manager-welcome-view.fxml")).load();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return managerWelcome;
+        return loadView("/Fxml/Manager/manager-welcome-view.fxml");
     }
 
     public AnchorPane getInventoryView() {
-        if(inventory == null) {
-            try {
-                inventory = new FXMLLoader(getClass().getResource("/Fxml/Manager/Menu/inventory-view.fxml")).load();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return inventory;
+        return loadView("/Fxml/Manager/Menu/inventory-view.fxml");
+    }
+
+    public AnchorPane getAddProductView() {
+        return loadView("/Fxml/Manager/Menu/add-product-view.fxml");
+    }
+
+    public AnchorPane getUpdateProductView() {
+        return loadView("/Fxml/Manager/Menu/update-product-view.fxml");
     }
 
     public AnchorPane getPriceView() {
-        if(price == null) {
-            try {
-                price = new FXMLLoader(getClass().getResource("/Fxml/Manager/Menu/price-view.fxml")).load();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return price;
+        return loadView("/Fxml/Manager/Menu/price-view.fxml");
     }
 
     public AnchorPane getRevenueTaxView() {
-        if(revenueTax == null) {
-            try {
-                revenueTax = new FXMLLoader(getClass().getResource("/Fxml/Manager/Menu/revenue-tax-view.fxml")).load();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return revenueTax;
+        return loadView("/Fxml/Manager/Menu/revenue-tax-view.fxml");
     }
 
     public AnchorPane getWorkerView() {
-        if(worker == null) {
-            try {
-                worker = new FXMLLoader(getClass().getResource("/Fxml/Manager/Menu/worker-view.fxml")).load();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return worker;
+        return loadView("/Fxml/Manager/Menu/worker-view.fxml");
     }
+
+    public AnchorPane getAddWorkerView() {
+        return loadView("/Fxml/Manager/Menu/add-worker-view.fxml");
+    }
+
+    public AnchorPane getUpdateWorkerView() {
+        return loadView("/Fxml/Manager/Menu/update-worker-view.fxml");
+    }
+
+
+
 
     // Cashier Views
 
@@ -246,5 +176,15 @@ public class ViewManager {
 
     public StringProperty getCashierSelectedMenuItem() {
         return cashierSelectedMenuItem;
+    }
+
+
+    private AnchorPane loadView(String fxmlPath) {
+        try {
+            return new FXMLLoader(getClass().getResource(fxmlPath)).load();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

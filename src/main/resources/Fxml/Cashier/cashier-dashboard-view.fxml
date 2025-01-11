@@ -5,13 +5,11 @@
 
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.group13.Controllers.Cashier.DashboardController">
-    <!-- Main layout for the dashboard -->
+
     <VBox spacing="20" alignment="CENTER" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
         
-        <!-- Dashboard Title -->
         <Label text="Welcome to the Cinema Dashboard" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
-        <!-- Buttons to navigate to other views -->
         <Button fx:id="menuButton" text="Go to Menu View" onAction="#goToMenuView"/>
         <Button fx:id="productButton" text="Go to Product View" onAction="#goToProductView"/>
     </VBox>

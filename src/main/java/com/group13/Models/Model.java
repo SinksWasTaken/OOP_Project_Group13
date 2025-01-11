@@ -1,6 +1,7 @@
 package com.group13.Models;
 
 import com.group13.Views.ViewManager;
+import com.mysql.cj.Session;
 
 public class Model {
     private static Model model;
@@ -9,6 +10,10 @@ public class Model {
     private Worker nextWorker;
     private Product selectedProduct;
     private Prices prices;
+    private MovieModel movieModel;
+    private SeatModel seatModel;
+    private SessionModel sessionModel;
+    private TicketModel ticketModel;
 
     private Model() {
         this.viewManager = new ViewManager();
@@ -55,5 +60,37 @@ public class Model {
 
     public void setPrices(Prices prices) {
         this.prices = prices;
+    }
+
+    public MovieModel getMovieModel() {
+        return movieModel;
+    }
+
+    public void setMovieModel(MovieModel movieModel) {
+        this.movieModel = movieModel;
+    }
+
+    public SeatModel getSeatModel() {
+        return seatModel;
+    }
+
+    public void setSeatModel(SeatModel seatModel) {
+        this.seatModel = seatModel;
+    }
+
+    public SessionModel getSessionModel() {
+        return sessionModel;
+    }
+
+    public void setSessionModel(SessionModel sessionModel) {
+        this.sessionModel = sessionModel;
+    }
+
+    public TicketModel getTicketModel() {
+        return ticketModel;
+    }
+
+    public void setTicketModel(TicketModel ticketModel) {
+        this.ticketModel = ticketModel;
     }
 }

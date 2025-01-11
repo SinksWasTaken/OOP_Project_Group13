@@ -1,39 +1,114 @@
 package com.group13.Models;
+
 import java.sql.Date;
-import java.sql.Timestamp;
 
-public class TicketModel 
-{
-    public int ticketNumber;
-    public String customerName;
-    public int age;
-    public String extraProducts;
-    public Double price;
-    public String customerSuggestions;
-    public String movieName;
-    public Timestamp sessionTime;
-    public Date sessionDate;
-    public int sessionHall;
-    public int seatCol;
-    public String seatRow;
+public class TicketModel {
+    private int ticketID;
+    private String customerName;
+    private int customerAge;
+    private int sessionID;
+    private int seatID;
+    private int movieID;
+    private String productNames;
+    private int numberOfTickets;
+    private double discountRate;
+    private double totalTicketPrice;
+    private double totalProductPrice;
+    private Date purchaseDate;
 
-    
-    public String genre;
+    public int getTicketID() {
+        return ticketID;
+    }
 
-    public void printMovie()
-    {
-        
-        System.out.println("ticketNumber:\t"+ this.ticketNumber);
-        System.out.println("customerName:\t"+ this.customerName);
-        System.out.println("age:\t"+ this.age);
-        System.out.println("extraProducts:\t"+ this.extraProducts);
-        System.out.println("price:\t"+ this.price);
-        System.out.println("customerSuggestions:\t"+ this.customerSuggestions);
-        System.out.println("movieName:\t"+ this.movieName);
-        System.out.println("sessionTime:\t"+ this.sessionTime);
-        System.out.println("sessionDate:\t"+ this.sessionDate);
-        System.out.println("sessionHall:\t"+ this.sessionHall);
-        System.out.println("seatCol:\t"+ this.seatCol);
-        System.out.println("seatRow:\t"+ this.seatRow);
+    public void setTicketID(int ticketID) {
+        this.ticketID = ticketID;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public int getCustomerAge() {
+        return customerAge;
+    }
+
+    public void setCustomerAge(int customerAge) {
+        this.customerAge = customerAge;
+    }
+
+    public int getSessionID() {
+        return sessionID;
+    }
+
+    public void setSessionID(int sessionID) {
+        this.sessionID = sessionID;
+    }
+
+    public int getSeatID() {
+        return seatID;
+    }
+
+    public void setSeatID(int seatID) {
+        this.seatID = seatID;
+    }
+
+    public int getMovieID() {
+        return movieID;
+    }
+
+    public void setMovieID(int movieID) {
+        this.movieID = movieID;
+    }
+
+    public String getProductNames() {
+        return productNames;
+    }
+
+    public void setProductNames(String productNames) {
+        this.productNames = productNames;
+    }
+
+    public int getNumberOfTickets() {
+        return numberOfTickets;
+    }
+
+    public void setNumberOfTickets(int numberOfTickets) {
+        this.numberOfTickets = numberOfTickets;
+    }
+
+    public double getDiscountRate() {
+        return discountRate;
+    }
+
+    public void setDiscountRate(double discountRate) {
+        this.discountRate = discountRate;
+    }
+
+    public double getTotalTicketPrice() {
+        return totalTicketPrice;
+    }
+
+    public void setTotalTicketPrice(double totalTicketPrice) {
+        this.totalTicketPrice = totalTicketPrice;
+    }
+
+    public double getTotalProductPrice() {
+        return totalProductPrice;
+    }
+
+    public void setTotalProductPrice(double totalProductPrice) {
+        this.totalProductPrice = totalProductPrice;
+    }
+
+    public Date getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(Date purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 }

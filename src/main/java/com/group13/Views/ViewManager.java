@@ -166,16 +166,28 @@ public class ViewManager {
         return loadView("/Fxml/Manager/Menu/update-worker-view.fxml");
     }
 
-
-
-
     // Cashier Views
 
     private final StringProperty cashierSelectedMenuItem;
-    private AnchorPane cashierView;
 
     public StringProperty getCashierSelectedMenuItem() {
         return cashierSelectedMenuItem;
+    }
+
+    public AnchorPane getCashierWelcomeView() {
+        return loadView("/Fxml/Cashier/cashier-welcome-view.fxml");
+    }
+
+    public AnchorPane getSearchByGenreView() {
+        return loadView("/Fxml/Cashier/Menu/search-by-genre-view.fxml");
+    }
+
+    public AnchorPane getSearchByNameView() {
+        return loadView("/Fxml/Cashier/Menu/search-by-name-view.fxml");
+    }
+
+    public AnchorPane getSearchByPartialNameView() {
+        return loadView("/Fxml/Cashier/Menu/search-by-partial-name-view.fxml");
     }
 
 

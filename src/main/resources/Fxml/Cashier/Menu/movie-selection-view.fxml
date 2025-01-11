@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="Movie Selection" style="-fx-font-size: 20; -fx-font-weight: bold;" />
+    <HBox spacing="10">
+        <TextField fx:id="genreSearchField" promptText="Search by Genre" />
+        <TextField fx:id="partialNameSearchField" promptText="Search by Partial Name" />
+        <TextField fx:id="fullNameSearchField" promptText="Search by Full Name" />
+        <Button text="Search" fx:id="searchButton" />
+    </HBox>
+    <TableView fx:id="movieTable">
+        <columns>
+            <TableColumn text="Poster" />
+            <TableColumn text="Genre" />
+            <TableColumn text="Summary" />
+        </columns>
+    </TableView>
+    <HBox spacing="10">
+        <Button text="Confirm" fx:id="confirmButton" />
+        <Button text="Back" fx:id="backButton" />
+    </HBox>
+</VBox>

@@ -1,16 +1,40 @@
 package com.group13.Models;
 
-public class MovieModel 
-{
-    
-    public String movieName;
-    public String imgPath;
-    public String genre;
+public class MovieModel {
+    private String movieName;
+    private String imgPath;
+    private String genre;
+    private String summary;
 
-    public void printMovie()
-    {
-        System.out.println("Name: "+movieName);
-        System.out.println("Image: "+imgPath);
-        System.out.println("Genre: "+genre);
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getSummary() {
+        return summary;
     }
 }

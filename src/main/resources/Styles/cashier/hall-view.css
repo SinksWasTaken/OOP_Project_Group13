@@ -1,0 +1,70 @@
+.genre-anchor {
+    -fx-background-color: #015697;
+}
+
+.form-container {
+    -fx-background-color: #013a5a;
+    -fx-padding: 20;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.form-title {
+    -fx-font-size: 24px;
+    -fx-padding: 50px 0 0 0;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+.form-button {
+    -fx-background-color: #0177a8;
+    -fx-text-fill: #ffffff;
+    -fx-border-radius: 5;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+    -fx-background-color: #0191d1;
+}
+
+.delete-button {
+    -fx-background-color: #d9534f;
+    -fx-text-fill: #ffffff;
+    -fx-border-radius: 5;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-alignment: center-right;
+}
+
+.delete-button:hover {
+    -fx-background-color: #c9302c;
+}
+
+.seat-button {
+    -fx-font-size: 24px;
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: #ffffff;
+    -fx-border-radius: 5;
+    -fx-padding: 10;
+    -fx-cursor: hand;
+    -fx-pref-width: 60px;
+    -fx-pref-height: 60px;
+}
+
+.seat-button:hover {
+    -fx-background-color: #45a049;
+}
+
+.seat-button.selected {
+    -fx-background-color: #f44336;
+}
+
+.menu-icon{
+    -fx-fill: white;
+}

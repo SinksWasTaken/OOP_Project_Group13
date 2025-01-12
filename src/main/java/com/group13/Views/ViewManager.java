@@ -188,6 +188,11 @@ public class ViewManager {
         return loadView("/Fxml/Cashier/Menu/second-stage-view.fxml");
     }
 
+    public AnchorPane getHallAView()
+    {
+        return loadView("/Fxml/Cashier/Menu/hall-view.fxml");
+    }
+
 
     private AnchorPane loadView(String fxmlPath) {
         try {

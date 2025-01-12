@@ -1,5 +1,4 @@
 module com.group13 {
-    requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
     requires mysql.connector.j;
@@ -12,6 +11,7 @@ module com.group13 {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires java.desktop;
+    requires de.jensd.fx.glyphs.fontawesome;
 
     opens com.group13.Controllers to javafx.fxml;
     opens com.group13.Controllers.Admin to javafx.fxml;

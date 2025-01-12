@@ -16,6 +16,7 @@ public class SecondStageController {
     @FXML
     public void initialize() {
         cancelButton.setOnAction(e -> cancelSecondStage());
+        nextStageButton.setOnAction(event -> Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Hall A"));
     }
 
     private void cancelSecondStage() {

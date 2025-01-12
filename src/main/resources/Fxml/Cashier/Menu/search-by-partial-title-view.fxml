@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Label?>
-<AnchorPane prefHeight="800.0" prefWidth="900.0" styleClass="genre-anchor" stylesheets="@../../../Styles/cashier/search-by-genre-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Cashier.MenuOperations.CashierSearchByGenreController">
+<AnchorPane prefHeight="800.0" prefWidth="900.0" styleClass="genre-anchor" stylesheets="@../../../Styles/cashier/search-by-genre-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Cashier.MenuOperations.CashierSearchByPartialTitleController">
     <VBox alignment="TOP_CENTER" layoutX="50.0" layoutY="25.0" prefHeight="750.0" prefWidth="800.0" spacing="10.0" styleClass="form-container">
-        <Label styleClass="form-title" text="Search By Genre" />
-        <TextField fx:id="genreField" promptText="Enter Genre" />
+        <Label styleClass="form-title" text="Search By Partial Title" />
+        <TextField fx:id="partialTitleField" promptText="Enter Partial Title" />
         <Button onAction="#onSearchByGenre" mnemonicParsing="false"  styleClass="form-button" text="Search" />
         <TableView fx:id="moviesTable" prefHeight="500.0" prefWidth="800.0" styleClass="inventory-table">
             <columns>
@@ -21,7 +21,5 @@
                 <TableColumn fx:id="summaryColumn" text="Summary" />
             </columns>
         </TableView>
-        <Button fx:id="nextStageButton" mnemonicParsing="false" styleClass="form-button" text="Next Stage" />
-
     </VBox>
 </AnchorPane>

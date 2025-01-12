@@ -15,11 +15,6 @@
         <Label fx:id="role_manager" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="300.0" styleClass="role-title" />
 
         <VBox alignment="CENTER_LEFT" spacing="10.0" prefWidth="300.0" layoutX="0.0" layoutY="0.0" styleClass="menu-container">
-            <Button fx:id="home_btn" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" text="Home Page" styleClass="menu-button">
-                <graphic>
-                    <FontAwesomeIconView glyphName="HOME" styleClass="menu-icon" />
-                </graphic>
-            </Button>
             <Button fx:id="searchByGenre_btn" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" text="Search By Genre" styleClass="menu-button">
                 <graphic>
                     <FontAwesomeIconView glyphName="SEARCH" styleClass="menu-icon" />

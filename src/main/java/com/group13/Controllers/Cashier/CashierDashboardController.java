@@ -15,14 +15,13 @@ public class CashierDashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Model.getInstance().getViewManager().getCashierSelectedMenuItem().addListener((observable, oldVal, newVal) -> {
             switch (newVal) {
-                case "Home" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getCashierWelcomeView());
                 case "Search By Genre" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSearchByGenreView());
                 case "Search By Name" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSearchByNameView());
                 case "Search By Partial Name" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSearchByPartialNameView());
-                default -> cashier_parent.setCenter(Model.getInstance().getViewManager().getCashierWelcomeView());
+                case "Second Stage" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSecondStageView());
+
+                default -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSearchByGenreView());
             }
         });
     }
-
-
 }

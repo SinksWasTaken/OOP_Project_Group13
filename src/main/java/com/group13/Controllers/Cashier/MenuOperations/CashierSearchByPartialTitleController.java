@@ -12,14 +12,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CashierSearchByGenreController {
+public class CashierSearchByPartialTitleController {
     @FXML
-    private TextField genreField;
+    private TextField partialTitleField;
     @FXML
     private TableView<MovieModel> moviesTable;
     @FXML
@@ -53,7 +54,6 @@ public class CashierSearchByGenreController {
             boolean isItemSelected = newValue != null;
             nextStageButton.setDisable(!isItemSelected);
             Model.getInstance().setMovieModel(newValue);
-            System.out.println(Model.getInstance().getMovieModel().getMovieName());
         });
 
         moviesTable.setItems(moviesList);
@@ -63,7 +63,7 @@ public class CashierSearchByGenreController {
 
     @FXML
     private void onSearchByGenre() {
-        String genre = genreField.getText().trim();
+        String genre = partialTitleField.getText().trim();
         if (genre.isEmpty()) {
             loadAllMovies();
         } else {
@@ -96,11 +96,11 @@ public class CashierSearchByGenreController {
         }
     }
 
-    private void searchMoviesByGenre(String genre) {
+    private void searchMoviesByGenre(String movieName) {
         ObservableList<MovieModel> movies = FXCollections.observableArrayList();
         try (Connection conn = ConnectionModel.getConnection();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM movies WHERE genre = '" + genre + "'")) {
+             ResultSet rs = stmt.executeQuery("SELECT * FROM movies WHERE movie_name LIKE '%" + movieName + "%'")) {
 
             while (rs.next()) {
                 movies.add(new MovieModel(

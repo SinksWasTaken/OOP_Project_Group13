@@ -2,9 +2,7 @@ package com.group13.Views;
 
 import com.group13.Controllers.Admin.AdminDashboardController;
 import com.group13.Controllers.Cashier.CashierDashboardController;
-import com.group13.Controllers.Cashier.CashierWelcomeController;
 import com.group13.Controllers.Manager.ManagerDashboardController;
-import com.group13.Controllers.Manager.ManagerWelcomeController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
@@ -174,20 +172,20 @@ public class ViewManager {
         return cashierSelectedMenuItem;
     }
 
-    public AnchorPane getCashierWelcomeView() {
-        return loadView("/Fxml/Cashier/cashier-welcome-view.fxml");
-    }
-
     public AnchorPane getSearchByGenreView() {
         return loadView("/Fxml/Cashier/Menu/search-by-genre-view.fxml");
     }
 
     public AnchorPane getSearchByNameView() {
-        return loadView("/Fxml/Cashier/Menu/search-by-name-view.fxml");
+        return loadView("/Fxml/Cashier/Menu/search-by-title-view.fxml");
     }
 
     public AnchorPane getSearchByPartialNameView() {
-        return loadView("/Fxml/Cashier/Menu/search-by-partial-name-view.fxml");
+        return loadView("/Fxml/Cashier/Menu/search-by-partial-title-view.fxml");
+    }
+
+    public AnchorPane getSecondStageView() {
+        return loadView("/Fxml/Cashier/Menu/second-stage-view.fxml");
     }
 
 

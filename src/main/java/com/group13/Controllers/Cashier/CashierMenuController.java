@@ -45,16 +45,10 @@ public class CashierMenuController implements Initializable {
     }
 
     private void addListeners() {
-        home_btn.setOnAction(event -> onHome());
         searchByGenre_btn.setOnAction(event -> onSearchByGenre());
         searchByName_btn.setOnAction(event -> onSearchByName());
         searchByPartialName_btn.setOnAction(event -> onSearchByPartialName());
         logout_btn.setOnAction(event -> onLogout());
-    }
-
-    private void onHome() {
-        Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Home");
-        Model.getInstance().getViewManager().getCashierWelcomeView();
     }
 
     private void onSearchByGenre() {

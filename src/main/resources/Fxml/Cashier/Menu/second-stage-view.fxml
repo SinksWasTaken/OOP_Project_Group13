@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="800.0" prefWidth="900.0" styleClass="second-stage-anchor" stylesheets="@../../../Styles/cashier/second-stage-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Cashier.MenuOperations.SecondStageController">
+    <VBox alignment="TOP_CENTER" layoutX="50.0" layoutY="25.0" prefHeight="750.0" prefWidth="800.0" spacing="10.0" styleClass="form-container">
+        <Label styleClass="form-title" text="Second Stage" />
+        <HBox prefHeight="100.0" prefWidth="200.0" alignment="CENTER" spacing="20.0">
+            <Button fx:id="cancelButton" mnemonicParsing="false" styleClass="delete-button" text="Cancel"/>
+            <Button fx:id="nextStageButton" mnemonicParsing="false" styleClass="form-button" text="Next Stage"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

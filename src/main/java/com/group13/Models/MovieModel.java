@@ -1,40 +1,40 @@
 package com.group13.Models;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class MovieModel {
     private String movieName;
     private String imgPath;
     private String genre;
     private String summary;
+    private ImageView movieImage;
 
-    public void setMovieName(String movieName) {
+    public MovieModel(String movieName, String imgPath, String genre, String summary) {
         this.movieName = movieName;
+        this.imgPath = imgPath;
+        this.genre = genre;
+        this.summary = summary;
+        this.movieImage = new ImageView(new Image("file:" + imgPath, 60, 60, true, true));
     }
 
     public String getMovieName() {
         return movieName;
     }
 
-    public void setImgPath(String imgPath) {
-        this.imgPath = imgPath;
-    }
-
     public String getImgPath() {
         return imgPath;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
     }
 
     public String getGenre() {
         return genre;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
     public String getSummary() {
         return summary;
+    }
+
+    public ImageView getMovieImage() {
+        return movieImage;
     }
 }

@@ -9,7 +9,7 @@
     </left>
 
     <center>
-        <fx:include source="cashier-welcome-view.fxml" />
+        <fx:include source="Menu/search-by-genre-view.fxml" />
     </center>
 
 </BorderPane>

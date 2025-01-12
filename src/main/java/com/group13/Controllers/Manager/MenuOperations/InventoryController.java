@@ -13,7 +13,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.sql.Connection;
@@ -73,7 +72,6 @@ public class InventoryController {
         updateProductButton.setOnAction(event -> Model.getInstance().getViewManager().getManagerSelectedMenuItem().set("Update Product"));
         deleteProductButton.setOnAction(event -> deleteSelectedProduct());
     }
-
 
     private void loadInventoryList() {
         ObservableList<Product> inventories = FXCollections.observableArrayList();
@@ -185,6 +183,4 @@ public class InventoryController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
-
 }

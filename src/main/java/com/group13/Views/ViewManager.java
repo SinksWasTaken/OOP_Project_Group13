@@ -184,13 +184,18 @@ public class ViewManager {
         return loadView("/Fxml/Cashier/Menu/search-by-partial-title-view.fxml");
     }
 
-    public AnchorPane getSecondStageView() {
-        return loadView("/Fxml/Cashier/Menu/second-stage-view.fxml");
+    public AnchorPane getSessionSelectionView() {
+        return loadView("/Fxml/Cashier/Menu/session-selection-view.fxml");
     }
 
-    public AnchorPane getHallAView()
+    public AnchorPane getHallView()
     {
         return loadView("/Fxml/Cashier/Menu/hall-view.fxml");
+    }
+
+    public AnchorPane getProductSelectionView()
+    {
+        return loadView("/Fxml/Cashier/Menu/product-selection-view.fxml");
     }
 
 

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="800.0" prefWidth="900.0" styleClass="genre-anchor" stylesheets="@../../../Styles/cashier/hall-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Cashier.MenuOperations.HallController">
+<AnchorPane prefHeight="800.0" prefWidth="900.0" styleClass="genre-anchor" stylesheets="@../../../Styles/cashier/hall-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Cashier.SelectOperations.HallController">
     <VBox alignment="TOP_CENTER" layoutX="50.0" layoutY="25.0" prefHeight="750.0" prefWidth="800.0" spacing="10.0" styleClass="form-container">
         <Label fx:id="hallLabel" styleClass="form-title" text="Hall A Seat Selection" />
         <GridPane fx:id="seatGrid" alignment="CENTER" hgap="10" vgap="10">

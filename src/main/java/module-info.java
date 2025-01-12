@@ -20,6 +20,7 @@ module com.group13 {
     opens com.group13.Controllers.Manager.MenuOperations to javafx.fxml;
     opens com.group13.Controllers.Cashier to javafx.fxml;
     opens com.group13.Controllers.Cashier.MenuOperations to javafx.fxml;
+    opens com.group13.Controllers.Cashier.SelectOperations to javafx.fxml;
     exports com.group13;
     exports com.group13.Controllers;
     exports com.group13.Controllers.Cashier;
@@ -30,4 +31,5 @@ module com.group13 {
     exports com.group13.Models;
     exports com.group13.Views;
     exports com.group13.Controllers.Cashier.MenuOperations;
+    exports com.group13.Controllers.Cashier.SelectOperations;
 }

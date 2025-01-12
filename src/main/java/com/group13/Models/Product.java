@@ -4,18 +4,28 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Product {
+    private int productID;
     private String productName;
     private double price;
     private String productImagePath;
     private int stockCount;
     private ImageView productImageView;
 
-    public Product(String productName, double price, String productImagePath, int stockCount) {
+    public Product(int productID, String productName, double price, String productImagePath, int stockCount) {
+        this.productID = productID;
         this.productName = productName;
         this.price = price;
         this.productImagePath = productImagePath;
         this.stockCount = stockCount;
         this.productImageView = new ImageView(new Image("file:" + productImagePath, 60, 60, true, true));
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
     public String getProductName() {

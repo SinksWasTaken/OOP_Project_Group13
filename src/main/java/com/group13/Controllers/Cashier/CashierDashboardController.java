@@ -18,8 +18,10 @@ public class CashierDashboardController implements Initializable {
                 case "Search By Genre" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSearchByGenreView());
                 case "Search By Name" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSearchByNameView());
                 case "Search By Partial Name" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSearchByPartialNameView());
-                case "Second Stage" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSecondStageView());
-                case "Hall A" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getHallAView());
+                case "Session Selection" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSessionSelectionView());
+                case "Hall" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getHallView());
+                case "Product Selection" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getProductSelectionView());
+
                 default -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSearchByGenreView());
             }
         });

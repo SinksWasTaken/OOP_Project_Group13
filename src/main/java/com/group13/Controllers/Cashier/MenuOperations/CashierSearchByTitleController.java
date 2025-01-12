@@ -3,21 +3,16 @@ package com.group13.Controllers.Cashier.MenuOperations;
 import com.group13.Models.ConnectionModel;
 import com.group13.Models.Model;
 import com.group13.Models.MovieModel;
+import com.group13.Models.TicketModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +20,7 @@ import java.sql.Statement;
 
 public class CashierSearchByTitleController {
    @FXML
-   private TextField titleField;
+   private TextField genreField;
    @FXML
    private TableView<MovieModel> moviesTable;
    @FXML
@@ -38,6 +33,7 @@ public class CashierSearchByTitleController {
    private TableColumn<MovieModel, String> summaryColumn;
    @FXML
    private Button nextStageButton;
+
 
    private final ObservableList<MovieModel> moviesList = FXCollections.observableArrayList();
 
@@ -58,19 +54,35 @@ public class CashierSearchByTitleController {
          boolean isItemSelected = newValue != null;
          nextStageButton.setDisable(!isItemSelected);
          Model.getInstance().setMovieModel(newValue);
+         System.out.println(Model.getInstance().getMovieModel().getMovieName());
       });
 
       moviesTable.setItems(moviesList);
-      nextStageButton.setOnAction(event -> Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Second Stage"));
+      nextStageButton.setOnAction(event -> onNextStage());
+
+   }
+
+   private void onNextStage() {
+      MovieModel selectedMovie = moviesTable.getSelectionModel().getSelectedItem();
+      if (selectedMovie != null) {
+         TicketModel ticketModel = new TicketModel();
+         ticketModel.setMovieID(selectedMovie.getMovieID());
+         ticketModel.setSessionID(0);
+         ticketModel.setSeatID(0);
+
+         Model.getInstance().setTicketModel(ticketModel);
+
+         Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Hall");
+      }
    }
 
    @FXML
    private void onSearchByGenre() {
-      String title = titleField.getText().trim();
-      if (title.isEmpty()) {
+      String genre = genreField.getText().trim();
+      if (genre.isEmpty()) {
          loadAllMovies();
       } else {
-         searchMoviesByTitle(title);
+         searchMoviesByGenre(genre);
       }
    }
 
@@ -85,6 +97,7 @@ public class CashierSearchByTitleController {
 
          while (rs.next()) {
             movies.add(new MovieModel(
+                    rs.getInt("movie_id"),
                     rs.getString("movie_name"),
                     rs.getString("img_path"),
                     rs.getString("genre"),
@@ -99,14 +112,15 @@ public class CashierSearchByTitleController {
       }
    }
 
-   private void searchMoviesByTitle(String movieName) {
+   private void searchMoviesByGenre(String genre) {
       ObservableList<MovieModel> movies = FXCollections.observableArrayList();
       try (Connection conn = ConnectionModel.getConnection();
            Statement stmt = conn.createStatement();
-           ResultSet rs = stmt.executeQuery("SELECT * FROM movies WHERE movie_name LIKE '%" + movieName + "%'")) {
+           ResultSet rs = stmt.executeQuery("SELECT * FROM movies WHERE genre = '" + genre + "'")) {
 
          while (rs.next()) {
             movies.add(new MovieModel(
+                    rs.getInt("movie_id"),
                     rs.getString("movie_name"),
                     rs.getString("img_path"),
                     rs.getString("genre"),
@@ -117,7 +131,7 @@ public class CashierSearchByTitleController {
          moviesTable.setItems(movies);
 
       } catch (SQLException e) {
-         System.err.println("Error while searching movies by title: " + e.getMessage());
+         System.err.println("Error while searching movies by movie name: " + e.getMessage());
       }
    }
 }

@@ -1,20 +1,23 @@
 package com.group13.Models;
 
 import java.sql.Date;
+import java.util.List;
 
 public class TicketModel {
-    private int ticketID;
-    private String customerName;
-    private int customerAge;
-    private int sessionID;
-    private int seatID;
-    private int movieID;
-    private String productNames;
-    private int numberOfTickets;
-    private double discountRate;
-    private double totalTicketPrice;
-    private double totalProductPrice;
-    private Date purchaseDate;
+    public int ticketID;
+    public String customerName;
+    public int customerAge;
+    public int sessionID;
+    public int seatID;
+    public int movieID;
+    public String productNames;
+    public int numberOfTickets;
+    public double discountRate;
+    public double totalTicketPrice;
+    public double totalProductPrice;
+    public Date purchaseDate;
+    public List<Integer> allSeats;
+    public List<String> productIDs;
 
     public int getTicketID() {
         return ticketID;
@@ -110,5 +113,21 @@ public class TicketModel {
 
     public void setPurchaseDate(Date purchaseDate) {
         this.purchaseDate = purchaseDate;
+    }
+
+    public List<Integer> getAllSeats() {
+        return allSeats;
+    }
+
+    public void setAllSeats(List<Integer> allSeats) {
+        this.allSeats = allSeats;
+    }
+
+    public List<String> getProductIDs() {
+        return productIDs;
+    }
+
+    public void setProductIDs(List<String> productIDs) {
+        this.productIDs = productIDs;
     }
 }

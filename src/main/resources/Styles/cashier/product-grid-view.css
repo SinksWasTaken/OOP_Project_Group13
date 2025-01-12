@@ -1,4 +1,4 @@
-.genre-anchor {
+.inventory-anchor {
     -fx-background-color: #015697;
 }
 
@@ -11,11 +11,16 @@
 
 .form-title {
     -fx-font-size: 24px;
-    -fx-padding: 50px 0 0 0;
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
     -fx-text-alignment: center;
     -fx-alignment: center;
+}
+
+.form-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
 }
 
 .form-button {
@@ -46,29 +51,30 @@
     -fx-background-color: #c9302c;
 }
 
-.seat-button {
-    -fx-font-size: 24px;
-    -fx-background-color: #4CAF50;
-    -fx-text-fill: #ffffff;
+.product-button {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #0177a8;
+    -fx-border-width: 2;
     -fx-border-radius: 5;
+    -fx-background-radius: 5;
     -fx-padding: 10;
+    -fx-font-size: 14px;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
     -fx-cursor: hand;
-    -fx-pref-width: 60px;
-    -fx-pref-height: 60px;
+    -fx-transition: background-color 0.3s ease;
 }
 
-.seat-button:hover {
-    -fx-background-color: #45a049;
+.product-button:hover {
+    -fx-background-color: #e0f7fa;
 }
 
-.seat-button.selected {
-    -fx-background-color: #626262;
+.product-button.selected {
+    -fx-background-color: #e0f7fa;
+    -fx-border-color: #0191d1;
 }
 
-.seat-button.sold {
-    -fx-background-color: #f44336;
-}
-
-.menu-icon{
-    -fx-fill: white;
+.hbox-centered {
+    -fx-alignment: center;
+    -fx-spacing: 20;
 }

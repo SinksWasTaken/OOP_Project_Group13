@@ -83,6 +83,7 @@ public class InventoryController {
 
             while (resultSet.next()) {
                 inventories.add(new Product(
+                        resultSet.getInt("productId"),
                         resultSet.getString("productName"),
                         resultSet.getInt("price"),
                         resultSet.getString("productImagePath"),

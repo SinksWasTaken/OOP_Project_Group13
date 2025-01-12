@@ -3,6 +3,7 @@ package com.group13.Controllers.Cashier.MenuOperations;
 import com.group13.Models.ConnectionModel;
 import com.group13.Models.Model;
 import com.group13.Models.MovieModel;
+import com.group13.Models.TicketModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -57,8 +58,22 @@ public class CashierSearchByGenreController {
         });
 
         moviesTable.setItems(moviesList);
-        nextStageButton.setOnAction(event -> Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Second Stage"));
+        nextStageButton.setOnAction(event -> onNextStage());
 
+    }
+
+    private void onNextStage() {
+        MovieModel selectedMovie = moviesTable.getSelectionModel().getSelectedItem();
+        if (selectedMovie != null) {
+            TicketModel ticketModel = new TicketModel();
+            ticketModel.setMovieID(selectedMovie.getMovieID());
+            ticketModel.setSessionID(0);
+            ticketModel.setSeatID(0);
+
+            Model.getInstance().setTicketModel(ticketModel);
+
+            Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Session Selection");
+        }
     }
 
     @FXML
@@ -82,6 +97,7 @@ public class CashierSearchByGenreController {
 
             while (rs.next()) {
                 movies.add(new MovieModel(
+                        rs.getInt("movie_id"),
                         rs.getString("movie_name"),
                         rs.getString("img_path"),
                         rs.getString("genre"),
@@ -104,6 +120,7 @@ public class CashierSearchByGenreController {
 
             while (rs.next()) {
                 movies.add(new MovieModel(
+                        rs.getInt("movie_id"),
                         rs.getString("movie_name"),
                         rs.getString("img_path"),
                         rs.getString("genre"),

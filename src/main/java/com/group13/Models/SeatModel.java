@@ -1,12 +1,13 @@
 package com.group13.Models;
 
-public class SeatModel 
+public class SeatModel
 {
-    public int seat_id; 
-    public boolean sold; 
-    public int hall; 
-    public String seat_name;
-    public int session_id; 
+    public int seat_id;
+    public boolean sold;
+    public int hall;
+    public int col;
+    public String row;
+    public int session_id;
 
     public void setSeatID(int seat_id)
     {
@@ -38,14 +39,24 @@ public class SeatModel
         return hall;
     }
 
-    public void setSeatName(String seat_name)
+    public void setSeatCol(int seat_col)
     {
-        this.seat_name = seat_name;
+        this.col = seat_col;
     }
 
-    public String getSeatName()
+    public int getSeatCol()
     {
-        return seat_name;
+        return col;
+    }
+
+    public void setSeatRow(String seat_row)
+    {
+        this.row = seat_row;
+    }
+
+    public String getSeatRow()
+    {
+        return this.row;
     }
 
     public void setSessionID(int session_id)

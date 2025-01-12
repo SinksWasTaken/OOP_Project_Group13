@@ -56,7 +56,7 @@ public class SessionModel
         this.hall_number = hall_number;
     }
 
-    public int setHallNumber()
+    public int getHallNumber()
     {
         return hall_number;
     }

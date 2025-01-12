@@ -1,6 +1,7 @@
 package com.group13.Models;
 
 import java.sql.Date;
+import java.util.List;
 
 public class TicketModel {
     private int ticketID;
@@ -15,6 +16,7 @@ public class TicketModel {
     private double totalTicketPrice;
     private double totalProductPrice;
     private Date purchaseDate;
+    public List<Integer> allSeats;
 
     public int getTicketID() {
         return ticketID;

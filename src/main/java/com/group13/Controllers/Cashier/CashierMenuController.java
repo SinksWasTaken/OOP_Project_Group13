@@ -72,12 +72,13 @@ public class CashierMenuController implements Initializable {
     }
 
     private void onDateSelection() {
-        TicketModel ticket = new TicketModel();
-        ticket.setMovieID(1);
-        Model.getInstance().setTicketModel(ticket);
-
         Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Session Date");
         Model.getInstance().getViewManager().getDateSelectionView();
+    }
+
+    private void onSeatSelection() {
+        Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Hall A");
+        Model.getInstance().getViewManager().getHallAView();
     }
 
 

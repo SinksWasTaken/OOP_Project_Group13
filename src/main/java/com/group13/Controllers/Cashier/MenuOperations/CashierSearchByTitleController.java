@@ -3,6 +3,8 @@ package com.group13.Controllers.Cashier.MenuOperations;
 import com.group13.Models.ConnectionModel;
 import com.group13.Models.Model;
 import com.group13.Models.MovieModel;
+import com.group13.Models.TicketModel;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -58,10 +60,27 @@ public class CashierSearchByTitleController {
          boolean isItemSelected = newValue != null;
          nextStageButton.setDisable(!isItemSelected);
          Model.getInstance().setMovieModel(newValue);
+
+         String query = "SELECT * FROM movies where movie_name='"+Model.getInstance().getMovieModel().getMovieName()+"'";
+
+            try (Connection conn = ConnectionModel.getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query)) 
+            {
+                TicketModel ticket = new TicketModel();
+                rs.next();
+                ticket.setMovieID(rs.getInt("movie_id"));
+
+                Model.getInstance().setTicketModel(ticket);
+            } 
+            catch (SQLException e) 
+            {
+                System.err.println("Error while loading all movies: " + e.getMessage());
+            }
       });
 
       moviesTable.setItems(moviesList);
-      nextStageButton.setOnAction(event -> Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Second Stage"));
+      nextStageButton.setOnAction(event -> Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Session Date"));
    }
 
    @FXML

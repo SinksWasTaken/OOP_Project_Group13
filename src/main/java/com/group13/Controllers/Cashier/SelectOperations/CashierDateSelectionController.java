@@ -11,11 +11,13 @@ import java.util.List;
 import com.group13.Models.ConnectionModel;
 import com.group13.Models.SessionModel;
 import com.group13.Models.Model;
+import com.group13.Models.TicketModel;
 
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,6 +33,25 @@ public class CashierDateSelectionController
    private TableColumn<SessionModel, Date> dateColumn;
    @FXML
    private TableColumn<SessionModel, Timestamp> timeColumn;
+   
+    @FXML
+    private Button cancelButton;
+
+    @FXML
+    private Button nextStageButton;
+
+
+
+    private void cancelSecondStage() {
+        Model.getInstance().setMovieModel(null);
+        Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Search By Genre");
+    }
+
+    private void nextStage() {
+        
+        Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Hall A");
+        
+    }
 
    private final ObservableList<SessionModel> sessionsList = FXCollections.observableArrayList();
 
@@ -39,10 +60,27 @@ public class CashierDateSelectionController
         this.dateColumn.setCellValueFactory(new PropertyValueFactory<>("sessionDate"));
         this.timeColumn.setCellValueFactory(new PropertyValueFactory<>("sessionTime"));
         sessionsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        cancelButton.setOnAction(e -> cancelSecondStage());
+        nextStageButton.setOnAction(e -> nextStage());
+        System.out.println("\n\nMovieID: "+Model.getInstance().getTicketModel().getMovieID()+"\n");
+
+        
 
         sessionDatesFinder(); // Stores all sessions using ticketModel info 
-
+        
+        for(int i=0;i<sessionsList.size();i++)
+        {
+            System.out.println("MovieIDs from array:"+sessionsList.get(i).getMovieID());
+        }
         sessionsTable.setItems(sessionsList);
+        sessionsTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            boolean isItemSelected = newValue != null;
+            nextStageButton.setDisable(!isItemSelected);
+            Model.getInstance().setSessionModel(newValue);
+            Model.getInstance().getTicketModel().setSessionID(newValue.getSessionID());
+            
+
+        });
     }   
 
     @FXML

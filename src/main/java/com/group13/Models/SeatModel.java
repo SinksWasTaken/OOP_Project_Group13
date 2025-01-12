@@ -6,7 +6,7 @@ public class SeatModel
     public boolean sold; 
     public int hall; 
     public int col;
-    public char row;
+    public String row;
     public int session_id; 
 
     public void setSeatID(int seat_id)
@@ -49,14 +49,14 @@ public class SeatModel
         return col;
     }
 
-    public void setSeatRow(int seat_row)
+    public void setSeatRow(String seat_row)
     {
-        this.col = seat_row;
+        this.row = seat_row;
     }
 
-    public int getSeatRow()
+    public String getSeatRow()
     {
-        return row;
+        return this.row;
     }
 
     public void setSessionID(int session_id)

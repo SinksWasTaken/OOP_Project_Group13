@@ -13,36 +13,6 @@ import com.group13.Models.TicketModel;
 
 public class CashierSeatSelectionController 
 {
-    public static void printRS(ResultSet resultSet)
-   {
-      try
-      {
-         ResultSetMetaData metaData = resultSet.getMetaData();
-         int numberOfColumns = metaData.getColumnCount(); 
-         //MainFunc.Clear_Console();
-         System.out.printf("group13 Table of movies Database:%n%n");
-      
-         // display the names of the columns in the ResultSet
-         for (int i = 1; i <= numberOfColumns; i++) 
-         {
-            System.out.printf("%-30s\t", metaData.getColumnName(i));
-         }
-         System.out.println();
-      
-         while (resultSet.next()) 
-         {
-            for (int i = 1; i <= numberOfColumns; i++) 
-            {
-               System.out.printf("%-30s\t", resultSet.getObject(i));
-            }
-            System.out.println();
-         }
-      }
-      catch(SQLException e)
-      {
-         System.err.println(e.getMessage()+ " Retrying....");
-      }
-   }
     //This method searches the seats table and finds all the seats with a specific session_id (retrieved from the ticketModel object), then returns the available seats in a seatModel array (if the session seats have not been assigned yet, the method assigns them)
     static void sessionSeatsFinder(List<SeatModel> seatsFinal,TicketModel ticket)
     {

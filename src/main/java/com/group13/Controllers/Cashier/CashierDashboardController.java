@@ -19,6 +19,7 @@ public class CashierDashboardController implements Initializable {
                 case "Search By Genre" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSearchByGenreView());
                 case "Search By Name" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSearchByNameView());
                 case "Search By Partial Name" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSearchByPartialNameView());
+                case "Session Date" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getDateSelectionView());
                 default -> cashier_parent.setCenter(Model.getInstance().getViewManager().getCashierWelcomeView());
             }
         });

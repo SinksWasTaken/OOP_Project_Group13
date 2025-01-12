@@ -190,6 +190,11 @@ public class ViewManager {
         return loadView("/Fxml/Cashier/Menu/search-by-partial-name-view.fxml");
     }
 
+    public AnchorPane getDateSelectionView()
+    {
+        return loadView("/Fxml/Cashier/Menu/date-selection-view.fxml");
+    }
+
 
     private AnchorPane loadView(String fxmlPath) {
         try {

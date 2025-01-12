@@ -140,10 +140,6 @@ public class AdminRefundTicketController
             return false;
         }
     }
-    public static void main(String[] args)
-    {
-        refundTicket(1);
-    }
 }
 
 

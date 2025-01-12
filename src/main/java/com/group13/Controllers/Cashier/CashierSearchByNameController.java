@@ -107,11 +107,4 @@ public class CashierSearchByNameController
       }
    }
 
-    public static void main(String[] args)
-    {
-        
-      List<MovieModel> movies = searchByName("Cars2");
-      movies.get(0).printMovie();
 
-    }
-}

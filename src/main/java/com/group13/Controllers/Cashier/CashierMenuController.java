@@ -2,6 +2,7 @@ package com.group13.Controllers.Cashier;
 
 import com.group13.Controllers.LogoutController;
 import com.group13.Models.Model;
+import com.group13.Models.TicketModel;
 import com.group13.Models.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,6 +32,9 @@ public class CashierMenuController implements Initializable {
     public javafx.scene.control.Button searchByPartialName_btn;
 
     @FXML
+    public javafx.scene.control.Button selectDate_btn;
+
+    @FXML
     public javafx.scene.control.Button logout_btn;
 
     @Override
@@ -49,6 +53,7 @@ public class CashierMenuController implements Initializable {
         searchByGenre_btn.setOnAction(event -> onSearchByGenre());
         searchByName_btn.setOnAction(event -> onSearchByName());
         searchByPartialName_btn.setOnAction(event -> onSearchByPartialName());
+        selectDate_btn.setOnAction(event -> onDateSelection());
         logout_btn.setOnAction(event -> onLogout());
     }
 
@@ -70,6 +75,15 @@ public class CashierMenuController implements Initializable {
     private void onSearchByPartialName() {
         Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Search By Partial Name");
         Model.getInstance().getViewManager().getSearchByPartialNameView();
+    }
+
+    private void onDateSelection() {
+        TicketModel ticket = new TicketModel();
+        ticket.setMovieID(1);
+        Model.getInstance().setTicketModel(ticket);
+
+        Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Session Date");
+        Model.getInstance().getViewManager().getDateSelectionView();
     }
 
 

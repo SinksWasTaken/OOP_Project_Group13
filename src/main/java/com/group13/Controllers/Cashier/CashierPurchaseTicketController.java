@@ -1,17 +1,12 @@
 package com.group13.Controllers.Cashier;
 
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.Statement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.chrono.ThaiBuddhistChronology;
+import java.sql.Statement;
 
-import com.group13.Models.TicketModel;
- 
 import com.group13.DatabaseConnection;
+import com.group13.Models.TicketModel;
 
 public class CashierPurchaseTicketController 
 {
@@ -28,22 +23,22 @@ public class CashierPurchaseTicketController
             rs=statement.executeQuery(selectAllTicketsQuery);
             rs.moveToInsertRow();
 
-            rs.updateString(2, ticket.customerName);
-            rs.updateInt(3, ticket.age);
-            rs.updateString(4, ticket.extraProducts);
-            rs.updateDouble(5, ticket.price*-1);
-            rs.updateString(6, ticket.customerSuggestions);
-            rs.updateString(7, ticket.movieName);
-            rs.updateTimestamp(8, ticket.sessionTime);
-            rs.updateDate(9, ticket.sessionDate);
-            rs.updateInt(10, ticket.sessionHall);
-            rs.updateInt(11, ticket.seatCol);
-            rs.updateString(12, ticket.seatRow);
+            rs.updateString(2, ticket.getCustomerName());
+            rs.updateInt(3, ticket.getCustomerAge());
+            rs.updateInt(4, ticket.getSessionID());
+            rs.updateInt(5, ticket.getSeatID());
+            rs.updateInt(6, ticket.getMovieID());
+            rs.updateString(7, ticket.getProductNames());
+            rs.updateInt(8, ticket.getNumberOfTickets());
+            rs.updateDouble(9, ticket.getDiscountRate());
+            rs.updateDouble(10, ticket.getTotalTicketPrice());
+            rs.updateDouble(11, ticket.getTotalProductPrice());
+            rs.updateDate(12, ticket.getPurchaseDate());
             rs.insertRow();
 
             System.out.println("Refunded Ticket Successfully");
 
-            String selectSessionQuery = "SELECT * FROM sessions Where session_date='"+ticket.sessionDate+ "' and session_time='"+ticket.sessionTime+"' and movie_name='"+ticket.movieName+"'";
+            String selectSessionQuery = "SELECT * FROM sessions Where session_date="+ticket.getSessionID();
             rs=statement.executeQuery(selectSessionQuery);
 
             if(rs==null)
@@ -52,11 +47,11 @@ public class CashierPurchaseTicketController
                 return false;
             }
             rs.next();
-            int sessionID = rs.getInt("session_id");
+            int sessionID = rs.getInt("sessionID");
 
             System.out.println("Session Selected Successfully");
 
-            String selectSeatQuery = "SELECT * FROM seats Where session_id="+sessionID+" and c="+ticket.seatCol+ " and r='"+ticket.seatRow+"' and hall="+ticket.sessionHall;
+            String selectSeatQuery = "SELECT * FROM seats Where sessionID="+sessionID+" and seat_name="+ticket.getSeatID();
             rs=statement.executeQuery(selectSeatQuery);
 
             rs.next();

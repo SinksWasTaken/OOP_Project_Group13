@@ -110,17 +110,4 @@ public class CashierSearchByPartialNameController
          System.err.println(e.getMessage()+ " Retrying....");
       }
    }
-
-    public static void main(String[] args)
-    {
-        
-      List<MovieModel> movies = searchByPartialName("Pirates");
-
-      for(int i =0;i<movies.size();i++)
-      {
-         movies.get(i).printMovie();
-         System.out.println('\n');
-      }
-
-    }
 }

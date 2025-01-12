@@ -35,6 +35,11 @@
                     <FontAwesomeIconView glyphName="SEARCH" styleClass="menu-icon" />
                 </graphic>
             </Button>
+            <Button fx:id="selectDate_btn" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" text="Session Date" styleClass="menu-button">
+                <graphic>
+                    <FontAwesomeIconView glyphName="SEARCH" styleClass="menu-icon" />
+                </graphic>
+            </Button>
         </VBox>
     </VBox>
 

@@ -43,16 +43,16 @@ public class CashierSearchByGenreController
                   {
                      case 2 ->
                      {
-                        movie.movieName =rs.getString(i);
+                        movie.setMovieName(rs.getString(i));
                         
                      }
                      case 3 ->
                      {
-                        movie.imgPath =rs.getString(i);
+                        movie.setImgPath(rs.getString(i));
                      }
                      case 4 ->
                      {
-                        movie.genre =rs.getString(i);
+                        movie.setGenre(rs.getString(i));
                      }
                   }
                   
@@ -103,17 +103,5 @@ public class CashierSearchByGenreController
       }
    }
 
-   public static void main(String[] args)
-   {
 
-
-      List<MovieModel> movies = searchByGenre("a");
-
-      for(int i =0;i<movies.size();i++)
-      {
-         movies.get(i).printMovie();
-         System.out.println('\n');
-      }
-
-   }
 }

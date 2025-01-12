@@ -1,15 +1,15 @@
 package com.group13.Models;
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 
 public class SessionModel 
 {
-    public int session_id;
-    public int movie_id;
-    public LocalDateTime session_datetime;
-    public int hall_number;
+    private int session_id;
+    private Integer movieId;
+    private Date sessionDate;
+    private Timestamp sessionTime;
+    private int hall_number;
 
     public void setSessionID(int session_id)
     {
@@ -21,24 +21,34 @@ public class SessionModel
         return session_id;
     }
 
-    public void setSessionDate(LocalDateTime session_date)
+    public void setSessionDate(Date sessionDate)
     {
-        this.session_datetime = session_date;
+        this.sessionDate = sessionDate;
     }
 
-    public LocalDateTime getSessionDate()
+    public Date getSessionDate()
     {
-        return session_datetime;
+        return this.sessionDate;
     }
 
-    public void setMovieID(int movie_id)
+    public void setSessionTime(Timestamp sessionTime)
     {
-        this.movie_id = movie_id;
+        this.sessionTime = sessionTime;
     }
 
-    public int getMovieID()
+    public Timestamp getSessionTime()
     {
-        return movie_id;
+        return this.sessionTime;
+    }
+
+    public void setMovieID(Integer movieId)
+    {
+        this.movieId = movieId;
+    }
+
+    public Integer getMovieID()
+    {
+        return movieId;
     }
 
     public void setHallNumber(int hall_number)

@@ -18,6 +18,9 @@ public class TicketModel {
     public Date purchaseDate;
     public List<Integer> allSeats;
     public List<String> productIDs;
+    public String seatStr;
+    public String productStr;
+    public String seatsIDStr;
 
     public int getTicketID() {
         return ticketID;

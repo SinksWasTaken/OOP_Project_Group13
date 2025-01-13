@@ -1,9 +1,17 @@
 package com.group13.Controllers.Cashier.SelectOperations;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.group13.Models.ConnectionModel;
 import com.group13.Models.Model;
 import com.group13.Models.Product;
 import com.group13.Models.TicketModel;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,13 +20,6 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class CashierProductSelectionController {
 
@@ -102,7 +103,7 @@ public class CashierProductSelectionController {
     }
 
     private void cancelSelection() {
-        Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Previous Stage");
+        Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Hall");
     }
 
     private void nextStage() {
@@ -131,6 +132,6 @@ public class CashierProductSelectionController {
         productGrid.getChildren().clear();
         loadProductGrid();
 
-        Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Next Stage");
+        Model.getInstance().getViewManager().getCashierSelectedMenuItem().set("Purchase Ticket");
     }
 }

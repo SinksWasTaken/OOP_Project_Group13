@@ -3,6 +3,7 @@ package com.group13.Views;
 import com.group13.Controllers.Admin.AdminDashboardController;
 import com.group13.Controllers.Cashier.CashierDashboardController;
 import com.group13.Controllers.Manager.ManagerDashboardController;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
@@ -194,6 +195,10 @@ public class ViewManager {
         return loadView("/Fxml/Cashier/Menu/product-selection-view.fxml");
     }
 
+    public AnchorPane getPurchaseView()
+    {
+        return loadView("/Fxml/Cashier/Menu/purchase-view.fxml");
+    }
 
     private AnchorPane loadView(String fxmlPath) {
         try {

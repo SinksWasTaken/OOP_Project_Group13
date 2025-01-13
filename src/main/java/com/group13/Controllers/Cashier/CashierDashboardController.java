@@ -1,11 +1,12 @@
 package com.group13.Controllers.Cashier;
 
-import com.group13.Models.Model;
-import javafx.fxml.Initializable;
-import javafx.scene.layout.BorderPane;
-
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.group13.Models.Model;
+
+import javafx.fxml.Initializable;
+import javafx.scene.layout.BorderPane;
 
 public class CashierDashboardController implements Initializable {
 
@@ -21,7 +22,7 @@ public class CashierDashboardController implements Initializable {
                 case "Session Selection" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSessionSelectionView());
                 case "Hall" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getHallView());
                 case "Product Selection" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getProductSelectionView());
-
+                case "Purchase Ticket" -> cashier_parent.setCenter(Model.getInstance().getViewManager().getPurchaseView());
                 default -> cashier_parent.setCenter(Model.getInstance().getViewManager().getSearchByGenreView());
             }
         });

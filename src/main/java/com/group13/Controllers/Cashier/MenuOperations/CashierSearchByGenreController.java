@@ -1,9 +1,15 @@
 package com.group13.Controllers.Cashier.MenuOperations;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import com.group13.Models.ConnectionModel;
 import com.group13.Models.Model;
 import com.group13.Models.MovieModel;
 import com.group13.Models.TicketModel;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,10 +19,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class CashierSearchByGenreController {
     @FXML

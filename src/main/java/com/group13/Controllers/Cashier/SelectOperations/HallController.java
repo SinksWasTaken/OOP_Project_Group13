@@ -7,7 +7,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.group13.Models.*;
+import com.group13.Models.ConnectionModel;
+import com.group13.Models.Model;
+import com.group13.Models.SeatModel;
+import com.group13.Models.SessionModel;
+import com.group13.Models.TicketModel;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -167,5 +171,6 @@ public class HallController {
 
         ticketModel.setAllSeats(selectedSeats);
         ticketModel.setNumberOfTickets(selectedSeats.size());
+        
     }
 }

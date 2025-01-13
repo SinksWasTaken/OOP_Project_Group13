@@ -117,10 +117,6 @@ public class ViewManager {
         return loadView("/Fxml/Admin/Menu/update-schedule-view.fxml");
     }
 
-    public AnchorPane getCustomerRequestsView() {
-        return loadView("/Fxml/Admin/Menu/customer-request-view.fxml");
-    }
-
     // Manager Views
 
     private final StringProperty managerSelectedMenuItem;

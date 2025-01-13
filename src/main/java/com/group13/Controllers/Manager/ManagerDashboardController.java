@@ -14,7 +14,6 @@ public class ManagerDashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Model.getInstance().getViewManager().getManagerSelectedMenuItem().addListener((observable, oldVal, newVal) -> {
             switch (newVal) {
-                case "Home" -> manager_parent.setCenter(Model.getInstance().getViewManager().getInventoryView());
                 case "Inventory" -> manager_parent.setCenter(Model.getInstance().getViewManager().getInventoryView());
                 case "Add Product" -> manager_parent.setCenter(Model.getInstance().getViewManager().getAddProductView());
                 case "Update Product" -> manager_parent.setCenter(Model.getInstance().getViewManager().getUpdateProductView());

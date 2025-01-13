@@ -19,7 +19,6 @@ public class AdminDashboardController implements Initializable {
                 case "Update Movie" -> admin_parent.setCenter(Model.getInstance().getViewManager().getUpdateMovieView());
                 case "Create Schedule" -> admin_parent.setCenter(Model.getInstance().getViewManager().getCreateScheduleView());
                 case "Update Schedule" -> admin_parent.setCenter(Model.getInstance().getViewManager().getUpdateScheduleView());
-                case "Customer Request" -> admin_parent.setCenter(Model.getInstance().getViewManager().getCustomerRequestsView());
                 default -> admin_parent.setCenter(Model.getInstance().getViewManager().getAdminWelcomeView());
             }
         });

@@ -40,11 +40,6 @@
                <FontAwesomeIconView glyphName="EDIT" styleClass="menu-icon" />
             </graphic>
          </Button>
-         <Button fx:id="customerRequest_btn" mnemonicParsing="false" prefHeight="40.0" prefWidth="300.0" text="Process Customer Requests" styleClass="menu-button">
-            <graphic>
-               <FontAwesomeIconView glyphName="USERS" styleClass="menu-icon" />
-            </graphic>
-         </Button>
       </VBox>
    </VBox>
 

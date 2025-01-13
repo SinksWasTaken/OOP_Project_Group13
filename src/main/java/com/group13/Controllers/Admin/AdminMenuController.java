@@ -29,9 +29,6 @@ public class AdminMenuController implements Initializable {
     public javafx.scene.control.Button updateSchedule_btn;
 
     @FXML
-    public javafx.scene.control.Button customerRequest_btn;
-
-    @FXML
     public javafx.scene.control.Button logout_btn;
 
     @FXML
@@ -56,7 +53,6 @@ public class AdminMenuController implements Initializable {
         updateMovie_btn.setOnAction(event -> onUpdateMovie());
         createSchedule_btn.setOnAction(event -> onCreateSchedule());
         updateSchedule_btn.setOnAction(event -> onUpdateSchedule());
-        customerRequest_btn.setOnAction(event -> onCustomerRequest());
         logout_btn.setOnAction(event -> onLogout());
     }
 
@@ -78,10 +74,6 @@ public class AdminMenuController implements Initializable {
 
     private void onUpdateSchedule() {
         Model.getInstance().getViewManager().getAdminSelectedMenuItem().set("Update Schedule");
-    }
-
-    private void onCustomerRequest() {
-        Model.getInstance().getViewManager().getAdminSelectedMenuItem().set("Customer Request");
     }
 
     private void onLogout() {

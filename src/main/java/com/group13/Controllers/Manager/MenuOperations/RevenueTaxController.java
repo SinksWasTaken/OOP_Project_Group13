@@ -24,27 +24,68 @@ public class RevenueTaxController {
         taxAmountLabel.setText(String.valueOf(calculateTotalTaxAmounts()));
     }
 
+
     private double calculateTotalRevenue() {
-        String query = "SELECT totalRevenue FROM tickets";
+
+        double totalTicketPrice = calculateTotalTicket();
+        double totalProductPrice = calculateTotalProduct();
+
         double totalRevenue = 0.0;
+
+        totalRevenue = totalTicketPrice + totalProductPrice;
+
+        return totalRevenue;
+    }
+
+    private double calculateTotalTicket() {
+        String query = "SELECT totalTicketPrice FROM tickets";
+
+        double totalTicketPrice = 0;
 
         try (Connection connection = ConnectionModel.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
 
             while (resultSet.next()) {
-                totalRevenue += resultSet.getDouble("totalRevenue");
+                totalTicketPrice += resultSet.getDouble("totalTicketPrice");
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return totalRevenue;
+        return totalTicketPrice;
+    }
+
+    private double calculateTotalProduct() {
+        String query = "SELECT totalProductPrice FROM tickets";
+
+        double totalProductPrice = 0;
+
+        try (Connection connection = ConnectionModel.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            while (resultSet.next()) {
+                totalProductPrice += resultSet.getDouble("totalProductPrice");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return totalProductPrice;
     }
 
     private double calculateTotalTaxAmounts() {
-        String query = "SELECT totalTax FROM tickets";
+        String query = "SELECT * FROM pricetaxdiscount";
+
+        double ticketTax = 0.0;
+        double productTax = 0.0;
+
+        double totalTicketPrice = calculateTotalTicket();
+        double totalProductPrice = calculateTotalProduct();
+
         double totalTax = 0.0;
 
         try (Connection connection = ConnectionModel.getConnection();
@@ -52,12 +93,21 @@ public class RevenueTaxController {
              ResultSet resultSet = statement.executeQuery(query)) {
 
             while (resultSet.next()) {
-                totalTax += resultSet.getDouble("totalTax");
+                ticketTax = resultSet.getDouble("ticketTaxRate");
+                productTax = resultSet.getDouble("productTaxRate");
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        ticketTax = (ticketTax / 100);
+        productTax = (productTax / 100);
+
+        totalTicketPrice *= ticketTax;
+        totalProductPrice *= productTax;
+
+        totalTax = totalTicketPrice + totalProductPrice;
 
         return totalTax;
     }

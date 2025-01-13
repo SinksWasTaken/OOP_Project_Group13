@@ -1,150 +1,54 @@
 package com.group13.Controllers.Admin;
 
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Timestamp;
- 
-import com.group13.DatabaseConnection;
 
-public class AdminRefundTicketController
-{
-    public static void printRS(ResultSet resultSet)
-    {
-      try
-      {
-        ResultSetMetaData metaData = resultSet.getMetaData();
-         int numberOfColumns = metaData.getColumnCount(); 
-         //MainFunc.Clear_Console();
-         System.out.printf("group13 Table of movies Database:%n%n");
+import com.group13.Models.ConnectionModel;
 
-         // display the names of the columns in the ResultSet
-         for (int i = 1; i <= numberOfColumns; i++) 
-         {
-            System.out.printf("%-8s\t", metaData.getColumnName(i));
-         }
-         System.out.println();
+public class AdminRefundTicketController {
 
-         while (resultSet.next()) 
-         {
-            for (int i = 1; i <= numberOfColumns; i++) 
-            {
-               System.out.printf("%-8s\t", resultSet.getObject(i));
-            }
-            System.out.println();
-         }
-      }
-      catch(SQLException e)
-      {
-         System.err.println(e.getMessage()+ " Retrying....");
-      }
-   }
-    
-    public static boolean refundTicket(int ticketNumber)
-    {
-        try 
-        {
-            Connection connection = DatabaseConnection.connect();
-            String query = "Select * From tickets where ticketNumber=" + ticketNumber;
+    public static boolean refundTicket(int ticketId) {
+        try (Connection connection = ConnectionModel.getConnection()) {
+            // Check if the ticket exists
+            String ticketQuery = "SELECT * FROM tickets WHERE ticket_id = ?";
+            PreparedStatement ticketStatement = connection.prepareStatement(ticketQuery, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ticketStatement.setInt(1, ticketId);
+            ResultSet ticketResultSet = ticketStatement.executeQuery();
 
-
-            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-
-            ResultSet rs = statement.executeQuery(query);
-            if(rs==null)
-            {
-                System.out.println("TicketNumber: "+ ticketNumber + " Couldn't be found.");
+            if (!ticketResultSet.next()) {
+                System.out.println("Ticket ID: " + ticketId + " not found.");
                 return false;
             }
-            
-            rs.next();
-            String customerName         = "REFUND: "+ rs.getString("customerName");
-            int age                     = rs.getInt("age");
-            String extraProducts        = rs.getString("extrasProducts");
-            double price                = rs.getDouble("price");
-            String customerSuggestions  = rs.getString("customerSuggestions");
-            String movieName            = rs.getString("movieName");
-            Date sessionDate            = rs.getDate("sessionDate");
-            Timestamp sessionTime       = rs.getTimestamp("sessionTime");
-            int sessionHall             = rs.getInt("sessionHall");
-            int seatCol                 = rs.getInt("seatCol");
-            String seatRow              = rs.getString("seatRow");
 
+            // Retrieve ticket details
+            int sessionId = ticketResultSet.getInt("session_id");
+            String seatRow = ticketResultSet.getString("seat_row");
+            int seatCol = ticketResultSet.getInt("seat_col");
 
+            // Delete the ticket
+            String deleteTicketQuery = "DELETE FROM tickets WHERE ticket_id = ?";
+            PreparedStatement deleteTicketStatement = connection.prepareStatement(deleteTicketQuery);
+            deleteTicketStatement.setInt(1, ticketId);
+            deleteTicketStatement.executeUpdate();
 
-            
-            String selectAllTicketsQuery = "SELECT * FROM tickets";
-            
+            System.out.println("Ticket ID: " + ticketId + " refunded successfully.");
 
-            rs=statement.executeQuery(selectAllTicketsQuery);
+            // Free the corresponding seat
+            String updateSeatQuery = "UPDATE seats SET sold = FALSE WHERE session_id = ? AND seat_row = ? AND seat_col = ?";
+            PreparedStatement updateSeatStatement = connection.prepareStatement(updateSeatQuery);
+            updateSeatStatement.setInt(1, sessionId);
+            updateSeatStatement.setString(2, seatRow);
+            updateSeatStatement.setInt(3, seatCol);
+            updateSeatStatement.executeUpdate();
 
-            while(rs.next())
-            {
-                
-                if(customerName.equals(rs.getString("customerName")))
-                {
-                    System.out.println("Ticket: "+ ticketNumber + " had been refunded before!");
-                    return false;
-                }
-            }
-
-            rs.moveToInsertRow();
-            rs.updateString(2, customerName);
-            rs.updateInt(3, age);
-            rs.updateString(4, extraProducts);
-            rs.updateDouble(5, price*-1);
-            rs.updateString(6, customerSuggestions);
-            rs.updateString(7, movieName);
-            rs.updateTimestamp(8, sessionTime);
-            rs.updateDate(9, sessionDate);
-            rs.updateInt(10, sessionHall);
-            rs.updateInt(11, seatCol);
-            rs.updateString(12, seatRow);
-            rs.insertRow();
-
-            System.out.println("\nRefunded Ticket Successfully");
-
-
-            String selectSessionQuery = "SELECT * FROM sessions Where session_date='"+sessionDate+ "' and session_time='"+sessionTime+"' and movie_name='"+movieName+"'";
-            rs=statement.executeQuery(selectSessionQuery);
-
-            if(rs==null)
-            {
-                System.out.println("No Session Found");
-                return false;
-            }
-            rs.next();
-            int sessionID = rs.getInt("session_id");
-
-            System.out.println("Session Selected Successfully");
-
-            String selectSeatQuery = "SELECT * FROM seats Where session_id="+sessionID+" and c="+seatCol+ " and r='"+seatRow+"' and hall="+sessionHall;
-            rs=statement.executeQuery(selectSeatQuery);
-            
-            rs.next();
-            rs.updateBoolean("sold", false);
-
-            rs.updateRow();
-            
-            System.out.println("Seat Cleared Successfully");
-
+            System.out.println("Seat " + seatRow + seatCol + " is now available.");
             return true;
-        } 
-        catch (SQLException e) 
-        {
-           
-            System.out.println("Couldn't Refund Ticket");
+
+        } catch (SQLException e) {
+            System.err.println("Error while refunding ticket: " + e.getMessage());
             return false;
         }
     }
-    public static void main(String[] args)
-    {
-        refundTicket(1);
-    }
 }
-
-
-//session_date="+sessionDate+ " & session_time='"+sessionTime+"' &

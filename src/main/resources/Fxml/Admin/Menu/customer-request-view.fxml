@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../../../Styles/admin/admin-welcome-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Admin.MenuOperations.CustomerRequestController">
-   <Label layoutX="218.0" layoutY="242.0" text="Customer Request" />
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group13.Controllers.Admin.MenuOperations.CustomerRequestController">
+   <children>
+      <Label layoutX="30.0" layoutY="20.0" text="Bought Tickets" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+      <TableView fx:id="ticketTable" layoutX="30.0" layoutY="60.0" prefHeight="400.0" prefWidth="740.0">
+         <columns>
+            <TableColumn fx:id="ticketIdColumn" prefWidth="100.0" text="Ticket ID" />
+            <TableColumn fx:id="customerNameColumn" prefWidth="150.0" text="Customer Name" />
+            <TableColumn fx:id="movieNameColumn" prefWidth="150.0" text="Movie Name" />
+            <TableColumn fx:id="sessionDateColumn" prefWidth="100.0" text="Session Date" />
+            <TableColumn fx:id="sessionTimeColumn" prefWidth="100.0" text="Session Time" />
+            <TableColumn fx:id="hallColumn" prefWidth="70.0" text="Hall" />
+            <TableColumn fx:id="seatColumn" prefWidth="70.0" text="Seat" />
+         </columns>
+      </TableView>
+
+      <Button fx:id="refundButton" layoutX="350.0" layoutY="500.0" text="Refund Selected Ticket" />
+   </children>
 </AnchorPane>

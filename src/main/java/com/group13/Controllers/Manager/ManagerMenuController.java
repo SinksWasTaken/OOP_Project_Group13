@@ -19,9 +19,6 @@ public class ManagerMenuController implements Initializable {
     public Label role_manager;
 
     @FXML
-    public javafx.scene.control.Button home_btn;
-
-    @FXML
     public javafx.scene.control.Button inventory_btn;
 
     @FXML
@@ -48,17 +45,11 @@ public class ManagerMenuController implements Initializable {
     }
 
     private void addListeners() {
-        home_btn.setOnAction(event -> onHome());
         inventory_btn.setOnAction(event -> onInventory());
         price_btn.setOnAction(event -> onPrice());
         revenueTax_btn.setOnAction(event -> onRevenueTax());
         worker_btn.setOnAction(event -> onWorker());
         logout_btn.setOnAction(event -> onLogout());
-    }
-
-    private void onHome() {
-        Model.getInstance().getViewManager().getManagerSelectedMenuItem().set("Home");
-        Model.getInstance().getViewManager().getManagerWelcomeView();
     }
 
     private void onInventory() {

@@ -128,10 +128,6 @@ public class ViewManager {
         return managerSelectedMenuItem;
     }
 
-    public AnchorPane getManagerWelcomeView() {
-        return loadView("/Fxml/Manager/manager-welcome-view.fxml");
-    }
-
     public AnchorPane getInventoryView() {
         return loadView("/Fxml/Manager/Menu/inventory-view.fxml");
     }

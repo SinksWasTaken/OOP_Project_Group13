@@ -9,7 +9,7 @@
     </left>
 
     <center>
-        <fx:include source="manager-welcome-view.fxml" />
+        <fx:include source="/Fxml/Manager/Menu/inventory-view.fxml" />
     </center>
 
 </BorderPane>

@@ -25,8 +25,9 @@ DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
   `session_id` int NOT NULL AUTO_INCREMENT,
   `movie_id` int NOT NULL,
-  `session_datetime` datetime NOT NULL,
+  `sessionDate` date NOT NULL,
   `hall_number` int NOT NULL,
+  `sessionTime` time DEFAULT NULL,
   PRIMARY KEY (`session_id`),
   KEY `movieID_idx` (`movie_id`),
   CONSTRAINT `movie_id` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`movie_id`)
@@ -39,7 +40,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES (1,1,'2025-01-11 00:00:00',1),(2,2,'2025-01-11 00:00:00',1),(3,3,'2025-01-11 00:00:00',1),(4,4,'2025-01-11 00:00:00',1),(5,5,'2025-01-11 00:00:00',1),(6,6,'2025-01-11 00:00:00',1),(7,7,'2025-01-11 00:00:00',1);
+INSERT INTO `sessions` VALUES (1,1,'2025-01-11',1,'10:00:00'),(2,1,'2025-01-11',2,'12:00:00'),(3,1,'2025-01-11',1,'14:00:00'),(4,4,'2025-01-11',1,'14:00:00'),(5,5,'2025-01-11',1,'14:00:00'),(6,6,'2025-01-11',1,'14:00:00'),(7,7,'2025-01-11',1,'14:00:00');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-12  0:54:14
+-- Dump completed on 2025-01-13 13:02:30

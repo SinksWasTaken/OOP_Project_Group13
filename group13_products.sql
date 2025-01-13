@@ -23,11 +23,12 @@ DROP TABLE IF EXISTS `products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `products` (
+  `productID` int NOT NULL,
   `productName` varchar(50) NOT NULL,
   `price` double NOT NULL,
   `productImagePath` varchar(1500) NOT NULL,
   `stockCount` int NOT NULL,
-  PRIMARY KEY (`productName`)
+  PRIMARY KEY (`productID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -37,7 +38,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES ('Deneme',4,'src/main/resources/Images/products/toystory.jpg',6),('Python',45,'src/main/resources/Images/products/python.png',5);
+INSERT INTO `products` VALUES (1,'Deneme',4,'src/main/resources/Images/products/toystory.jpg',6),(2,'Python',45,'src/main/resources/Images/products/python.png',5);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-12  0:54:12
+-- Dump completed on 2025-01-13 13:02:35

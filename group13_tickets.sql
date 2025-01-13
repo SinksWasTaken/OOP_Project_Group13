@@ -27,9 +27,9 @@ CREATE TABLE `tickets` (
   `customerName` varchar(50) NOT NULL,
   `customerAge` int NOT NULL,
   `sessionID` int NOT NULL,
-  `seatID` int NOT NULL,
+  `seatIDs` varchar(1000) NOT NULL,
   `movieID` int NOT NULL,
-  `productNames` varchar(1000) NOT NULL,
+  `productIDs` varchar(1000) NOT NULL,
   `numberOfTickets` int NOT NULL,
   `discountRate` double NOT NULL,
   `totalTicketPrice` double NOT NULL,
@@ -37,10 +37,9 @@ CREATE TABLE `tickets` (
   `purchaseDate` datetime NOT NULL,
   PRIMARY KEY (`ticketID`),
   KEY `movieID_idx` (`movieID`),
-  KEY `seatID_idx` (`seatID`),
+  KEY `seatID_idx` (`seatIDs`(768)),
   KEY `sessionID_idx` (`sessionID`),
   CONSTRAINT `movieID` FOREIGN KEY (`movieID`) REFERENCES `movies` (`movie_id`),
-  CONSTRAINT `seatID` FOREIGN KEY (`seatID`) REFERENCES `seats` (`seat_id`),
   CONSTRAINT `sessionID` FOREIGN KEY (`sessionID`) REFERENCES `sessions` (`session_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -51,7 +50,7 @@ CREATE TABLE `tickets` (
 
 LOCK TABLES `tickets` WRITE;
 /*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
-INSERT INTO `tickets` VALUES (1,'0',0,1,1,1,'0',0,0,0,0,'2025-01-11 00:00:00'),(2,'0',0,1,1,1,'0',0,0,0,0,'2025-01-11 00:00:00');
+INSERT INTO `tickets` VALUES (1,'0',0,1,'1a',1,'0',0,0,0,0,'2025-01-11 00:00:00'),(2,'0',0,1,'1',1,'0',0,0,0,0,'2025-01-11 00:00:00');
 /*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -64,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-12  0:54:21
+-- Dump completed on 2025-01-13 13:02:39

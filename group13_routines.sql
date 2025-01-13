@@ -46,26 +46,30 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `fillSeats`(s_id INT)
+CREATE DEFINER=`myuser`@`localhost` PROCEDURE `fillSeats`(s_id int)
 BEGIN
     DECLARE i INT DEFAULT 1;
-    DECLARE hall INT DEFAULT (SELECT hall_number FROM sessions WHERE s_id = session_id);
+    Declare hall INT default (select hall_number from sessions where s_id= session_id);
     loop_label: LOOP
+        
+
         -- Do something in the loop
-        INSERT INTO seats(sold, hall, c, r, session_id)
-        VALUES (false, hall, IF(i % 8 = 0, 8, i % 8), IF(i > 8, 'b', 'a'), s_id);
+        Insert into seats(sold,hall,`col`,`row`,session_id)
+        values(0,hall,if(i%8=0,8,i%8),if(i>8,'b','a'),s_id);
 
         SET i = i + 1; 
-        IF i > IF(hall = 1, 16, 48) THEN
-            LEAVE loop_label; 
-        END IF;
+        IF i > if(hall=1,16,48)
+		THEN
+			LEAVE loop_label; 
+		END IF;
     END LOOP loop_label;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -122,4 +126,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-12  0:54:28
+-- Dump completed on 2025-01-13 13:02:43

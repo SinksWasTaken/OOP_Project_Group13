@@ -41,7 +41,7 @@ CREATE TABLE `workers` (
 
 LOCK TABLES `workers` WRITE;
 /*!40000 ALTER TABLE `workers` DISABLE KEYS */;
-INSERT INTO `workers` VALUES (2,'admin1','admin1','Barış Can','Aslan',2),(3,'manager1','manager1','Fabio','Stroppa',3),(4,'cashier1','khas123','Mauro','Icardi',1);
+INSERT INTO `workers` VALUES (1,'cashier1','khas123','Mauro','Icardi',1),(2,'admin1','admin1','Barış Can','Aslan',2),(3,'manager1','manager1','Fabio','Stroppa',3);
 /*!40000 ALTER TABLE `workers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-12  0:54:19
+-- Dump completed on 2025-01-13 13:02:26
